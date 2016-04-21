@@ -1,0 +1,12 @@
+<div class="profils-container container">
+    <div class="profils row">
+        <h2 class="col-md-12 text-center">Quel est votre profil ?</h2>
+        <div class="col-md-3" ng-repeat="profil in profils">
+            <a>
+                <img ng-src="{{profil.imgPath}}" width="150" height="150"/>
+                <h3 class="text-center">{{profil.name}}</h3>
+            </a>
+        </div>
+        <a class="col-md-12 text-center">Plus d'options</a>
+    </div>
+</div>

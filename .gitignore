@@ -1,0 +1,4 @@
+Frontend/.tmp/*
+Frontend/dist/*
+Frontend/bower_components/*
+Frontend/node_modules/*
