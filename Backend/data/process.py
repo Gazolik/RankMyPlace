@@ -17,10 +17,10 @@ def load_data(filename):
     return data
 
 def dump_json(filename, data):
-    parts = filename.split('.')
+    parts = filename.split('/')[-1].split('.')
     del parts[-1]
-    processed_file = 'processed/' + '.'.join(parts) + '.json'
-    with open(processed_file, 'w') as out:
+    processed_file = 'processed/' + '.'.join(parts) + '_psd.json'
+    with open(processed_file.lower(), 'w') as out:
         out.write(json.dumps(data, sort_keys=False))
         out.close()
 
@@ -28,10 +28,39 @@ def dump_json(filename, data):
 
 # input & params
 data = load_data(sys.argv[1])
-out_data = {}
+out_data = []
 
 
-# y a du boulot !
+for record in data['features']:
+    out_data.append({
+# main loop for TCL file
+#             'coordinates' : {
+#                 'lat':record['geometry']['coordinates'][0],
+#                 'lon':record['geometry']['coordinates'][1]
+#             },
+#             'data' : {
+#                 'nom':record['properties']['nom'],
+#                 'desserte':record['properties']['desserte'],
+#                 'escalator':(record['properties']['escalator'] == 't'),
+#                 'pmr':(record['properties']['pmr'] == 't'),
+#                 'ascenseur':(record['properties']['ascenseur'] == 't')
+#             }
+#
+# main loop for velov
+            'coordinates' : {
+                'lat':record['geometry']['coordinates'][0],
+                'lon':record['geometry']['coordinates'][1]
+            },
+            'data' : {
+                'name':record['properties']['name'],
+                'address':record['properties']['address'],
+                'address2':record['properties']['address2'],
+                'pole':record['properties']['pole'],
+                'bike_stands':record['properties']['bike_stands'],
+            }
+         })
+
+# main loop for vlov
 
 # output
 dump_json(sys.argv[1], out_data)
