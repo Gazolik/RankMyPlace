@@ -1,7 +1,17 @@
-<button ng-click='prev()'>prev</button> 
-<div class="animate-switch-container" ng-switch="displayedView">
-     <div class="animate-switch" ng-switch-when="1">Settings Div</div>
-     <div class="animate-switch" ng-switch-when="2">Home Span</div>
-     <div class="animate-switch" ng-switch-default>default</div>
+<div style="position:relative;left:-135px" class="col-md-1" ng-show='displayedView > 0' ng-click='prev()'>
+    <img ng-src="images/prev-arrow.png"/>
+</div> 
+<div  class="col-md-10" class="animate-switch-container" ng-switch="displayedView">
+     <div class="animate-switch" ng-switch-default>
+         <div ng-controller="ProfilsCtrl" ng-include="'views/profils.html'"></div>
+    </div>
+     <div class="animate-switch" ng-switch-when="1">
+         <div ng-controller="AddressCtrl" ng-include="'views/address.html'"></div>
+    </div>
+     <div class="animate-switch" ng-switch-when="2">
+         <div ng-controller="SearchResultsCtrl"  ng-include="'views/searchResults.html'"></div>
+    </div>
 </div>
-<button ng-click='next()'>next</button>
+<div style="position:relative;right:-135px" class="col-md-1" ng-show='displayedView < 2'  ng-click='next()'>
+    <img ng-src="images/next-arrow.png"/>
+</div>

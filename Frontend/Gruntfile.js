@@ -274,27 +274,26 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
+     cssmin: {
+       dist: {
+         files: {
+           '<%= yeoman.dist %>/styles/main.css': [
+             '.tmp/styles/{,*/}*.css'
+           ]
+         }
+       }
+     },
+     uglify: {
+       onlyScripts: {
+        files:   [{
+          dest: '<%= yeoman.dist %>/scripts/scripts.js',
+          src:  ['.tmp/concat/scripts/scripts.js']
+        }]
+      }
+     },
+     concat: {
+       dist: {}
+     },
 
     imagemin: {
       dist: {
@@ -394,6 +393,12 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>'
         }]
       },
+      vendorJS: {
+        expand: true,
+        cwd:    '.tmp/concat/scripts/',
+        dest:   '<%= yeoman.dist %>/scripts/',
+        src:    'vendor.js'
+      },
       styles: {
         expand: true,
         cwd: '<%= yeoman.app %>/styles',
@@ -473,11 +478,33 @@ module.exports = function (grunt) {
     'usemin',
     'htmlmin'
   ]);
+    
+    
+
+  grunt.registerTask('dev', [
+    'newer:jshint',
+    'newer:jscs',
+    'clean:dist',
+    //'wiredep',
+    'useminPrepare',
+    'concurrent:dist',
+    //'newer:postcss',
+    'newer:ngtemplates',
+    'newer:concat',
+    'newer:ngAnnotate',
+    'newer:copy:dist',
+    'newer:cdnify',
+    'newer:cssmin',
+    'newer:uglify:onlyScripts',
+    'copy:vendorJS',
+    'filerev',
+    'usemin',
+    'htmlmin'
+  ]);
 
   grunt.registerTask('default', [
     'newer:jshint',
     'newer:jscs',
-    'test',
     'build'
   ]);
 };
