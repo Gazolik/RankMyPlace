@@ -9,6 +9,7 @@ if len(sys.argv) < 2:
 
 with open(sys.argv[1], 'r') as f:
     content = f.read()
+    f.close()
     obj = json.loads(content)
     print(json.dumps(obj['features'][0], sort_keys=False, indent=4))
 
