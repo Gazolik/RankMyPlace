@@ -8,7 +8,7 @@
  * Controller of the smartCityFrontEndApp
  */
 angular.module('smartCityFrontEndApp')
-  .controller('ResultsCtrl', function () {
+  .controller('SearchResultsCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

@@ -8,7 +8,7 @@
  * Factory in the smartCityFrontEndApp.
  */
 angular.module('smartCityFrontEndApp')
-  .factory('serviceAjax', function ($http, $q) {
+  .factory('serviceAjax', function () {
     return{
         profils: function(successFct){
             //$http.get("../Server/app.php?a=criterias").success(successFct);
@@ -32,5 +32,5 @@ angular.module('smartCityFrontEndApp')
                         {name : 'Transport commun'},
                         {name : 'Ecole'}]);
         }
-    }
+    };
   });
