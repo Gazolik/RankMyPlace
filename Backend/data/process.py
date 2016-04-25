@@ -34,33 +34,42 @@ out_data = []
 for record in data['features']:
     out_data.append({
 # main loop for TCL file
-#             'coordinates' : {
-#                 'lat':record['geometry']['coordinates'][0],
-#                 'lon':record['geometry']['coordinates'][1]
-#             },
-#             'data' : {
-#                 'nom':record['properties']['nom'],
-#                 'desserte':record['properties']['desserte'],
-#                 'escalator':(record['properties']['escalator'] == 't'),
-#                 'pmr':(record['properties']['pmr'] == 't'),
-#                 'ascenseur':(record['properties']['ascenseur'] == 't')
-#             }
-#
+             # 'coordinates' : {
+             #     'lat':record['geometry']['coordinates'][1],
+             #     'lon':record['geometry']['coordinates'][0]
+             # },
+             # 'data' : {
+             #     'nom':record['properties']['nom'],
+             #     'desserte':record['properties']['desserte'],
+             #     'escalator':(record['properties']['escalator'] == 't'),
+             #     'pmr':(record['properties']['pmr'] == 't'),
+             #     'ascenseur':(record['properties']['ascenseur'] == 't')
+             # }
 # main loop for velov
-            'coordinates' : {
-                'lat':record['geometry']['coordinates'][0],
-                'lon':record['geometry']['coordinates'][1]
-            },
-            'data' : {
-                'name':record['properties']['name'],
-                'address':record['properties']['address'],
-                'address2':record['properties']['address2'],
-                'pole':record['properties']['pole'],
-                'bike_stands':record['properties']['bike_stands'],
-            }
-         })
+            # 'coordinates' : {
+            #     'lat':record['geometry']['coordinates'][1],
+            #     'lon':record['geometry']['coordinates'][0]
+            # },
+            # 'data' : {
+            #     'name':record['properties']['name'],
+            #     'address':record['properties']['address'],
+            #     'address2':record['properties']['address2'],
+            #     'pole':record['properties']['pole'],
+            #     'bike_stands':record['properties']['bike_stands'],
+            # }
+# main loop for bruit
+            # 'coordinates' : {
+            #     'lat':record['geometry']['coordinates'][1],
+            #     'lon':record['geometry']['coordinates'][0]
+            # },
+            # 'data' : {
+            #     'value':record['properties']['value']
+            # }
+# main loop for lieu edifice
 
-# main loop for vlov
+# main loop for point interet
+
+         })
 
 # output
 dump_json(sys.argv[1], out_data)
