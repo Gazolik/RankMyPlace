@@ -1,21 +1,32 @@
 #!/usr/bin/python3
 # -!- encoding:utf8 -!-
 
+# --------------- IMPORTS
 import sys, json
 
-# ------------------------------------ SCRIPT PRE-CONDITION
-if len(sys.argv) < 2:
-    print('usage : ./process.py <json_origin_file>')
-    exit()
+# ----------------------------------- CONFIGURATION
+
+INPUTS = {
+    'TCL.json':['nom','desserte','bool:escalator','bool:pmr','bool:ascenseur'],
+    'velov.json':['name','address','address2','pole','int:bike_stands'],   
+    'bruit.json':['float:value']
+}
 
 # ------------------------------------ FUNCTIONS
+
+#
+#   Lecture du fichier d'entrée
+#
 def load_data(filename):
-    with open(sys.argv[1], 'r') as f:
+    with open('origin/'+filename, 'r') as f:
         content = f.read()
         f.close()
         data = json.loads(content)
     return data
 
+#
+#   Ecriture du fichier de sortie normalisé
+#
 def dump_json(filename, data):
     parts = filename.split('/')[-1].split('.')
     del parts[-1]
@@ -24,52 +35,92 @@ def dump_json(filename, data):
         out.write(json.dumps(data, sort_keys=False))
         out.close()
 
+#
+#   Approximation du barycentre car coordonnées géographiques
+#
+def isobarycenter(coordinates):
+    n = len(coordinates)
+    sumlat = 0.0
+    sumlon = 0.0
+    for i in range(n):
+        sumlat += coordinates[i][1]
+        sumlon += coordinates[i][0]
+    return { 'lat':sumlat/n, 'lon':sumlon/n }
+
+#
+#   Extraction des coordonnées du record
+#
+def coords(record):
+    if record['geometry']['type'] == 'Point':
+        return {
+                'lat':record['geometry']['coordinates'][1],
+                'lon':record['geometry']['coordinates'][0]
+            }
+    elif record['geometry']['type'] == 'Polygon':
+        return isobarycenter(record['geometry']['coordinates'][0][0])
+    else:
+        return { 'lat':0.0, 'lon':0.0 }
+
+#
+#   Extraction des propriétés du record
+#
+def data(record, props):
+    properties = {}
+    for prop in props:
+        if ':' in prop:
+            t = prop.split(':')[0]
+            p = prop.split(':')[1]
+            if t == 'bool':
+                properties[p] = (record['properties'][p] == 't')
+            elif t == 'int':
+                properties[p] = int(record['properties'][p])
+            elif t == 'float':
+                properties[p] = float(record['properties'][p])
+            else:
+                properties[p] = record['properties'][p]
+        else:
+            properties[prop] = record['properties'][prop]
+    return properties
+
+#
+#   Création d'un objet normalisé à partir du record
+#
+def obj(record, props):
+    return {
+        'coordinates' : coords(record),
+        'data' : data(record, props)
+    }
+
+#
+#   Execute le processus de traitement sur un fichier donné
+#
+def process_data(filename, props):
+    try:
+        print('> processing %s...' % filename, end='')
+        # read file
+        data = load_data(filename)
+        out_data = []
+        # fill out_data
+        for record in data['features']:
+            out_data.append(obj(record, props))
+        # output
+        dump_json(filename, out_data)
+        print('done.')
+    except Exception as e:
+        print('failed ! An error occured, details below :')
+        raise e
+
 # ----------------------------------- MAIN SCRIPT
 
-# input & params
-data = load_data(sys.argv[1])
-out_data = []
+if len(sys.argv) > 1:
+    if sys.argv[1] in INPUTS.keys():
+        process_data(sys.argv[1], INPUTS[sys.argv[1]])
+    else:
+        print('> unknown input file, aborting. Bye !')
+else:
+    print('> processing all data files.')
+    for fname in INPUTS.keys():
+        process_data(fname, INPUTS[fname])        
+    print('> all files processed. Bye.')
 
 
-for record in data['features']:
-    out_data.append({
-# main loop for TCL file
-             # 'coordinates' : {
-             #     'lat':record['geometry']['coordinates'][1],
-             #     'lon':record['geometry']['coordinates'][0]
-             # },
-             # 'data' : {
-             #     'nom':record['properties']['nom'],
-             #     'desserte':record['properties']['desserte'],
-             #     'escalator':(record['properties']['escalator'] == 't'),
-             #     'pmr':(record['properties']['pmr'] == 't'),
-             #     'ascenseur':(record['properties']['ascenseur'] == 't')
-             # }
-# main loop for velov
-            # 'coordinates' : {
-            #     'lat':record['geometry']['coordinates'][1],
-            #     'lon':record['geometry']['coordinates'][0]
-            # },
-            # 'data' : {
-            #     'name':record['properties']['name'],
-            #     'address':record['properties']['address'],
-            #     'address2':record['properties']['address2'],
-            #     'pole':record['properties']['pole'],
-            #     'bike_stands':record['properties']['bike_stands'],
-            # }
-# main loop for bruit
-            # 'coordinates' : {
-            #     'lat':record['geometry']['coordinates'][1],
-            #     'lon':record['geometry']['coordinates'][0]
-            # },
-            # 'data' : {
-            #     'value':record['properties']['value']
-            # }
-# main loop for lieu edifice
-
-# main loop for point interet
-
-         })
-
-# output
-dump_json(sys.argv[1], out_data)
