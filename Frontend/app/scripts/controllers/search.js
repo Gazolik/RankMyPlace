@@ -8,11 +8,6 @@
  * Controller of the smartCityFrontEndApp
  */
 angular.module('smartCityFrontEndApp')
-  .controller('SearchCtrl', function ($scope, serviceAjax) {
-    var loadProfils = function (){
-      serviceAjax.profils(function(data){
-         $scope.profils = data; 
-      });
-    };
-    loadProfils();
+  .controller('SearchCtrl', function () {
+    
   });
