@@ -8,16 +8,24 @@
  * Controller of the smartCityFrontEndApp
  */
 angular.module('smartCityFrontEndApp')
-  .controller('SearchCtrl', function ($scope) {
+  .controller('SearchCtrl', function ($scope, $rootScope) {
     $scope.displayedView = 0;
     $scope.prev = function() {
         if ($scope.displayedView > 0) {
+            if ($scope.displayedView === 1){
+                $rootScope.$broadcast('saveAdress');
+            }
             $scope.displayedView--;
         }
     };
     $scope.next = function() {
         if ($scope.displayedView < 2) {
-            $scope.displayedView++;
+            if ($scope.displayedView !== 1){
+                $scope.displayedView++;
+            }
+            else{
+                $rootScope.$broadcast('getLatLon', function(){$scope.displayedView++;});
+            }
         }
     };
   });

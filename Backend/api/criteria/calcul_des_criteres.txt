@@ -3,20 +3,20 @@ Note : le paramètre max dist est toujours indiqué en mètres
 
 Densité pure : 
     + hébergement collectif (max_density = 10) 
-    + hébergement locatif, (max_density = 10)
+    + hébergement locatif,  (max_density = 10)
     + hôtellerie plein air, (max_density = 3)
-    + hôtellerie, (max_density = 5)
-    + restauration (max_density = 10)
+    + hôtellerie,           (max_density = 5)
+    + restauration          (max_density = 10)
 
 Distance min pure : 
-    + culte (echelle=linéaire,max_dist=1000),
-    + administration, 
-    + deplacement, 
-    + intercommunalité, 
-    + santé, 
-    + urgence, 
-    + patrimoine culturel, 
-    + patrimoine naturel
+    + culte                 (echelle=linéaire,max_dist=1000),
+    + administration        (echelle=linéaire,max_dist=1500), 
+    + deplacement           (echelle=linéaire,max_dist=1000), 
+    + intercommunalité      (echelle=?,max_dist=?), ---------------------> interpretation ?! CCL : et hop ça dégage...
+    + santé                 (echelle=linéaire,max_dist=500), 
+    + urgence               (echelle=linéaire,max_dist=500), 
+    + patrimoine culturel   (echelle=linéaire,max_dist=500), 
+    + patrimoine naturel    (echelle=linéaire,max_dist=500)
 
 Mix des deux : 
     + enseignement, 

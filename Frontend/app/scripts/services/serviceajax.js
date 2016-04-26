@@ -8,7 +8,7 @@
  * Factory in the smartCityFrontEndApp.
  */
 angular.module('smartCityFrontEndApp')
-  .factory('serviceAjax', function () {
+  .factory('serviceAjax', function ($http) {
     return{
         profils: function(successFct){
             //$http.get("../Server/app.php?a=criterias").success(successFct);
@@ -31,6 +31,10 @@ angular.module('smartCityFrontEndApp')
             successFct([{name : 'Bruit'},
                         {name : 'Transport commun'},
                         {name : 'Ecole'}]);
+        },
+        latlon: function(q, city, successFct){
+            var url = 'http://nominatim.openstreetmap.org/search.php?q=' + encodeURI(q) + '&city=' + encodeURI(city) + '&state= France&format=json';
+            $http.get(url).success(successFct);
         }
     };
   });
