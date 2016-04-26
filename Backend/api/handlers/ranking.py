@@ -13,3 +13,5 @@ def ranking_handler(path, data, api_param):
     moy = sum(notes.values())/len(nomcriteres)
 
     #retourner les notes
+    ret_data = {"moyenne":moy,"notes":notes}
+    return Response(api_param).serialized(ret_data)
