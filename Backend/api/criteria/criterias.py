@@ -1,0 +1,25 @@
+from . import *
+criterias = {
+    'bruit_psd':bruit_psd(),
+    'le_deplacement_psd':le_deplacement_psd(),
+    'pit_hotellerie_plein_air_psd':pit_hotellerie_plein_air_psd(),
+    'velov_psd':velov_psd(),
+    'le_culte_psd':le_culte_psd(),
+    'pit_equipement_psd':pit_equipement_psd(),
+    'le_intercommunalite_psd':le_intercommunalite_psd(),
+    'tcl_psd':tcl_psd(),
+    'le_urgence_psd':le_urgence_psd(),
+    'le_habitat_psd':le_habitat_psd(),
+    'le_sante_psd':le_sante_psd(),
+    'pit_commerce_et_service_psd':pit_commerce_et_service_psd(),
+    'le_sport_psd':le_sport_psd(),
+    'pit_patrimoine_naturel_psd':pit_patrimoine_naturel_psd(),
+    'le_enseignement_psd':le_enseignement_psd(),
+    'pit_degustation_psd':pit_degustation_psd(),
+    'pit_hebergement_locatif_psd':pit_hebergement_locatif_psd(),
+    'le_administration_psd':le_administration_psd(),
+    'pit_hebergement_collectif_psd':pit_hebergement_collectif_psd(),
+    'pit_hotellerie_psd':pit_hotellerie_psd(),
+    'pit_patrimoine_culturel_psd':pit_patrimoine_culturel_psd(),
+    'pit_restauration_psd':pit_restauration_psd()
+    }
