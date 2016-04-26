@@ -3,7 +3,7 @@ import json
 
 def get_static(basename) :
 	data = None
-	with open('./profile/'+basename+'.json', encoding='latin-1') as f :
+	with open('./static/'+basename+'.json', encoding='latin-1') as f :
 		data = json.load(f)
 	return data
 
