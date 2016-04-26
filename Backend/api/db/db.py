@@ -37,9 +37,10 @@ def density_around(records, coord, radius):
     for record in records:
         dist = geo_dist(coord, record['coordinates'])*1000
         if dist < radius:
-            # update all values
-            min_dist = dist
-            closest = record
             density += 1
+            # update all values
+            if dist < min_dist
+                min_dist = dist
+                closest = record
     # finally return record
     return density, closest
