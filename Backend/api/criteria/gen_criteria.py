@@ -14,7 +14,9 @@ from ..fs.fs import get_criteria
 from ..db.db import closest_record, density_around
 
 #
+#   Calcul la note pour un critère donné avec les specifications reçues
 #
+#   retourne un couple (note_sur_dix, element_trouvé)
 #
 def rank(self, spec):
     typ = spec['criteria']['type'] 
@@ -34,6 +36,8 @@ def rank(self, spec):
 #       + min_dist
 #       + max_dist
 #       + scale
+#
+#   retourne un couple (note_sur_dix, element_trouvé)
 #
 def distance_based(criteria, coord):
     # récupération et calcul des paramètres
@@ -67,6 +71,8 @@ def distance_based(criteria, coord):
 #       + max_density
 #       + min_density
 #       + scale
+#
+#   retourne un couple (note_sur_dix, element_trouvé)
 #
 def density_based(criteria, coord, radius):
     # récupération et calcul des paramètres
@@ -103,6 +109,10 @@ def density_based(criteria, coord, radius):
 #       + min_density
 #       + dist_coeff
 #       + dens_coeff
+#       + dist_scale
+#       + dens_scale
+#
+#   retourne un couple (note_sur_dix, element_trouvé)
 #
 def dist_dens_based(criteria, coord):
     # todo
