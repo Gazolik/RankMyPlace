@@ -1,0 +1,7 @@
+Densité pure : hébergement collectif, hébergement locatif, hôtellerie plein air, hôtellerie, restauration
+
+Distance min pure : culte, administration, deplacement, intercommunalité, santé, urgence, patrimoine culturel, patrimoine naturel
+
+Mix des deux : enseignement, sport, commerce et service, dégustation, équipement, vélov, TCL
+
+Spécial : bruit
