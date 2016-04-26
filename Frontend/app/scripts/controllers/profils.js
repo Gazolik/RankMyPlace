@@ -12,6 +12,8 @@
      
     $scope.searchData = searchData;
     $scope.show = false;
+    $scope.min =[];
+    $scope.max =[];
      
     var loadProfils = function (){
       serviceAjax.profils(function(data){
@@ -23,10 +25,10 @@
     var loadCriterias = function (){
       serviceAjax.criterias(function(data) {
          searchData.criterias.length = 0;
-         for (var i = 0 ; i < data.length ; ++i){            
-             searchData.criterias.push({name : data[i].name, coef : 5, min : data[i].min, max : data[i].max, value : [data[i].min,data[i].max]});
-             $scope.min = searchData.criterias[i].min;
-             $scope.max = searchData.criterias[i].max;              
+         for (var i = 0 ; i < data.length ; ++i){
+             $scope.min += data[i].min;
+             $scope.max += data[i].max;
+             searchData.criterias.push({name : data[i].name, coef : 5, range : [data[i].min,data[i].max]});          
          }
       });
     };          
