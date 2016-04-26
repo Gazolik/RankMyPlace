@@ -28,5 +28,17 @@ def closest_record(records, coord):
 #
 #
 #
-def density_around(records, coord, age, time):
-    pass
+def density_around(records, coord, radius):
+    closest = None
+    density = 0
+    min_dist = 100000000000000000.0 # meters
+    for record in records:
+        dist = geo_dist(coord, record['coordinates'])*1000
+        if dist < radius:
+            density += 1
+            # update all values
+            if dist < min_dist
+                min_dist = dist
+                closest = record
+    # finally return record
+    return density, closest
