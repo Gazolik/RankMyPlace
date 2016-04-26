@@ -8,5 +8,5 @@ class pit_hebergement_collectif_psd(gen_criteria):
      def rank(self, coord, radius) :
           records = get_criteria('pit_hebergement_collectif_psd')
           density, closest, min_dist = density_around(records, coord, radius)
-          mark = 10.0 * density/pit_hebgergement_collectif_psd.MAX_DENSITY
+          mark = 10.0 * min(density, pit_hebergement_collectif_psd.MAX_DENSITY)/pit_hebergement_collectif_psd.MAX_DENSITY
           return mark
