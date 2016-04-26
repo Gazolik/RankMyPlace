@@ -8,11 +8,9 @@
             </a>            
         </div>
         <a class="col-md-12 text-center" ng-click="loadDetails()">Afficher les critères</a>
-        <div ng-repeat="criteria in criterias" ng-show="show">  
+        <div ng-repeat="criteria in searchData.criterias" ng-show="show">  
             <h3 class="text-center">{{criteria.name}}</h3>
-                <slider min="1" step="1" max="5" value="4"></slider>
-               <!--input id="coef" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"-->
-            
+                <slider ng-model="criteria.coef" min="0" step="1" max="10"></slider>
         </div>         
     </div>
 </div>
