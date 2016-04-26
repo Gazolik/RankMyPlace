@@ -1,9 +1,8 @@
-
 import json
 
-def get_profiles() :
+def get_static(nom_structure) :
 	data = None
-	with open('./profile/profiles.json') as f :
+	with open('./profile/'+nom_structure+'.json') as f :
 		data = json.load(f)
 	return data
 
