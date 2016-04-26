@@ -2,11 +2,11 @@ Liste des critères par type de notation:
 Note : le paramètre max dist est toujours indiqué en mètres
 
 Densité pure : 
-    + hébergement collectif, 
-    + hébergement locatif, 
-    + hôtellerie plein air, 
-    + hôtellerie, 
-    + restauration
+    + hébergement collectif (max_density = 10) 
+    + hébergement locatif, (max_density = 10)
+    + hôtellerie plein air, (max_density = 3)
+    + hôtellerie, (max_density = 5)
+    + restauration (max_density = 10)
 
 Distance min pure : 
     + culte (echelle=linéaire,max_dist=1000),
