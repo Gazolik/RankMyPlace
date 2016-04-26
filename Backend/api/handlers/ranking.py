@@ -6,7 +6,10 @@ def ranking_handler(path, data, api_param):
     nomcriteres=[c['name'] for c in criteres if c['coef'] !=0]
 
     #evaluer les criteres
-
+    notes = {}
+    for i in nomcriteres:
+        notes[i] = criterias_dic[i].rank()
     #faire une moyenne
+    moy = sum(notes.values())/len(nomcriteres)
 
     #retourner les notes
