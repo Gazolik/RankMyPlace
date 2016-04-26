@@ -3,14 +3,22 @@
         <h2 class="col-md-12 text-center">Quel est votre profil ?</h2>
         <div class="col-md-3" ng-repeat="profil in profils">
             <img ng-src="{{profil.imgPath}}" width="150" height="150"/>
-            <a>
+            <a ng-click="updateCoef(profil)">
                 <h3 class="text-center">{{profil.name}}</h3>
             </a>            
         </div>
-        <a class="col-md-12 text-center" ng-click="loadDetails()">Afficher les critères</a>
+        <a class="col-md-12 text-center" ng-click="show = !show">Afficher les critères</a><br/>
         <div ng-repeat="criteria in searchData.criterias" ng-show="show">  
             <h3 class="text-center">{{criteria.name}}</h3>
-                <slider ng-model="criteria.coef" min="0" step="1" max="10"></slider>
+            <div class="col-md-6">
+                <h4 class="text-center">Importance du critère</h4><br/>
+                <slider ng-model="criteria.coef" min="0" step="1" max="10" slider-tooltip="always"></slider><br/><br/>
+            </div>
+            <div class="col-md-6">
+                <h4 class="text-center">Intervalle du critère</h4><br/>
+                <slider ng-model="criteria.value" value="criteria.value" min="criteria.min" step="1" max="criteria.max" slider-tooltip="always" range="true"></slider>
+                <br/><br/> 
+            </div>
         </div>         
     </div>
 </div>
