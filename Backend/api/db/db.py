@@ -26,7 +26,7 @@ def closest_record(records, coord):
     return n_closest_records(records, coord, 1)
 
 #
-# Retourne un tuple contenant la densité et ensuite le record le plus proche
+# Retourne un tuple contenant la densité, le record le plus proche et sa distance à la coordonnée
 #
 def density_around(records, coord, radius):
     closest = None
@@ -40,7 +40,7 @@ def density_around(records, coord, radius):
                 min_dist = dist
                 closest = record
     # finally return record
-    return (density, closest)
+    return (density, closest, min_dist)
 
 #
 # Retourne tous les records compris dans un rayon (radius) autour de coord
