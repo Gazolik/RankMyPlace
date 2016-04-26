@@ -10,7 +10,8 @@ INPUTS = {
     'TCL.json':['nom','desserte','bool:escalator','bool:pmr','bool:ascenseur'],
     'velov.json':['name','address','address2','pole','int:bike_stands'],   
     'bruit.json':['float:value'],
-	'lieux_edifices.json':['nom','theme','soustheme']
+	'lieux_edifices.json':['nom','theme','soustheme'],
+    'point_interet_touristique.json':['type','type_detail','nom','adresse','int:codepostal','commune','telephone','email','facebook','siteweb','producteur','tarifsmin','tarifsmax','tarifsenclair']
 }
 
 # ------------------------------------ FUNCTIONS
