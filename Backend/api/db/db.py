@@ -7,22 +7,20 @@ from ..py_geo.geo import geo_dist
 # ------------------------------- FUNCTIONS
 
 #
-#
+# Récupère les N records les plus proches géographiquement de la coordonnée passée en paramètre
 #
 def n_closest_records(records, coord, n):
-    pass
-    #record = None
-    #min_dist = 100000000000000000.0 # meters
-    #for record in records:
-    #    dist = geo_dist(coord, record['coordinates'])
-    #    if dist < min_dist:
-    #        min_dist = dist
-    #        closest = record
-    # finally return record
-    #return record
+    recs = []
+    for record in records:
+        dist = 1000 * geo_dist(coord, record['coordinates'])
+        recs.append((dist, record))
+    # sort records
+    sorted_recs = sorted(recs, key=lambda r: r[0])
+    # finally return n first records
+    return sorted_recs[:n]
 
 #
-#
+# Récupère le record le plus proche de la coordonnée géographiquement
 #
 def closest_record(records, coord):
     return n_closest_records(records, coord, 1)
