@@ -11,7 +11,5 @@ def cmd(args):
 
 git_clone('https://github.com/pdautry/py_geo.git')
 git_clone('https://github.com/pdautry/py_rest.git')
-cmd(['touch','py_geo/__init__.py'])
-cmd(['touch','py_rest/__init__.py'])
 
 
