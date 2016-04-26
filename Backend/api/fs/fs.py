@@ -6,6 +6,6 @@ def get_profiles() :
 
 def get_critere(nom_critere) :
 	data = None
-	with open('../../data/processed/'+nom_critere+'_psd.json') as f:
+	with open('../../data/database/'+nom_critere+'_psd.json') as f:
 		data = json.load(f)
 	return data
