@@ -18,7 +18,7 @@ from ..db.db import closest_record, density_around
 #
 #   retourne un couple (note_sur_dix, element_trouvé)
 #
-def rank(self, spec):
+def rank(spec):
     typ = spec['criteria']['type'] 
     if typ == 'distance_based':
         return distance_based(spec['criteria'], spec['coordinates'])
