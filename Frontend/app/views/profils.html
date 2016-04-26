@@ -2,11 +2,17 @@
     <div class="profils row">
         <h2 class="col-md-12 text-center">Quel est votre profil ?</h2>
         <div class="col-md-3" ng-repeat="profil in profils">
+            <img ng-src="{{profil.imgPath}}" width="150" height="150"/>
             <a>
-                <img ng-src="{{profil.imgPath}}" width="150" height="150"/>
                 <h3 class="text-center">{{profil.name}}</h3>
-            </a>
+            </a>            
         </div>
-        <a class="col-md-12 text-center">Plus d'options</a>
+        <a class="col-md-12 text-center" ng-click="loadDetails()">Afficher les critères</a>
+        <div ng-repeat="criteria in criterias" ng-show="show">  
+            <h3 class="text-center">{{criteria.name}}</h3>
+                <slider min="1" step="1" max="5" value="4"></slider>
+               <!--input id="coef" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"-->
+            
+        </div>         
     </div>
 </div>
