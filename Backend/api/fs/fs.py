@@ -1,13 +1,13 @@
 import json
 
-def get_static(nom_structure) :
+def get_static(basename) :
 	data = None
-	with open('./profile/'+nom_structure+'.json') as f :
+	with open('./profile/'+basename+'.json') as f :
 		data = json.load(f)
 	return data
 
-def get_critere(nom_critere) :
+def get_criteria(basename) :
 	data = None
-	with open('./data/processed/'+nom_critere+'_psd.json') as f:
+	with open('./data/database/'+basename+'_psd.json') as f:
 		data = json.load(f)
 	return data
