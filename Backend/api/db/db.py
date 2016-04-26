@@ -26,19 +26,31 @@ def closest_record(records, coord):
     return n_closest_records(records, coord, 1)
 
 #
-#
+# Retourne un tuple contenant la densité et ensuite le record le plus proche
 #
 def density_around(records, coord, radius):
     closest = None
     density = 0
-    min_dist = 100000000000000000.0 # meters
+    min_dist = 100000000000000000.0 + radius # meters
     for record in records:
-        dist = geo_dist(coord, record['coordinates'])*1000
+        dist = 1000 * geo_dist(coord, record['coordinates'])
         if dist < radius:
             density += 1
-            # update all values
-            if dist < min_dist
+            if dist < min_dist:
                 min_dist = dist
                 closest = record
     # finally return record
-    return density, closest
+    return (density, closest)
+
+#
+# Retourne tous les records compris dans un rayon (radius) autour de coord
+#
+def records_around(records, coord, radius):
+    recs = []
+    for record in records:
+        dist = 1000 * geo_dist(coord, record['coordinates'])
+        if dist < radius:
+            recs.append(record)
+    # finally return records
+    return recs
+
