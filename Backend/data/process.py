@@ -9,7 +9,8 @@ import sys, json
 INPUTS = {
     'TCL.json':['nom','desserte','bool:escalator','bool:pmr','bool:ascenseur'],
     'velov.json':['name','address','address2','pole','int:bike_stands'],   
-    'bruit.json':['float:value']
+    'bruit.json':['float:value'],
+	'lieux_edifices.json':['nom','theme','soustheme']
 }
 
 # ------------------------------------ FUNCTIONS
@@ -57,7 +58,7 @@ def coords(record):
                 'lon':record['geometry']['coordinates'][0]
             }
     elif record['geometry']['type'] == 'Polygon':
-        return isobarycenter(record['geometry']['coordinates'][0][0])
+        return isobarycenter(record['geometry']['coordinates'][0])
     else:
         return { 'lat':0.0, 'lon':0.0 }
 
