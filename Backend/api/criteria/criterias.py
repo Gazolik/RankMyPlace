@@ -41,23 +41,14 @@ criterias_dict = {
 			'scale' : 'linear'
 			}
 		},
-	'pit_equipement_psd' : { #todo comprendre ce que c'est pour donner les valeurs
-		'name' : 'pit_equipement_psd',
+	'pit_loisirs_psd' : {
+                'name' : 'pit_loisirs_psd',
 		'type' : 'dist_dens_based'
 		'params' : {
 			'min_dist' : 0,
-			'max_dist' : 1000,
+			'max_dist' : 2000,
 			'min_density' : 0,
-			'max_density' : 10
-			}
-		},
-	'le_intercommunalite_psd' : { #todo comprendre ce que c'est pour donner les valeu
-		'name' : 'le_intercommunalite_psd',
-		'type' : 'distance_based'
-		'params' : {
-			'min_dist' : 0,
-			'max_dist' : 1000,
-			'scale' : 'linear'
+			'max_density' : 5
 			}
 		},
 	'tcl_psd' : {
@@ -79,7 +70,6 @@ criterias_dict = {
 			'scale' : 'linear'
 			}
 		},
-	#'le_habitat_psd' : {} voir si c'est utile avant
 	'le_sante_psd' : {
 		'name' : 'le_sante_psd',
 		'type' : 'distance_based'
