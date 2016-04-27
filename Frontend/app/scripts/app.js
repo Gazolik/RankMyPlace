@@ -17,7 +17,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ui.bootstrap-slider'
+    'ui.bootstrap-slider',
+    'highcharts-ng'
   ])
   .config(function ($routeProvider) {
     $routeProvider
