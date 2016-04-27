@@ -35,11 +35,19 @@ for key, value in communes.items():
     filename = filename.lower()
     if len(filename) == 0:
         filename = 'unamed'
-    filename = 'psd/' + filename + '_psd.json'
-    print('> writing %s...' % filename, end='')
-    with open(filename, 'w') as f:
+    full_file = 'psd/' + filename + '_psd.json'
+    print('> writing %s...' % full_file, end='')
+    with open(full_file, 'w') as f:
         f.write(json.dumps(value))
     print('done !')
+    coord_file = 'psd/' + filename + '_grid.json'
+    print('> writing %s...' % coord_file, end='')
+    coordinates = []
+    for v in value:
+        coordinates += v['coordinates']
+    with open(coord_file, 'w') as f:
+        f.write(json.dumps(coordinates))
+    print('> done !')
 
 
 
