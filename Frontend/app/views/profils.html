@@ -1,24 +1,29 @@
-<div class="profils-container container">
+<div class="profils-container container">    
     <div class="profils row">
-        <h2 class="col-md-12 text-center">Quel est votre profil ?</h2>
-        <div class="col-md-3" ng-repeat="profil in profils">
-            <img ng-src="{{profil.imgPath}}" width="150" height="150"/>
-            <a ng-click="updateCoef(profil)">
-                <h3 class="text-center">{{profil.name}}</h3>
+        <h2 class="text-center">Quel est votre profil ?</h2>
+        <div class="col-md-1"></div>
+        <div class="col-md-2" ng-repeat="profil in profils">
+            <a ng-click="updateCoef($index)">
+                <div ng-class="{'myStyle': $index == profilSelected}">
+                    <img ng-src="{{profil.imgPath}}" width="150" height="150"/>
+                    <h3 class="text-center">{{profil.name}}</h3>
+                </div>
             </a>            
         </div>
-        <a class="col-md-12 text-center" ng-click="show = !show">Afficher les critères</a><br/>
+        <div class="col-md-1"></div>
+    </div>
+    <br/>
+    <div class="text-center"><a ng-click="loadDetails()">{{msgCriteres}}</a></div><br/>
         <div ng-repeat="criteria in searchData.criterias" ng-show="show">  
-            <h3 class="text-center">{{criteria.name}}</h3>
-            <div class="col-md-6">
-                <h4 class="text-center">Importance du critère</h4><br/>
-                <slider ng-model="criteria.coef" min="0" step="1" max="10" slider-tooltip="always"></slider><br/><br/>
-            </div>
-            <div class="col-md-6">
+            <h3 class="text-center">{{criteria.name}}</h3><br/>
+            <div class="col-md-4 text-right">Critère peu important</div>
+            <div class="col-md-4 text-center"><slider ng-model="criteria.coef" min="0" step="1" max="10" slider-tooltip="always"></slider></div>
+            <div class="col-md-4 text-left">Critère très important</div><br/><br/>
+            <!--div class="col-md-6">
                 <h4 class="text-center">Intervalle du critère</h4><br/>
                 <slider ng-model="criteria.range" value="criteria.range" min="min[$index]" step="1" max="max[$index]" slider-tooltip="always" range="true"></slider>
                 <br/><br/> 
-            </div>
+            </div-->
         </div>         
     </div>
 </div>
