@@ -12,12 +12,19 @@
      
     $scope.searchData = searchData;
     $scope.show = false;
+    $scope.msgCriteres = 'Afficher les critères';
     $scope.min =[];
     $scope.max =[];
+    $scope.profilSelected = null;
      
     var loadProfils = function (){
       serviceAjax.profils(function(data){
-         $scope.profils = data; 
+         var profilPerso = {name : 'Profil Perso', imgPath : 'images/yeoman.png', coefs : [{name : 'Bruit', coef : 5},
+                                                                                           {name : 'Transport commun', coef : 5},
+                                                                                           {name : 'Ecole', coef : 5}]
+                           };
+          $scope.profils = data;
+          $scope.profils.push(profilPerso);
       });
     };
     loadProfils();
@@ -36,11 +43,23 @@
      loadCriterias();
     }
      
-    
-    $scope.updateCoef = function (profil){
-      for (var i = 0 ; i < searchData.criterias.length ; ++i){
-        searchData.criterias[i].coef = profil.coefs[i].coef;        
-      }
+    $scope.loadDetails = function(){
+        $scope.show = ! $scope.show;
+        if($scope.msgCriteres === 'Afficher les critères'){
+            $scope.msgCriteres = 'Cacher les critères';
+        }
+        else{
+            $scope.msgCriteres ='Afficher les critères';
+        }
     };
      
+    
+    $scope.updateCoef = function (index){
+      for (var i = 0 ; i < searchData.criterias.length ; ++i){
+        searchData.criterias[i].coef = $scope.profils[index].coefs[i].coef;        
+      }
+        $scope.profilSelected = index;     
+    };
+    
+         
   });

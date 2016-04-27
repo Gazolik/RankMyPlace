@@ -8,6 +8,5 @@
  * Controller of the smartCityFrontEndApp
  */
 angular.module('smartCityFrontEndApp')
-  .controller('AboutCtrl', function ($scope) {
-    
-  });
+  .controller('AboutCtrl', function () {
+  }); 

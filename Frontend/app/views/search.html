@@ -1,7 +1,7 @@
-<div style="position:relative;left:-135px" class="col-md-1" ng-show='displayedView > 0' ng-click='prev()'>
-    <img ng-src="images/prev-arrow.png"/>
+<div class="col-md-1 text-center" ng-click='prev()'>
+    <img ng-src="images/prev-arrow.png" style="position:fixed;left:10px" ng-show='displayedView > 0'/>
 </div> 
-<div  class="col-md-10" class="animate-switch-container" ng-switch="displayedView">
+<div  class="col-md-10 text-center" class="animate-switch-container" ng-switch="displayedView">
      <div class="animate-switch" ng-switch-default>
          <div ng-controller="ProfilsCtrl" ng-include="'views/profils.html'"></div>
     </div>
@@ -12,6 +12,6 @@
          <div ng-controller="SearchResultsCtrl"  ng-include="'views/searchResults.html'"></div>
     </div>
 </div>
-<div style="position:relative;right:-135px" class="col-md-1" ng-show='displayedView < 2' ng-click='next()'>
-    <img ng-src="images/next-arrow.png"/>
+<div  class="col-md-1 text-center" ng-click='next()'>
+    <img ng-src="images/next-arrow.png" style="position:fixed;right:10px" ng-show='displayedView < 2'/>
 </div>
