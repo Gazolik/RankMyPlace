@@ -10,6 +10,15 @@
 angular.module('smartCityFrontEndApp')
   .controller('SearchResultsCtrl', function ($scope, serviceAjax, searchData) {
     $scope.searchData = searchData;
+    $scope.loading = true;
+    
+    var search = function (){
+        serviceAjax.search(searchData, function(data){
+            $scope.loading = false;
+            $scope.result = data;
+            $scope.chartConfig.series[0].data[0] = data.note;
+      });
+    };
     $scope.chartConfig = {
         options: {
             chart: {
@@ -32,7 +41,7 @@ angular.module('smartCityFrontEndApp')
             }
         },
         series: [{
-            data: [7],
+            data: [5],
             dataLabels: {
 	        	format: '<div style="text-align:center"><span style="font-size:25px;color:black;">{y}/1O</span><br/></div>',
                 borderWidth: 0,
@@ -62,4 +71,5 @@ angular.module('smartCityFrontEndApp')
         },
         loading: false
     };
+    search();
   });

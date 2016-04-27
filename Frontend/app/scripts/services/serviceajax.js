@@ -34,6 +34,11 @@ angular.module('smartCityFrontEndApp')
                         {name : 'Transport commun'},
                         {name : 'Ecole'}]);*/
         },
+        search: function(data, successFct){
+            // $http.get('http://501srv-2.insa-lyon.fr:8000/criterias').success(function (data){successFct(data.content.profiles)});
+            //$http.get('http://localhost:8000/criterias').success(function (data){successFct(data.content.criteres);});
+            successFct({note : 8});
+        },
         latlon: function(q, city, successFct){
             var url = 'http://nominatim.openstreetmap.org/search.php?q=' + encodeURI(q) + '&city=' + encodeURI(city) + '&state= France&format=json';
             $http.get(url).success(successFct);
