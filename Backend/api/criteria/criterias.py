@@ -1,11 +1,11 @@
 criterias_dict = {
-	'bruit_psd' : {
-		'name' : 'bruit_psd',
+	'bruit' : {
+		'name' : 'bruit',
 		'type' : 'custom',
 		'params' : { } #todo
 		},
-	'le_deplacement_psd' : {
-		'name' : 'le_deplacement_psd',
+	'le_deplacement' : {
+		'name' : 'le_deplacement',
 		'type' : 'distance_based',
 		'params' : {
 			'min_dist' : 0,
@@ -13,8 +13,8 @@ criterias_dict = {
 			'scale' : 'linear'
 			}
 		},
-	'pit_hotellerie_plein_air_psd' : {
-		'name' : 'pit_hotellerie_plein_air_psd',
+	'pit_hotellerie_plein_air' : {
+		'name' : 'pit_hotellerie_plein_air',
 		'type' : 'density_based',
 		'params' : {
 			'min_density' : 0,
@@ -22,8 +22,8 @@ criterias_dict = {
 			'scale' : 'linear'
 			}
 		},
-	'velov_psd' : {
-		'name' : 'velov_psd',
+	'velov' : {
+		'name' : 'velov',
 		'type' : 'dist_dens_based',
 		'params' : {
 			'min_dist' : 0,
@@ -32,18 +32,18 @@ criterias_dict = {
 			'max_density' : 3
 			}
 		},
-	'le_culte_psd' : {
-		'name' : 'le_culte_psd',
-		'type' : 'distance_based'
+	'le_culte' : {
+		'name' : 'le_culte',
+		'type' : 'distance_based',
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 2000,
 			'scale' : 'linear'
 			}
 		},
-	'pit_loisirs_psd' : {
-                'name' : 'pit_loisirs_psd',
-		'type' : 'dist_dens_based'
+	'pit_loisirs' : {
+                'name' : 'pit_loisirs',
+		'type' : 'dist_dens_based',
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 2000,
@@ -51,9 +51,9 @@ criterias_dict = {
 			'max_density' : 5
 			}
 		},
-	'tcl_psd' : {
-		'name' : 'tcl_psd',
-		'type' : 'dist_dens_based'
+	'tcl' : {
+		'name' : 'tcl',
+		'type' : 'dist_dens_based',
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 500,
@@ -61,27 +61,27 @@ criterias_dict = {
 			'max_density' : 3
 			}
 		},
-	'le_urgence_psd' : {
-		'name' : 'le_urgence_psd',
-		'type' : 'distance_based'
+	'le_urgence' : {
+		'name' : 'le_urgence',
+		'type' : 'distance_based',
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 1000,
 			'scale' : 'linear'
 			}
 		},
-	'le_sante_psd' : {
-		'name' : 'le_sante_psd',
-		'type' : 'distance_based'
+	'le_sante' : {
+		'name' : 'le_sante',
+		'type' : 'distance_based',
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 5000,
 			'scale' : 'linear'
 			}
 		},
-	'pit_commerce_et_service_psd': {
-		'name' : 'pit_commerce_et_service_psd',
-		'type' : 'dist_dens_based'
+	'pit_commerce_et_service': {
+		'name' : 'pit_commerce_et_service',
+		'type' : 'dist_dens_based',
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 2000,
@@ -89,9 +89,9 @@ criterias_dict = {
 			'max_density' : 10
 			}
 		},
-	'le_sport_psd' : {
-		'name' : 'le_sport_psd',
-		'type' : 'dist_dens_based'
+	'le_sport' : {
+		'name' : 'le_sport',
+		'type' : 'dist_dens_based',
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 2000,
@@ -99,18 +99,18 @@ criterias_dict = {
 			'max_density' : 3
 			}
 		},
-	'pit_patrimoine_naturel_psd' : {
-		'name' : 'pit_patrimoine_naturel_psd',
-		'type' : 'distance_based'
+	'pit_patrimoine_naturel' : {
+		'name' : 'pit_patrimoine_naturel',
+		'type' : 'distance_based',
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 2000,
 			'scale' : 'linear'
 			}
 		},
-	'le_enseignement_psd' :{
-		'name' : 'le_enseignement_psd',
-		'type' : 'dist_dens_based'
+	'le_enseignement' :{
+		'name' : 'le_enseignement',
+		'type' : 'dist_dens_based',
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 2000,
@@ -118,9 +118,9 @@ criterias_dict = {
 			'max_density' : 3
 			}
 		},
-	'pit_degustation_psd':{
-		'name' : 'pit_degustation_psd',
-		'type' : 'dist_dens_based'
+	'pit_degustation':{
+		'name' : 'pit_degustation',
+		'type' : 'dist_dens_based',
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 2000,
@@ -128,54 +128,54 @@ criterias_dict = {
 			'max_density' : 3
 			}
 		},
-	'pit_hebergement_locatif_psd':{
-		'name' : 'pit_hebergement_locatif_psd',
-		'type' : 'density_based'
+	'pit_hebergement_locatif':{
+		'name' : 'pit_hebergement_locatif',
+		'type' : 'density_based',
 		'params' : {
 			'min_density' : 0,
 			'max_density' : 10,
 			'scale' : 'linear'
 			}
 		},
-	'le_administration_psd':{
-		'name' : 'le_administration_psd',
-		'type' : 'distance_based'
+	'le_administration':{
+		'name' : 'le_administration',
+		'type' : 'distance_based',
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 1000,
 			'scale' : 'linear'
 			}
 		},
-	'pit_hebergement_collectif_psd':{
-		'name' : 'pit_hebergement_collectif_psd',
-		'type' : 'density_based'
+	'pit_hebergement_collectif':{
+		'name' : 'pit_hebergement_collectif',
+		'type' : 'density_based',
 		'params' : {
 			'min_density' : 0,
 			'max_density' : 10,
 			'scale' : 'linear'
 			}
 		},
-	'pit_hotellerie_psd':{
-		'name' : 'pit_hotellerie_psd',
-		'type' : 'density_based'
+	'pit_hotellerie':{
+		'name' : 'pit_hotellerie',
+		'type' : 'density_based',
 		'params' : {
 			'min_density' : 0,
 			'max_density' : 5,
 			'scale' : 'linear'
 			}
 		},
-	'pit_patrimoine_culturel_psd':{
-		'name' : 'pit_hotellerie_psd',
-		'type' : 'distance_based'
+	'pit_patrimoine_culturel':{
+		'name' : 'pit_hotellerie',
+		'type' : 'distance_based',
 		'params' : {
 			'min_density' : 0,
 			'max_density' : 5,
 			'scale' : 'linear'
 			}
 		},
-	'pit_restauration_psd':{
-		'name' : 'pit_restauration_psd',
-		'type' : 'density_based'
+	'pit_restauration':{
+		'name' : 'pit_restauration',
+		'type' : 'density_based',
 		'params' : {
 			'min_density' : 0,
 			'max_density' : 10,

@@ -1,18 +1,19 @@
 from ..py_rest.pyrest.rest_server.rest_api.response import Response
 from ..criteria.gen_criteria import rank
+from ..criteria.criterias import criterias_dict
 import json
 
 def ranking_handler(path, data, api_param):
-    print(json.loads(data['data'][0]))
     #extraire les criteres utiles
-    criteres= json.loads(data['data'][0])['criteres']
-    print(criteres)
-    nomcriteres=[c['name'] for c in criteres if c['coef'] !=0]
+    d = json.loads(data['data'][0])
+    criteres= d['criteres']
+    nomcriteres=[k for k,v in criteres.items() if v !=0]
 
     #evaluer les criteres
     notes = {}
     for i in nomcriteres:
-        notes[i] = 5#rank({'criteria':criterias_dict[i],coordinates:{'lat':data['lat'],'lon':data['lon']}})
+        spec = {'criteria':criterias_dict[i],'coordinates':{'lat':d['lat'],'lon':d['lon']}}
+        notes[i],e = rank(spec)
     #faire une moyenne
     moy = sum(notes.values())/len(nomcriteres)
 

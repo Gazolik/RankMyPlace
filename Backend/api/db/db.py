@@ -23,7 +23,8 @@ def n_closest_records(records, coord, n):
 # Récupère le record le plus proche de la coordonnée géographiquement
 #
 def closest_record(records, coord):
-    return n_closest_records(records, coord, 1)
+    cr = n_closest_records(records, coord, 1)[0]
+    return cr
 
 #
 # Retourne un tuple contenant la densité, le record le plus proche et sa distance à la coordonnée

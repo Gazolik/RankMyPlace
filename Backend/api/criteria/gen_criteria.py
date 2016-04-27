@@ -19,7 +19,7 @@ from ..db.db import closest_record, density_around
 #   retourne un couple (note_sur_dix, element_trouvé)
 #
 def rank(spec):
-    typ = spec['criteria']['type'] 
+    typ = spec['criteria']['type']
     if typ == 'distance_based':
         return distance_based(spec['criteria'], spec['coordinates'])
     elif typ == 'density_based':
@@ -52,9 +52,9 @@ def distance_based(criteria, coord):
     mark = None
     # vérification d'appartenance à l'anneau
     if dist < min_dist or dist > max_dist:
-        # le lieu le plus proche n'est pas dans l'anneau, on retourne 0 
+        # le lieu le plus proche n'est pas dans l'anneau, on retourne 0
         mark = 0.0
-        record = None 
+        record = None
     # calcul de la note en fonction de l'échelle
     else:
         if scale == 'log':
@@ -64,7 +64,7 @@ def distance_based(criteria, coord):
             mark = 10.0 * ( 1.0 - ( (dist - min_dist) / (max_dist - min_dist) ) )
         # else: mark = None (cf. initialisation de mark)
     # finally return mark and record for details
-    return (mark, closest)
+    return (mark, record)
 
 #
 #   Calcul de densité générique, paramètres attendus :
@@ -87,9 +87,9 @@ def density_based(criteria, coord, radius):
     mark = None
     # vérification d'appartenance à l'anneau
     if density < min_density or density > max_dist:
-        # la densité n'est pas dans l'anneau, on retourne 0 
+        # la densité n'est pas dans l'anneau, on retourne 0
         mark = 0.0
-        closest = None 
+        closest = None
     # calcul de la note en fonction de l'échelle
     else:
         if scale == 'log':
