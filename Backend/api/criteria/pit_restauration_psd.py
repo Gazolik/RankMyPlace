@@ -1,9 +1,0 @@
-from .gen_criteria import gen_criteria
-class pit_restauration_psd(gen_criteria):
-     MAX_DENSITY = 10
-     
-     def rank(self, coord, radius) :
-          records = get_criteria('pit_restauration_psd')
-          density, closest, min_dist = density_around(records, coord, radius)
-          mark = 10.0 * min(density, pit_restauration_psd.MAX_DENSITY)/pit_restauration_psd.MAX_DENSITY
-          return mark    

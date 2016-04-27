@@ -16,7 +16,7 @@
             </div>
             <div class="col-md-6">
                 <h4 class="text-center">Intervalle du critère</h4><br/>
-                <slider ng-model="criteria.value" value="criteria.value" min="criteria.min" step="1" max="criteria.max" slider-tooltip="always" range="true"></slider>
+                <slider ng-model="criteria.range" value="criteria.range" min="min[$index]" step="1" max="max[$index]" slider-tooltip="always" range="true"></slider>
                 <br/><br/> 
             </div>
         </div>         
