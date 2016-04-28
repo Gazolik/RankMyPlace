@@ -3,9 +3,10 @@
 
 # ---------------- IMPORTS
 
-from ...fs.fs import load_heatmap_grid, dump_heatmap, list_heatmap_grids
+from ...fs.fs import load_heatmap_grid, dump_heatmap, list_heatmap_grids, json_dump
 from ...criteria.gen_criteria import rank
 from ...criteria.criterias import criterias_dict
+from ...algorithm.algorithm import reduce_precision
 
 # ---------------- FUNCTIONS
 
@@ -41,4 +42,18 @@ def gen_all_heatmaps():
         for key, criteria in criterias_dict.items():
             gen_heatmap(grid, criteria)
 
-
+#
+#   Calcul de réduction de précision d'une grille
+#
+def reduce_grid(grid_basename, precision):
+    grid = load_heatmap_grid(grid_basename)
+    ratio, removed, total = reduce_precision(grid, precision)
+    print('[heatmap_creator.py]> reduction ratio is %.2f%% for grid %s. Details : removed = %s, total = %s' % (ratio*100, grid_basename, removed, total))
+    return grid
+#
+#
+#
+def reduce_all(precision):
+    files = list_heatmap_grids()
+    for f in files:
+        json_dump('./data/heatmap/psd/' + f + '_red_%s_grid' % int(precision), reduce_grid(f, precision))
