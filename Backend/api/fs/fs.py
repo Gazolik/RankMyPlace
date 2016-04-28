@@ -1,6 +1,7 @@
 
 import json
 import os
+import re
 
 # /!\
 #   Toutes les méthodes supposent que le script appelant (main) est à la racine du Backend/
@@ -144,19 +145,19 @@ def dump_static(basename, data):
 #   TODO : doc
 #
 def dump_heatmap_grid(commune, coordinates):
-    filepath = commune.replace(' ','_').lower()
-    if len(filepath) == 0:
-        filepath = 'unnamed'
-    filepath = HEATMAP_PSD + '/' + filename + '_grid'
+    basename = re.sub('[^\w\.]','',commune).lower()
+    if len(basename) == 0:
+        basename = 'unnamed'
+    filepath = HEATMAP_PSD + '/' + basename + '_grid'
     json_dump(filepath, coordinates)
 #
 #   TODO : doc
 #
 def dump_heatmap_psd(commune, data):
-    filepath = commune.replace(' ','_').lower()
-    if len(filepath) == 0:
-        filepath = 'unnamed'
-    filepath = HEATMAP_PSD + '/' + filename + '_psd'
+    basename = re.sub('[^\w\.]','',commune).lower()
+    if len(basename) == 0:
+        basename = 'unnamed'
+    filepath = HEATMAP_PSD + '/' + basename + '_psd'
     json_dump(filepath, data)
 #
 #   Génère un fichier de heatmap pour le critere donné et la grille donnée
