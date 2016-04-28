@@ -38,7 +38,7 @@ def gen_heatmap(grid_basename, criteria) :
 def gen_all_heatmaps():
     grids = list_heatmap_grids()
     for grid in grids :
-        for key, criteria in criterias_dict :
+        for key, criteria in criterias_dict.items():
             gen_heatmap(grid, criteria)
 
 

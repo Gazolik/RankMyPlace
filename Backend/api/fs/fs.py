@@ -92,7 +92,7 @@ def json_load(path, basename):
     try :
         with open(path + '/' + basename + '.json', 'r', encoding=ENCODING) as f:
             data = json.load(f)
-    except Exception as e :
+    except IOError as e :
         print('[fs.json_load] File cannot be opened : %s' % e)
     finally :
         return data
@@ -116,6 +116,11 @@ def load_heatmap_psd(basename):
 #
 def load_heatmap_streets():
     return json_load(HEATMAP, STREETS)
+#
+#   TODO : doc
+#
+def load_heatmap(grid_basename, criteria_name):
+    return json_load(HEATMAP_MAPS, grid_basename + '_' + criteria_name + '_map')
 #
 #   TODO : doc
 #
@@ -147,7 +152,7 @@ def json_dump(filepath_no_ext, data):
     try :
         with open(filepath_no_ext + '.json', 'w') as f:
             f.write(json.dumps(data, sort_keys=False))
-    except Exception as e :
+    except IOError as e :
         print('[fs.json_dump] Error while writing file %s'.format(e))
 #
 #   TODO : doc
@@ -176,7 +181,7 @@ def dump_heatmap_psd(commune, data):
 #   Génère un fichier de heatmap pour le critere donné et la grille donnée
 #
 def dump_heatmap(grid_basename, criteria_name, heatmap):
-    filepath = HEATMAP_MAPS + '/' + grid_basename + '_' + criteria_name + '_heatmap'
+    filepath = HEATMAP_MAPS + '/' + grid_basename + '_' + criteria_name + '_map'
     json_dump(filepath, { 'criteria' : criteria_name, 'heatmap' : heatmap })
 #
 #   TODO : doc
