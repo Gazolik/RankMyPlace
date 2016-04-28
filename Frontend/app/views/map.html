@@ -1,4 +1,4 @@
-<div class="col-md-1" ng-click='nextView()'>
+<div class="col-md-1" ng-click='prev()'>
     <img ng-src="images/prev-arrow.png" style="position:fixed;left:10px" ng-show='displayedView > 0' />
 </div> 
 <div  class="col-md-10" class="animate-switch-container" ng-switch="displayedView">
@@ -6,9 +6,12 @@
          <div ng-controller="ProfilsCtrl" ng-include="'views/profils.html'"></div>
     </div>
      <div class="animate-switch" ng-switch-when="1">
+         <div class="container" ng-controller="AreasCtrl" ng-include="'views/area.html'"></div>
+    </div>
+     <div class="animate-switch" ng-switch-when="2">
          <div ng-controller="MapResultsCtrl"  ng-include="'views/mapResults.html'"></div>
     </div>
 </div>
-<div class="col-md-1" ng-click='nextView()'>
-    <img ng-src="images/next-arrow.png" style="position:fixed;right:10px" ng-show='displayedView < 1'/>
+<div class="col-md-1" ng-click='next()'>
+    <img ng-src="images/next-arrow.png" style="position:fixed;right:10px" ng-show='displayedView < 2'/>
 </div>

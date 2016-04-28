@@ -18,8 +18,8 @@
           $scope.profils = data;
           $scope.profils.push($scope.customProfil);
           $scope.profilSelected = $scope.customProfil;
-          $scope.show = true;
-          $scope.msgCriteres ='Cacher les critères';
+          $scope.show = false;
+          $scope.msgCriteres ='Afficher les critères';
           
       });
     };
