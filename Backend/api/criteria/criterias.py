@@ -205,11 +205,12 @@ criterias_dict = {
 		},
 	'pit_patrimoine_culturel':{
 		'name' : 'pit_hotellerie',
-		'type' : 'distance_based',
+		'type' : 'density_based',
 		'params' : {
 			'min_density' : 5,
 			'max_density' : 10000,
-			'dist_scale' : 'linear'
+			'dens_scale' : 'linear'
+			'radius':500,
 			}
 		},
 	'pit_restauration':{

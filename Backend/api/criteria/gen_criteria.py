@@ -125,4 +125,4 @@ def dist_dens_based(criteria, coord):
 #
 def custom(criteria, coord):
     # todo
-    return (None, None)
+    return (0, None)
