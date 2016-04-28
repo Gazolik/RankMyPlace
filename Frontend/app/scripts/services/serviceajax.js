@@ -37,7 +37,7 @@ angular.module('smartCityFrontEndApp')
         search: function(searchData, successFct){
             var args = {criteres : {}, lat : parseFloat(searchData.lat), lon : parseFloat(searchData.lon)};
             for (var i = 0 ; i < searchData.criterias.length ; ++i){
-                args.criteres[searchData.criterias[i].code] = 5;          
+                args.criteres[searchData.criterias[i].code] = parseInt(searchData.criterias[i].coef);          
             }
             // $http.POST('http://501srv-2.insa-lyon.fr:8000/criterias').success(function (data){successFct(data.content.profiles)});
             $http.post('http://localhost:8000/ranking', 'data=' + JSON.stringify(args)).success(function (data){successFct(data.content);});
