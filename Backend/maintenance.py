@@ -105,6 +105,8 @@ elif command == 'gen_all_heatmaps':
     gen_all_heatmaps()    
 elif command == 'process_streets':
     process_streets()
+elif command == 'process_all_files':
+    process_all_files()
 else:
     abort('[maintenance.py]> unknown command !')
 
