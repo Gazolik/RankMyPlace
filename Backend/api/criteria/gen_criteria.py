@@ -126,7 +126,7 @@ def density_based(criteria, coord):
 def dist_dens_based(criteria, coord):
     mark_density, record = density_based(criteria, coord)
     mark_dist, closest = distance_based(criteria, coord)
-    mark = (criteria['params']['dist_coeff']*mark_dist+criteria['params']['dist_coeff']*mark_density)/(criteria['params']['dist_coeff']+criteria['params']['dens_coeff'])
+    mark = (criteria['params']['dist_coeff']*mark_dist+criteria['params']['dens_coeff']*mark_density)/(criteria['params']['dist_coeff']+criteria['params']['dens_coeff'])
     return (mark, closest)
 
 #
@@ -138,7 +138,7 @@ def custom(criteria, coord):
         custom_bruit(criteria, coord)
     else:
         print('Profil custom non disponible')
-		return(-1.0, None) 
+        return(-1.0, None) 
 
 #
 #   Calcul customisé pour le bruit
