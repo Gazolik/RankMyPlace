@@ -151,7 +151,7 @@ def custom(criteria, coord):
         return (-1, None)
     else:
         for record in records:
-            sum += record
+            sum += record['data']['value']
         mark = sum/records_size
     # on retoure la note et pas de record
     return (mark, None)
