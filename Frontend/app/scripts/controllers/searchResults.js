@@ -16,7 +16,7 @@ angular.module('smartCityFrontEndApp')
         serviceAjax.search(searchData, function(data){
             $scope.loading = false;
             $scope.result = data;
-            $scope.chartConfig.series[0].data[0] = data.note;
+            $scope.chartConfig.series[0].data[0] = data.moyenne;
       });
     };
     $scope.chartConfig = {

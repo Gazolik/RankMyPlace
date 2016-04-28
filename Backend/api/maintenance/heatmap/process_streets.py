@@ -39,23 +39,24 @@ def download_streets_data():
 #
 #   Création d'un dictionnaire indexé sur les communes pour les rues
 #
-def split_on_commune(streets):
+def split_on_commune(data):
     # split data structure using 'nomcommune' field
+    streets = data['features']
     communes = {}
-    total = len(features)
+    total = len(streets)
     i = 0
-    print('[process_streets.py]> processing %s streets...')
-    for feature in features:
+    print('[process_streets.py]> processing %s streets...' % total)
+    for street in streets:
         i += 1
         if i % 100 == 0:
             print_progress('[process_streets.py]> progress %s/%s ' % (i, total))
-        commune = feature['properties']['nomcommune']
+        commune = street['properties']['nomcommune']
         if not commune in communes.keys():
             communes[commune] = []
         # add street to commune
         communes[commune].append({
-            'nom':feature['properties']['nom'],
-            'coordinates':feature['geometry']['coordinates']
+            'nom':street['properties']['nom'],
+            'coordinates':street['geometry']['coordinates']
         })
     print('[process_streets.py]> done !')
     return communes
@@ -66,15 +67,15 @@ def split_on_commune(streets):
 def create_files(communes):
     # creating ouput files
     for commune, data in communes.items():
-        print('[process_streets.py]> writing %s...' % full_file, end='')
+        print('[process_streets.py]> writing psd file for %s...' % commune, end='')
         dump_heatmap_psd(commune, data)
         print('done !')
-        print('[process_streets.py]> writing %s...' % coord_file, end='')
+        print('[process_streets.py]> writing grid file for %s...' % commune, end='')
         coordinates = []
-        for v in value:
-            coordinates += v['coordinates']
+        for elem in data:
+            coordinates += elem['coordinates']
         dump_heatmap_grid(commune, coordinates)
-        print('[process_streets.py]> done !')
+        print('done !')
 
 #
 #   Découpage intégral du fichier streets.json en fichiers par commune
