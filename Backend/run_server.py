@@ -18,5 +18,5 @@ api.add_path(RestAPI.POST,'/ranking', ranking_handler)
 firewall = Firewall(persistentLog=False)
 
 # initialize and run server
-server = RestServer(8000, api, firewall)
+server = RestServer(8001, api, firewall)
 server.run()
