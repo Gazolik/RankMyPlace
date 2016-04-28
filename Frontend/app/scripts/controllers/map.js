@@ -10,12 +10,14 @@
 angular.module('smartCityFrontEndApp')
   .controller('MapCtrl', function ($scope) {
     $scope.displayedView = 0;
-    $scope.nextView = function() {
-        if ($scope.displayedView === 1) {
-            $scope.displayedView = 0;
+    $scope.prev = function() {
+        if ($scope.displayedView > 0) {
+            $scope.displayedView--;
         }
-        else {
-            $scope.displayedView = 1;
+    };
+    $scope.next = function() {
+        if ($scope.displayedView < 2) {
+            $scope.displayedView++;
         }
     };
   });

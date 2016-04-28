@@ -1,22 +1,23 @@
-<div class="profils-container container">    
+<div class="profils-container container">
+    <h1 class="page-header">Quel est votre profil ?</h1>
     <div class="profils row">
-        <h2 class="text-center">Quel est votre profil ?</h2>
         <div class="col-md-1"></div>
-        <div class="col-md-2" ng-repeat="profil in profils">
-            <a ng-click="updateCoef($index)">
-                <div ng-class="{'myStyle': $index == profilSelected}">
-                    <img ng-src="images/dynamic/{{profil.imgPath}}" width="150" height="150"/>
-                    <h3 class="text-center">{{profil.name}}</h3>
+        <div class="col-md-2 col-sm-4 text-center" ng-repeat="profil in profils">
+            <div ng-click="updateCoef(profil, $index)" style="cursor:pointer">
+                <div class="bubble">
+                    <div class="img-circle " ng-class="{selectedBubble : searchData.selectedProfil == $index}"></div>
+                    <img class="img-circle img-responsive img-center" ng-src="images/dynamic/{{profil.imgPath}}" alt="">
                 </div>
-            </a>            
+                <h3 class="titleBuble">{{profil.name}}</h3>
+            </div>
         </div>
         <div class="col-md-1"></div>
     </div>
     <br/>
     <div class="text-center">
-        <a ng-click="showHideDetails()">{{msgCriteres}}</a>
+        <a class="btn btn-default btn-lg" ng-click="showHideDetails()"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{msgCriteres}}</a>
     </div><br/>
-    <table class="table" ng-show="show">
+    <table class="table sample-show-hide" ng-show="show">
     <thead>
       <tr>
         <th></th>
@@ -50,6 +51,4 @@
         </tr>        
     </tbody>
   </table>
-</div>    
-
-</div>
+</div> 

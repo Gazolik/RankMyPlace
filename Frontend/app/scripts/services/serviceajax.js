@@ -34,6 +34,19 @@ angular.module('smartCityFrontEndApp')
                         {name : 'Transport commun'},
                         {name : 'Ecole'}]);*/
         },
+        areas: function(successFct){
+           // $http.get('http://501srv-2.insa-lyon.fr:8000/criterias').success(function (data){successFct(data.content.criteres)});
+            //$http.get('http://localhost:8000/criterias').success(function (data){successFct(data.content.criteres);});
+            successFct([{name : 'Lyon 1er', imgPath : 'lyon1.png'},
+                        {name : 'Lyon 2ème', imgPath : 'lyon2.png'},
+                        {name : 'Lyon 3ème', imgPath : 'lyon3.png'},
+                        {name : 'Lyon 4ème', imgPath : 'lyon4.png'},
+                        {name : 'Lyon 5ème', imgPath : 'lyon5.png'},
+                        {name : 'Lyon 6ème', imgPath : 'lyon6.png'},
+                        {name : 'Lyon 7ème', imgPath : 'lyon7.png'},
+                        {name : 'Lyon 8ème', imgPath : 'lyon8.png'},
+                        {name : 'Lyon 9ème', imgPath : 'lyon9.png'}]);
+        },
         search: function(searchData, successFct){
             var args = {criteres : {}, lat : parseFloat(searchData.lat), lon : parseFloat(searchData.lon)};
             for (var i = 0 ; i < searchData.criterias.length ; ++i){

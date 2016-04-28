@@ -48,3 +48,7 @@ angular
         $httpProvider.defaults.headers.put = {};
         $httpProvider.defaults.headers.patch = {};
 }]);
+
+angular.element(document).ready(function() {
+      angular.bootstrap(document, ['smartCityFrontEndApp']);
+    });

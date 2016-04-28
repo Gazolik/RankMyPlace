@@ -10,16 +10,17 @@
  angular.module('smartCityFrontEndApp')
   .controller('ProfilsCtrl', function ($scope, serviceAjax, searchData) {
      
-    $scope.searchData = searchData;
-    $scope.show = false;
-    $scope.msgCriteres = 'Afficher les critères';
-    $scope.profilSelected = null;
-    $scope.customProfil = {name : 'Profil Perso', imgPath : 'yeoman.png', coefs : []};
+    $scope.searchData = searchData;    
+    $scope.customProfil = {name : 'Profil Perso', imgPath : 'personal.png', coefs : []};
      
     var loadProfils = function (){
       serviceAjax.profils(function(data){
           $scope.profils = data;
           $scope.profils.push($scope.customProfil);
+          $scope.show = false;
+          searchData.selectedProfil = 0;
+          $scope.msgCriteres ='Afficher les critères';
+          
       });
     };
     loadProfils();
@@ -29,7 +30,7 @@
          searchData.criterias.length = 0;
          for (var i = 0 ; i < data.length ; ++i){
              $scope.customProfil.coefs.push({name : data[i].name, coef : 5});
-             searchData.criterias.push({name : data[i].name, coef : 5, code : data[i].code});          
+             searchData.criterias.push({name : data[i].name, coef : $scope.customProfil.coefs[i].coef, code : data[i].code});          
          }
       });
     };          
@@ -47,15 +48,16 @@
         }
     };
      
-    $scope.updateCoef = function (index){
-        for (var i = 0 ; i < searchData.criterias.length ; ++i){
-            searchData.criterias[i].coef = $scope.profils[index].coefs[i].coef;        
+    $scope.updateCoef = function (profil, index){
+        for (var i = 0 ; i < Math.min(searchData.criterias.length, profil.coefs.length) ; ++i){
+            searchData.criterias[i].coef = profil.coefs[i].coef;        
         }
-        $scope.profilSelected = index;  
-        if (index === $scope.profils.length - 1){
+        searchData.selectedProfil = index;
+        if ($scope.profilSelected === $scope.customProfil){
             $scope.show = true;
             $scope.msgCriteres ='Cacher les critères';
-        }
-    };     
+          }
+    }; 
+      
          
   });

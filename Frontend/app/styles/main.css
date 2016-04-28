@@ -53,7 +53,7 @@ body {
 
 /* Supporting marketing content */
 .marketing {
-  margin: 40px 0;
+  margin: 30px 0;
 }
 .marketing p + h4 {
   margin-top: 28px;
@@ -62,6 +62,9 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
+    max-width: 1200px;
+  }
+  .aboutContainer {
     max-width: 1000px;
   }
 
@@ -81,8 +84,8 @@ body {
     border-bottom: 0;
   }
     
- .myStyle {
-     background-color:#E8E8E8;
+  .myStyle {
+      color : cadetblue;   
     }
     
     .headerRadio10 {
@@ -172,4 +175,62 @@ body {
     .inlineRadio0 {
          background-color:rgba(192, 32, 0, 0.6);
     }
+    
+    .sample-show-hide {
+      padding:10px;
+      background:white;
+    }
+
+    .sample-show-hide {
+      -webkit-transition:all linear 0.5s;
+      transition:all linear 0.5s;
+    }
+
+    .sample-show-hide.ng-hide {
+      opacity:0;
+    }
+    
+    a, a:hover{
+        color :black;
+    }
+    
+    a:hover {
+      text-decoration : underline;  
+    }
+
+}
+.img-center {
+	margin: 0 auto;
+}
+
+.titleBuble{
+    margin-top: 5px;
+    max-width: 200px;
+    margin-bottom: 25px;
+}
+
+.aboutTitleBuble{
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+
+.bubble {
+    position: relative;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.selectedBubble{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    background-image: url("../images/checked.png");
+    background-repeat:no-repeat;
+    background-position:center;
+    color: #fff;
+    padding: 50%;
+    padding: 50%;
 }

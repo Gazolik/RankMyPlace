@@ -1,6 +1,6 @@
 [{
 "name" : "Etudiant",
-"imgPath" : "student.jpg",
+"imgPath" : "student.png",
 "coefs" : [{"name" : "Bruit", "coef" : 1},
 			{"name" : "Transport commun", "coef" : 8},
 			{"name" : "Ecole", "coef" : 0}
@@ -9,7 +9,7 @@
 
 {
 "name" : "Senior",
-"imgPath" : "retired.jpg",
+"imgPath" : "retired.png",
 "coefs" : [{"name" : "Bruit", "coef" : 8},
 			{"name" : "Transport commun", "coef" : 1},
 			{"name" : "Ecole", "coef" : 0}
@@ -18,7 +18,7 @@
 
 {
 "name" : "Famille",
-"imgPath" : "family.jpg",
+"imgPath" : "family.png",
 "coefs" : [{"name" : "Bruit", "coef" : 2},
 			{"name" : "Transport commun", "coef" : 1},
 			{"name" : "Ecole", "coef" : 8}
@@ -27,7 +27,7 @@
 
 {
 "name" : "Jeune Actif",
-"imgPath" : "young_worker.jpg",
+"imgPath" : "young_worker.png",
 "coefs" : [{"name" : "Bruit", "coef" : 1},
 			{"name" : "Transport commun", "coef" : 8},
 			{"name" : "Ecole", "coef" : 1}
