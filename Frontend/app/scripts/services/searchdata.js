@@ -16,4 +16,5 @@ angular.module('smartCityFrontEndApp')
     this.criterias = [];
     this.area = '';
     this.selectedArea = -1;
+    this.selectedProfil = -1;
   });

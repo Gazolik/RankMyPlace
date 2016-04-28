@@ -53,7 +53,7 @@ body {
 
 /* Supporting marketing content */
 .marketing {
-  margin: 40px 0;
+  margin: 30px 0;
 }
 .marketing p + h4 {
   margin-top: 28px;
@@ -62,6 +62,9 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
+    max-width: 1200px;
+  }
+  .aboutContainer {
     max-width: 1000px;
   }
 
@@ -205,6 +208,12 @@ body {
     max-width: 200px;
     margin-bottom: 25px;
 }
+
+.aboutTitleBuble{
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+
 .bubble {
     position: relative;
     max-width: 200px;

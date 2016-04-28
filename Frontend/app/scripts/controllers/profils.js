@@ -11,14 +11,14 @@
   .controller('ProfilsCtrl', function ($scope, serviceAjax, searchData) {
      
     $scope.searchData = searchData;    
-    $scope.customProfil = {name : 'Profil Perso', imgPath : 'yeoman.png', coefs : []};
+    $scope.customProfil = {name : 'Profil Perso', imgPath : 'personal.png', coefs : []};
      
     var loadProfils = function (){
       serviceAjax.profils(function(data){
           $scope.profils = data;
           $scope.profils.push($scope.customProfil);
-          $scope.profilSelected = $scope.customProfil;
           $scope.show = false;
+          searchData.selectedProfil = 0;
           $scope.msgCriteres ='Afficher les critères';
           
       });
@@ -48,11 +48,11 @@
         }
     };
      
-    $scope.updateCoef = function (profil){
-        for (var i = 0 ; i < searchData.criterias.length ; ++i){
+    $scope.updateCoef = function (profil, index){
+        for (var i = 0 ; i < Math.min(searchData.criterias.length, profil.coefs.length) ; ++i){
             searchData.criterias[i].coef = profil.coefs[i].coef;        
         }
-        $scope.profilSelected = profil;
+        searchData.selectedProfil = index;
         if ($scope.profilSelected === $scope.customProfil){
             $scope.show = true;
             $scope.msgCriteres ='Cacher les critères';
