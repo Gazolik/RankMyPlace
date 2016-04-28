@@ -209,8 +209,8 @@ criterias_dict = {
 		'params' : {
 			'min_density' : 5,
 			'max_density' : 10000,
-			'dens_scale' : 'linear'
-			'radius':500,
+			'dens_scale' : 'linear',
+			'radius':500
 			}
 		},
 	'pit_restauration':{
