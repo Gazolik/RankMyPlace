@@ -68,7 +68,7 @@ def cmd_list(category):
     elif category == 'database_psd':
         files = list_database_psd()
     else:
-        abort('[maintenance.py]> unknown category to list')
+        abort('[maintenance.py]> unknown category to list, type "help list" to get a list of categories.')
     # print file list
     print('List of %s files :\n  +    ' % category + '\n  +    '.join(files))
         
@@ -97,6 +97,6 @@ elif command == 'update_dependencies':
 else:
     abort('[maintenance.py]> unknown command !')
 
-print('[maintenance.py]> done !')
+print('-----------------------------\n[maintenance.py]> done !')
 
 
