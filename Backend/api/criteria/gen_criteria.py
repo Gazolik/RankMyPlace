@@ -10,7 +10,7 @@
 #        """ Cette methode est la methode d'evaluation d'un critere"""
 #        pass
 
-from ..fs.fs import get_criteria
+from ..fs.fs import load_criteria
 from ..db.db import closest_record, density_around
 
 #
@@ -45,7 +45,7 @@ def distance_based(criteria, coord):
     min_dist = criteria['params']['min_dist']
     scale = criteria['params']['scale']
     # lecture dans la base
-    records = get_criteria(criteria['name'])
+    records = load_criteria(criteria['name'])
     # récupération du point le plus proche
     dist, record = closest_record(records, coord)
     # création de la note vide
@@ -80,7 +80,7 @@ def density_based(criteria, coord, radius):
     min_density = criteria['params']['min_density']
     scale = criteria['params']['scale']
     # lecture dans la base
-    records = get_criteria(criteria['name'])
+    records = load_criteria(criteria['name'])
     # récupération de la densité
     density, closest, min_dist = density_around(records, coord, radius)
     # création de la note vide
