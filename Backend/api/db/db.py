@@ -34,9 +34,10 @@ def density_around(records, coord, radius):
     closest = None
     density = 0
     min_dist = 100000000000000000.0 + radius # meters
-    for i in range(len(records)):
+    total = len(records)
+    for i in range(total):
         if i%1000 == 0 :
-            print_progress(i/range(len(records))*100 + '%')
+            print_progress(i/total*100 + '%')
         dist = 1000 * geo_dist(coord, records[i]['coordinates'])
         if dist < radius:
             density += 1
