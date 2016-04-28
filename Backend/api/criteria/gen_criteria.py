@@ -132,7 +132,7 @@ def dist_dens_based(criteria, coord):
 def custom(criteria, coord):
     if criteria == "bruit":
         custom_bruit(criteria, coord)
-    else
+    else:
         abort('Profil custom non disponible')
 
 #
@@ -145,7 +145,7 @@ def custom_bruit(criteria, coord):
     records_db = load_database_psd(criteria['name'])
     # récupération des records les plus proches
     records = records_around(records_db, coord, radius)
-    if not records :
+    if not records:
         print('[gen_criteria.custom] %s'%criteria['name'])
         return (-1.0, None)
     # création des variables necessaires au traitement
