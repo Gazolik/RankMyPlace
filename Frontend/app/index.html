@@ -23,7 +23,7 @@
 
     <div class="header">
       <div class="navbar navbar-default" role="navigation">
-        <div class="container">
+        <div class="container-fluid">
           <div class="navbar-header">
             <a class="navbar-brand" href="#/">PLD SmartCity</a>
           </div>
@@ -39,12 +39,12 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
     <div ng-view=""></div>
     </div>
 
     <div class="footer">
-      <div class="container">
+      <div class="container-fluid">
         <p>Par Hexanonyme</p>
       </div>
     </div>
@@ -60,7 +60,7 @@
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
     </script>
-
+ 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -79,6 +79,8 @@
     <script src="bower_components/highcharts/highcharts-more.js"></script>
     <script src="bower_components/highcharts/modules/solid-gauge.src.js"></script>
     <script src="bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
+    <script src="bower_components/spin.js/spin.js"></script>
+    <script src="bower_components/angular-spinner/angular-spinner.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -94,6 +96,7 @@
         <script src="scripts/controllers/searchResults.js"></script>
         <script src="scripts/controllers/mapresults.js"></script>
         <script src="scripts/services/searchdata.js"></script>
+        <script src="scripts/directives/loading.js"></script>
         <!-- endbuild -->
 </body>
 </html>
