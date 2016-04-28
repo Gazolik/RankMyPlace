@@ -1,4 +1,4 @@
-{"profiles":[{
+[{
 "name" : "Etudiant",
 "imgPath" : "student.jpg",
 "coefs" : [{"name" : "Bruit", "coef" : 1},
@@ -33,4 +33,4 @@
 			{"name" : "Ecole", "coef" : 1}
 			]
 }
-]}
+]

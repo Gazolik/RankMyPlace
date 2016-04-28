@@ -11,15 +11,20 @@ angular.module('smartCityFrontEndApp')
   .controller('SearchResultsCtrl', function ($scope, serviceAjax, searchData) {
     $scope.searchData = searchData;
     $scope.loading = true;
+    this.color = ['FF6666', 'FFCC66', 'CCFF66', '66FF66', '66FFCC', '66CCFF', 'CC66FF', '8000FF', '0080FF', '008080'];
     
     var search = function (){
         serviceAjax.search(searchData, function(data){
             $scope.loading = false;
             $scope.result = data;
-            $scope.chartConfig.series[0].data[0] = data.moyenne;
+            $scope.gaugeConfig.series[0].data[0] = Math.round(data.moyenne*100)/100;
+            for (var i = 0 ; i < data.length ; ++i){
+                $scope.barConfig.series.data.push({y:Math.round(data.notes[i].note*100)/100, color:this.color[i%10]});
+                $scope.barConfig.xAxis.categories.push(data.notes[i].name);
+            }
       });
     };
-    $scope.chartConfig = {
+    $scope.gaugeConfig = {
         options: {
             chart: {
                 type: 'solidgauge'
@@ -51,7 +56,7 @@ angular.module('smartCityFrontEndApp')
         }],
         title: {
             text: 'Note globale',
-            y: 130
+            y: 120
         },
         yAxis: {
             currentMin: 0,
@@ -69,6 +74,27 @@ angular.module('smartCityFrontEndApp')
                 y: 16
             }   
         },
+        loading: false
+    };
+    $scope.barConfig = {
+        options: {
+            chart: {
+                type: 'bar'
+            }
+        },
+        xAxis: {
+            categories: [],
+            title: {
+                text: null
+            }
+        },
+        series: [{
+            data: []
+        }],
+        title: {
+            text: 'Résultats détaillés'
+        },
+
         loading: false
     };
     search();
