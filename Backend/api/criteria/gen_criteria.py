@@ -43,7 +43,7 @@ def distance_based(criteria, coord):
     # récupération et calcul des paramètres
     max_dist = criteria['params']['max_dist']
     min_dist = criteria['params']['min_dist']
-    scale = criteria['params']['scale']
+    scale = criteria['params']['dist_scale']
     # lecture dans la base
     records = load_database_psd(criteria['name'])
     # récupération du point le plus proche
@@ -79,7 +79,7 @@ def density_based(criteria, coord):
     max_density = criteria['params']['max_density']
     min_density = criteria['params']['min_density']
     radius = criteria['params']['radius']
-    scale = criteria['params']['scale']
+    scale = criteria['params']['dens_scale']
     # lecture dans la base
     records = load_database_psd(criteria['name'])
     # récupération de la densité
@@ -115,8 +115,10 @@ def density_based(criteria, coord):
 #   retourne un couple (note_sur_dix, element_trouvé)
 #
 def dist_dens_based(criteria, coord):
-    # todo
-    return (None, None)
+    mark_density, record = density_based(criteria, coord)
+    mark_dist, closest = distance_based(criteria, coord)
+    mark = (criteria['params']['dist_coeff']*mark_dist+criteria['params']['dist_coeff']*mark_density)/(criteria['params']['dist_coeff']+criteria['params']['dens_coeff'])
+    return (mark, closest)
 
 #
 #   Calcul customisé pour les données spéciales

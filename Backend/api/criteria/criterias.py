@@ -10,7 +10,7 @@ criterias_dict = {
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 1000,
-			'scale' : 'linear'
+			'dist_scale' : 'linear'
 			}
 		},
 	'pit_hotellerie_plein_air' : {
@@ -20,7 +20,7 @@ criterias_dict = {
 			'min_density' : 5,
 			'max_density' : 100000,
                         'radius' : 1000,
-			'scale' : 'linear'
+			'dens_scale' : 'linear'
 			}
 		},
 	'velov' : {
@@ -29,8 +29,13 @@ criterias_dict = {
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 500,
-			'min_density' : 0,
-			'max_density' : 3
+			'min_density' : 3,
+			'max_density' : 100000,
+                        'dist_coeff' : 2,
+                        'dens_coeff': 1,
+                        'radius' : 500,
+                        'dist_scale' : 'linear',
+                        'dens_scale' : 'linear'
 			}
 		},
 	'le_culte' : {
@@ -39,7 +44,7 @@ criterias_dict = {
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 2000,
-			'scale' : 'linear'
+			'dist_scale' : 'linear'
 			}
 		},
 	'pit_loisirs' : {
@@ -48,8 +53,13 @@ criterias_dict = {
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 2000,
-			'min_density' : 0,
-			'max_density' : 5
+			'min_density' : 5,
+			'max_density' : 100000,
+                        'dist_coeff' : 1,
+                        'dens_coeff': 3,
+                        'radius' : 2000,
+                        'dist_scale' : 'linear',
+                        'dens_scale' : 'linear'
 			}
 		},
 	'tcl' : {
@@ -58,8 +68,13 @@ criterias_dict = {
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 500,
-			'min_density' : 0,
-			'max_density' : 3
+			'min_density' : 3,
+			'max_density' : 10000,
+                        'dist_coeff' : 2,
+                        'dens_coeff': 1,
+                        'radius' : 500,
+                        'dist_scale' : 'linear',
+                        'dens_scale' : 'linear'
 			}
 		},
 	'le_urgence' : {
@@ -68,7 +83,7 @@ criterias_dict = {
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 1000,
-			'scale' : 'linear'
+			'dist_scale' : 'linear'
 			}
 		},
 	'le_sante' : {
@@ -77,7 +92,7 @@ criterias_dict = {
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 5000,
-			'scale' : 'linear'
+			'dist_scale' : 'linear'
 			}
 		},
 	'pit_commerce_et_service': {
@@ -85,9 +100,14 @@ criterias_dict = {
 		'type' : 'dist_dens_based',
 		'params' : {
 			'min_dist' : 0,
-			'max_dist' : 2000,
-			'min_density' : 0,
-			'max_density' : 10
+			'max_dist' : 1000,
+			'min_density' : 10,
+			'max_density' : 100000,
+                        'dist_coeff' : 1,
+                        'dens_coeff': 3,
+                        'radius' : 1000,
+                        'dist_scale' : 'linear',
+                        'dens_scale' : 'linear'
 			}
 		},
 	'le_sport' : {
@@ -96,8 +116,13 @@ criterias_dict = {
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 2000,
-			'min_density' : 0,
-			'max_density' : 3
+			'min_density' : 3,
+			'max_density' : 100000,
+                        'dist_coeff' : 1,
+                        'dens_coeff': 3,
+                        'radius' : 2000,
+                        'dist_scale' : 'linear',
+                        'dens_scale' : 'linear'
 			}
 		},
 	'pit_patrimoine_naturel' : {
@@ -106,7 +131,7 @@ criterias_dict = {
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 2000,
-			'scale' : 'linear'
+			'dist_scale' : 'linear'
 			}
 		},
 	'le_enseignement' :{
@@ -114,9 +139,14 @@ criterias_dict = {
 		'type' : 'dist_dens_based',
 		'params' : {
 			'min_dist' : 0,
-			'max_dist' : 2000,
-			'min_density' : 0,
-			'max_density' : 3
+			'max_dist' : 1000,
+			'min_density' : 3,
+			'max_density' : 10000,
+                        'dist_coeff' : 3,
+                        'dens_coeff': 2,
+                        'radius' : 1000,
+                        'dist_scale' : 'linear',
+                        'dens_scale' : 'linear'
 			}
 		},
 	'pit_degustation':{
@@ -125,8 +155,13 @@ criterias_dict = {
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 2000,
-			'min_density' : 0,
-			'max_density' : 3
+			'min_density' : 3,
+			'max_density' : 10000,
+                        'dist_coeff' : 3,
+                        'dens_coeff': 1,
+                        'radius' : 2000,
+                        'dist_scale' : 'linear',
+                        'dens_scale' : 'linear'
 			}
 		},
 	'pit_hebergement_locatif':{
@@ -135,7 +170,7 @@ criterias_dict = {
 		'params' : {
 			'min_density' : 10,
 			'max_density' : 10000,
-			'scale' : 'linear',
+			'dens_scale' : 'linear',
                         'radius':500
 			}
 		},
@@ -145,7 +180,7 @@ criterias_dict = {
 		'params' : {
 			'min_dist' : 0,
 			'max_dist' : 1000,
-			'scale' : 'linear'
+			'dist_scale' : 'linear'
 			}
 		},
 	'pit_hebergement_collectif':{
@@ -155,7 +190,7 @@ criterias_dict = {
 			'min_density' : 10,
 			'max_density' : 10000,
                         'radius':500,
-			'scale' : 'linear'
+			'dens_scale' : 'linear'
 			}
 		},
 	'pit_hotellerie':{
@@ -165,7 +200,7 @@ criterias_dict = {
 			'min_density' : 5,
 			'max_density' : 10000,
                         'radius':500,
-			'scale' : 'linear'
+			'dens_scale' : 'linear'
 			}
 		},
 	'pit_patrimoine_culturel':{
@@ -174,7 +209,7 @@ criterias_dict = {
 		'params' : {
 			'min_density' : 5,
 			'max_density' : 10000,
-			'scale' : 'linear'
+			'dist_scale' : 'linear'
 			}
 		},
 	'pit_restauration':{
@@ -184,7 +219,7 @@ criterias_dict = {
 			'min_density' : 10,
 			'max_density' : 10000,
                         'radius':500,
-                        'scale': 'linear'
+                        'dens_scale': 'linear'
 			}
 		}
        }
