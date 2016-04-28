@@ -43,27 +43,25 @@ def list_static():
 #
 def list_heatmap_grids():
     files = os.listdir(HEATMAP_PSD)
+    kept = []
     # remove all non grid files
     for i in range(len(files)):
-        if not '_grid' in files[i]:
-            del files[i]
-        else:
-            files[i] = files[i].replace('_psd.json','')
+        if '_grid' in files[i]:
+            kept.append(files[i].replace('_grid.json',''))
     # finally return list of grid files
-    return files
+    return kept
 #
 #   Retourne une liste des fichiers de type psd
 #
 def list_heatmap_psd():
     files = os.listdir(HEATMAP_PSD)
+    kept = []
     # remove all non grid files
     for i in range(len(files)):
-        if '_grid' in files[i]:
-            del files[i]
-        else:
-            files[i] = files[i].replace('_grid.json','')
-    # finally return list of grid files
-    return files
+        if '_psd' in files[i]:
+            kept.append(files[i].replace('_psd.json',''))
+    # finally return list of psd files
+    return kept
 #
 #   TODO : doc
 #
