@@ -138,7 +138,7 @@ def custom(criteria, coord):
         custom_bruit(criteria, coord)
     else:
         print('Profil custom non disponible')
-		return(-1.0, None) 
+        return(-1.0, None) 
 
 #
 #   Calcul customisé pour le bruit
