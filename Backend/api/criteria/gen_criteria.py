@@ -124,5 +124,25 @@ def dist_dens_based(criteria, coord):
 #   Calcul customisé pour les données spéciales
 #
 def custom(criteria, coord):
-    # todo
-    return (0, None)
+    # if criteria == "bruit":
+    # récupération du rayon
+    # radius = criteria['params']['radius']
+    radius = 500
+    # lecture dans la base
+    records_db = load_database_psd(criteria['name'])
+    # récupération des records les plus proches
+    records = records_around(records_db, coord, radius)
+    # création des variables necessaires au traitement
+    records_size = len(records)
+    mark = 0
+    sum = 0
+    if records_size == 0:
+        # trop peu d'information le critère ne doit pas 
+        # être pris en compte
+        return (-1, None)
+    else:
+        for record in records:
+            sum += record['data']['value']
+        mark = sum/records_size
+    # on retoure la note et pas de record
+    return (mark, None)
