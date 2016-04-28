@@ -162,8 +162,3 @@ def custom_bruit(criteria, coord):
         mark = sum/records_size
     # on retoure la note et pas de record
     return (mark, None)
-
-#
-#   Fonction de réduction de la granularité de la grille
-#
-def reduce_precision(grid, )

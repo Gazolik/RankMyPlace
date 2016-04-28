@@ -59,3 +59,21 @@ def records_around(records, coord, radius):
     # finally return records
     return recs
 
+#
+#   Fonction de réduction de la granularité de la grille
+#
+def reduce_precision(grid, precision, determinist=True):
+    grid_len = len(grid)
+    removed_idx = []
+    # calcul des points à supprimer
+    for i in range(grid_len):
+        if not i in removed_idx:
+            o = { 'lon':grid[i][0], 'lat':grid[i][1] }
+            for j in range(grid_len):
+                if i != j:
+                    p = { 'lon':grid[j][0], 'lat':grid[j][1] }
+                    if 1000 * geo_dist(o, p) < precision:
+                        removed_idx.append(j)
+    # retour du ratio
+    return 1 - float(len(removed_idx))/grid_len
+
