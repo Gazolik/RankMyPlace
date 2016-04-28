@@ -137,7 +137,8 @@ def custom(criteria, coord):
     if criteria == "bruit":
         custom_bruit(criteria, coord)
     else:
-        abort('Profil custom non disponible')
+        print('Profil custom non disponible')
+		return(-1.0, None) 
 
 #
 #   Calcul customisé pour le bruit
