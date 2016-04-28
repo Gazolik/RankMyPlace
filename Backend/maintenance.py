@@ -38,8 +38,12 @@ from api.maintenance.heatmap.drawer import draw_map_part, draw_map
 #
 #   Définit des fonctions permettant de construire des cartes de chaleur à partir de la grille et des critères
 #
+<<<<<<< HEAD
+from api.maintenance.heatmap.heatmap_creator import gen_heatmap, gen_all_heatmaps, reduce_grid, reduce_all
+=======
 from api.maintenance.heatmap.heatmap_creator import gen_heatmap, gen_all_heatmaps, avg_grid
 #
+>>>>>>> 1ea20ed3ee7f940bdd79c1d8e82d80e346a44a04
 #
 #
 from api.criteria.criterias import criterias_dict
@@ -50,6 +54,7 @@ import sys, os
 
 def abort(msg):
     print('[maintenance.py]> ' + msg)
+    print('-----------------------------\n[maintenance.py]> aborted !')
     exit()
 
 def assert_args(min_size, msg):
@@ -103,10 +108,16 @@ elif command == 'preview_psd':
 elif command == 'update_dependencies':
     update_dependencies()
 elif command == 'gen_heatmap':
-    assert_args(3, 'missing gridname after gen_heatmap')
+    assert_args(3, 'missing grid_basename after gen_heatmap')
     gen_heatmap(sys.argv[2],criterias_dict['le_deplacement'])
 elif command == 'gen_all_heatmaps':
     gen_all_heatmaps()
+elif command == 'reduce_grid':
+    assert_args(4, 'missing grid_basename or/and precision after reduce_grid')
+    reduce_grid(sys.argv[2], int(sys.argv[3]))
+elif command == 'reduce_all':
+    assert_args(3, 'missing precision after reduce_all')
+    reduce_all(int(sys.argv[2]))
 elif command == 'process_streets':
     process_streets()
 elif command == 'process_all_files':
@@ -114,11 +125,11 @@ elif command == 'process_all_files':
 elif command == 'extract_coords':
     extract_coords()
 elif command == 'draw_map_part':
-    assert_args(3, 'missing gridname after draw_map_part')
+    assert_args(3, 'missing grid_basename after draw_map_part')
     draw_map_part(sys.argv[2])
 elif command == 'draw_map':
     draw_map()
-elif command == 'avg_coord':
+elif command == 'avg_grid':
     assert_args(3, 'missing gridname after avg_coord')
     avg_grid(sys.argv[2])
 else:

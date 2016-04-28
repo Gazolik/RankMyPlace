@@ -70,14 +70,20 @@ def reduce_precision(grid, precision, determinist=True):
         if not i in removed_idx:
             o = { 'lon':grid[i][0], 'lat':grid[i][1] }
             for j in range(grid_len):
-                if i != j:
-                    p = { 'lon':grid[j][0], 'lat':grid[j][1] }
-                    if 1000 * geo_dist(o, p) < precision:
-                        removed_idx.append(j)
+                if not j in removed_idx:
+                    if i != j:
+                        p = { 'lon':grid[j][0], 'lat':grid[j][1] }
+                        if 1000 * geo_dist(o, p) < precision:
+                            removed_idx.append(j)
+    # suppression des points en trop
+    for idx in removed_idx:
+        del grid[idx]
     # retour du ratio
-    return 1 - float(len(removed_idx))/grid_len
-
-
+    ratio = float(len(removed_idx))/grid_len
+    return (ratio, len(removed_idx), grid_len)
+#
+#
+#
 def avg_geo_delta(grid):
     dlat = []
     dlon = []
