@@ -23,7 +23,7 @@ def rank(spec):
     if typ == 'distance_based':
         return distance_based(spec['criteria'], spec['coordinates'])
     elif typ == 'density_based':
-        return density_based(spec['criteria'], spec['coordinates'], spec['radius'])
+        return density_based(spec['criteria'], spec['coordinates'])
     elif typ == 'dist_dens_based':
         return dist_dens_based(spec['criteria'], spec['coordinates'])
     elif typ == 'custom':
@@ -74,10 +74,11 @@ def distance_based(criteria, coord):
 #
 #   retourne un couple (note_sur_dix, element_trouvé)
 #
-def density_based(criteria, coord, radius):
+def density_based(criteria, coord):
     # récupération et calcul des paramètres
     max_density = criteria['params']['max_density']
     min_density = criteria['params']['min_density']
+    radius = criteria['params']['radius']
     scale = criteria['params']['scale']
     # lecture dans la base
     records = load_database_psd(criteria['name'])
@@ -86,18 +87,17 @@ def density_based(criteria, coord, radius):
     # création de la note vide
     mark = None
     # vérification d'appartenance à l'anneau
-    if density < min_density or density > max_dist:
-        # la densité n'est pas dans l'anneau, on retourne 0
-        mark = 0.0
+    if density < min_density:
+        mark =  10*(density/min_density)
         closest = None
+    elif density > max_density:
+        if density > max_density + min_density:
+            mark = 0.0
+        else:
+            mark = 10*((max_density+min_density-density)/min_density)
     # calcul de la note en fonction de l'échelle
     else:
-        if scale == 'log':
-            # todo
-            mark = -1.0
-        elif scale == 'linear':
-            mark = 10.0 * ( min(density - min_density, max_density - min_density ) / (max_density - min_density) )
-        # else: mark = None (cf. initialisation de mark)
+        mark = 10.0
     # finally return mark and record for details
     return (mark, closest)
 

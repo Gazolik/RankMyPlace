@@ -3,8 +3,9 @@
 
 # ---------------- IMPORTS
 
-from ...fs.fs import load_heatmap_grid, dump_heatmap
+from ...fs.fs import load_heatmap_grid, dump_heatmap, list_heatmap_grids
 from ...criteria.gen_criteria import rank
+from ...criteria.criterias import criterias_dict
 
 # ---------------- FUNCTIONS
 
@@ -35,5 +36,9 @@ def gen_heatmap(grid_basename, criteria) :
 #   Génère toutes les heatmaps pour toutes les grilles et tous les critères
 #
 def gen_all_heatmaps():
-    # TODO
-    print('[heatmap_creator.py]> gen_all_heatmaps() not implemented !')
+    grids = list_heatmap_grids()
+    for grid in grids :
+        for key, criteria in criterias_dict :
+            gen_heatmap(grid, criteria)
+
+

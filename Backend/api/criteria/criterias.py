@@ -17,8 +17,9 @@ criterias_dict = {
 		'name' : 'pit_hotellerie_plein_air',
 		'type' : 'density_based',
 		'params' : {
-			'min_density' : 0,
-			'max_density' : 3,
+			'min_density' : 5,
+			'max_density' : 100000,
+                        'radius' : 1000,
 			'scale' : 'linear'
 			}
 		},
@@ -132,9 +133,10 @@ criterias_dict = {
 		'name' : 'pit_hebergement_locatif',
 		'type' : 'density_based',
 		'params' : {
-			'min_density' : 0,
-			'max_density' : 10,
-			'scale' : 'linear'
+			'min_density' : 10,
+			'max_density' : 10000,
+			'scale' : 'linear',
+                        'radius':500
 			}
 		},
 	'le_administration':{
@@ -150,8 +152,9 @@ criterias_dict = {
 		'name' : 'pit_hebergement_collectif',
 		'type' : 'density_based',
 		'params' : {
-			'min_density' : 0,
-			'max_density' : 10,
+			'min_density' : 10,
+			'max_density' : 10000,
+                        'radius':500,
 			'scale' : 'linear'
 			}
 		},
@@ -159,8 +162,9 @@ criterias_dict = {
 		'name' : 'pit_hotellerie',
 		'type' : 'density_based',
 		'params' : {
-			'min_density' : 0,
-			'max_density' : 5,
+			'min_density' : 5,
+			'max_density' : 10000,
+                        'radius':500,
 			'scale' : 'linear'
 			}
 		},
@@ -168,8 +172,8 @@ criterias_dict = {
 		'name' : 'pit_hotellerie',
 		'type' : 'distance_based',
 		'params' : {
-			'min_density' : 0,
-			'max_density' : 5,
+			'min_density' : 5,
+			'max_density' : 10000,
 			'scale' : 'linear'
 			}
 		},
@@ -177,8 +181,9 @@ criterias_dict = {
 		'name' : 'pit_restauration',
 		'type' : 'density_based',
 		'params' : {
-			'min_density' : 0,
-			'max_density' : 10,
+			'min_density' : 10,
+			'max_density' : 10000,
+                        'radius':500,
                         'scale': 'linear'
 			}
 		}
