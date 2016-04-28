@@ -37,7 +37,7 @@ def density_around(records, coord, radius):
     total = len(records)
     for i in range(total):
         if i%1000 == 0 :
-            print_progress(i/total*100 + '%')
+            print_progress(i, total)
         dist = 1000 * geo_dist(coord, records[i]['coordinates'])
         if dist < radius:
             density += 1

@@ -49,7 +49,7 @@ def split_on_commune(data):
     for street in streets:
         i += 1
         if i % 100 == 0:
-            print_progress('[process_streets.py]> progress %s/%s ' % (i, total))
+            print_progress(i, total, '[process_streets.py]> progress ')
         commune = street['properties']['nomcommune']
         if not commune in communes.keys():
             communes[commune] = []
