@@ -28,7 +28,7 @@ def gen_heatmap(grid_basename, criteria) :
         heatmap.append(p)
     print('[heatmap_creator.py]> done !')
     print('[heatmap_creator.py]> writing %s heatmap file...' % grid_basename)
-    # write output file        
+    # write output file
     dump_heatmap(grid_basename, criteria['name'], heatmap)
     print('[heatmap_creator.py]> done !')
 

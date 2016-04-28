@@ -12,7 +12,7 @@
 
 from ..fs.fs import load_database_psd
 from ..algorithm.algorithm import closest_record, density_around
-
+from ..debug.debug import watch_time
 #
 #   Calcul la note pour un critère donné avec les specifications reçues
 #
@@ -39,6 +39,7 @@ def rank(spec):
 #
 #   retourne un couple (note_sur_dix, element_trouvé)
 #
+@watch_time
 def distance_based(criteria, coord):
     # récupération et calcul des paramètres
     max_dist = criteria['params']['max_dist']
@@ -77,6 +78,7 @@ def distance_based(criteria, coord):
 #
 #   retourne un couple (note_sur_dix, element_trouvé)
 #
+@watch_time
 def density_based(criteria, coord):
     # récupération et calcul des paramètres
     max_density = criteria['params']['max_density']
@@ -120,6 +122,7 @@ def density_based(criteria, coord):
 #
 #   retourne un couple (note_sur_dix, element_trouvé)
 #
+@watch_time
 def dist_dens_based(criteria, coord):
     mark_density, record = density_based(criteria, coord)
     mark_dist, closest = distance_based(criteria, coord)
@@ -129,6 +132,7 @@ def dist_dens_based(criteria, coord):
 #
 #   Calcul customisé pour les données spéciales
 #
+@watch_time
 def custom(criteria, coord):
     if criteria == "bruit":
         custom_bruit(criteria, coord)
@@ -138,6 +142,7 @@ def custom(criteria, coord):
 #
 #   Calcul customisé pour le bruit
 #
+@watch_time
 def custom_bruit(criteria, coord):
     # récupération du rayon
     radius = criteria['params']['radius']
