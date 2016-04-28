@@ -3,7 +3,9 @@
 		"name" : "bruit",
 		"realname":"Bruit",
 		"type" : "custom",
-		"params" : { }
+		"params" : {
+                'radius' : 500
+            }
 		},
 	"le_deplacement" : {
 		"name" : "le_deplacement",
