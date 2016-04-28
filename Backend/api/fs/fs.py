@@ -81,7 +81,7 @@ def list_database_pre_psd():
 #   TODO : doc
 #
 def list_database_psd():
-    return basify(os.listdir(DATABASE_PSD), '.json')
+    return basify(os.listdir(DATABASE_PSD), '_psd.json')
 #
 # ---------------------------------------- LOAD FUNCTIONS
 #
@@ -126,7 +126,7 @@ def load_database_pre_psd(basename):
 #   TODO : doc
 #
 def load_database_psd(basename):
-    return json_load(DATABASE_PSD, basename)
+    return json_load(DATABASE_PSD, basename+'_psd')
 #
 # ---------------------------------------- DUMP FUNCTIONS
 #
