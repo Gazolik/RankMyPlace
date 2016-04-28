@@ -113,6 +113,11 @@ elif command == 'process_all_files':
     process_all_files()
 elif command == 'extract_coords':
     extract_coords()
+elif command == 'draw_map_part':
+    assert_args(3, 'missing gridname after draw_map_part')
+    draw_map_part(sys.argv[2])
+elif command == 'draw_map':
+    draw_map()
 else:
     abort('[maintenance.py]> unknown command !')
 

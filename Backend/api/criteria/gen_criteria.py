@@ -11,7 +11,7 @@
 #        pass
 
 from ..fs.fs import load_database_psd
-from ..db.db import closest_record, density_around
+from ..algorithm.algorithm import closest_record, density_around
 
 #
 #   Calcul la note pour un critère donné avec les specifications reçues
@@ -162,3 +162,8 @@ def custom_bruit(criteria, coord):
         mark = sum/records_size
     # on retoure la note et pas de record
     return (mark, None)
+
+#
+#   Fonction de réduction de la granularité de la grille
+#
+def reduce_precision(grid, )
