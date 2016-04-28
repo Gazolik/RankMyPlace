@@ -1,1 +1,246 @@
-{"criteres":[{"name": "Bruit", "code": "bruit"}, {"name": "Administration", "code": "le_administration"}, {"name": "Lieux de culte", "code": "le_culte"}, {"name": "Déplacements", "code": "le_deplacement"}, {"name": "Enseignement", "code": "le_enseignement"}, {"name": "Santé", "code": "le_sante"}, {"name": "Sport", "code": "le_sport"}, {"name": "Urgences", "code": "le_urgence"}, {"name": "Commerces et services", "code": "pit_commerce_et_service"}, {"name": "Dégustations", "code": "pit_degustation"}, {"name": "Equipements", "code": "pit_loisirs"}, {"name": "Hébergement collectif", "code": "pit_hebergement_collectif"}, {"name": "Hébergement locatif", "code": "pit_hebergement_locatif"}, {"name": "Hôtellerie plein air", "code": "pit_hotellerie_plein_air"}, {"name": "Hôtels", "code": "pit_hotellerie"}, {"name": "Patrimoine culturel", "code": "pit_patrimoine_culturel"}, {"name": "Patrimoine naturel", "code": "pit_patrimoine_naturel"}, {"name": "Restauration", "code": "pit_restauration"}, {"name": "Transports en commun TCL", "code": "tcl"}, {"name": "Vélo'v", "code": "velov"}]}
+{
+	"bruit" : {
+		"name" : "bruit",
+		"realname":"Bruit",
+		"type" : "custom",
+		"params" : { }
+		},
+	"le_deplacement" : {
+		"name" : "le_deplacement",
+		"realname":"Deplacement",
+		"type" : "distance_based",
+		"params" : {
+			"min_dist" : 0,
+			"max_dist" : 1000,
+			"dist_scale" : "linear"
+			}
+		},
+	"pit_hotellerie_plein_air" : {
+		"name" : "pit_hotellerie_plein_air",
+		"realname":"Hôtellerie plein air",
+		"type" : "density_based",
+		"params" : {
+			"min_density" : 5,
+			"max_density" : 100000,
+                        "radius" : 1000,
+			"dens_scale" : "linear"
+			}
+		},
+	"velov" : {
+		"name" : "velov",
+		"realname":"Velo'v",
+		"type" : "dist_dens_based",
+		"params" : {
+			"min_dist" : 0,
+			"max_dist" : 500,
+			"min_density" : 3,
+			"max_density" : 100000,
+                        "dist_coeff" : 2,
+                        "dens_coeff": 1,
+                        "radius" : 500,
+                        "dist_scale" : "linear",
+                        "dens_scale" : "linear"
+			}
+		},
+	"le_culte" : {
+		"name" : "le_culte",
+		"realname":"Culte",
+		"type" : "distance_based",
+		"params" : {
+			"min_dist" : 0,
+			"max_dist" : 2000,
+			"dist_scale" : "linear"
+			}
+		},
+	"pit_loisirs" : {
+                "name" : "pit_loisirs",
+		"realname":"Loisirs",
+		"type" : "dist_dens_based",
+		"params" : {
+			"min_dist" : 0,
+			"max_dist" : 2000,
+			"min_density" : 5,
+			"max_density" : 100000,
+                        "dist_coeff" : 1,
+                        "dens_coeff": 3,
+                        "radius" : 2000,
+                        "dist_scale" : "linear",
+                        "dens_scale" : "linear"
+			}
+		},
+	"tcl" : {
+		"name" : "tcl",
+		"realname":"TCL",
+		"type" : "dist_dens_based",
+		"params" : {
+			"min_dist" : 0,
+			"max_dist" : 500,
+			"min_density" : 3,
+			"max_density" : 10000,
+                        "dist_coeff" : 2,
+                        "dens_coeff": 1,
+                        "radius" : 500,
+                        "dist_scale" : "linear",
+                        "dens_scale" : "linear"
+			}
+		},
+	"le_urgence" : {
+		"name" : "le_urgence",
+		"realname":"Urgence",
+		"type" : "distance_based",
+		"params" : {
+			"min_dist" : 0,
+			"max_dist" : 1000,
+			"dist_scale" : "linear"
+			}
+		},
+	"le_sante" : {
+		"name" : "le_sante",
+		"realname":"Sante",
+		"type" : "distance_based",
+		"params" : {
+			"min_dist" : 0,
+			"max_dist" : 5000,
+			"dist_scale" : "linear"
+			}
+		},
+	"pit_commerce_et_service": {
+		"name" : "pit_commerce_et_service",
+		"realname": "Commerce et service",
+		"type" : "dist_dens_based",
+		"params" : {
+			"min_dist" : 0,
+			"max_dist" : 1000,
+			"min_density" : 10,
+			"max_density" : 100000,
+                        "dist_coeff" : 1,
+                        "dens_coeff": 3,
+                        "radius" : 1000,
+                        "dist_scale" : "linear",
+                        "dens_scale" : "linear"
+			}
+		},
+	"le_sport" : {
+		"name" : "le_sport",
+		"realname":"Sport",
+		"type" : "dist_dens_based",
+		"params" : {
+			"min_dist" : 0,
+			"max_dist" : 2000,
+			"min_density" : 3,
+			"max_density" : 100000,
+                        "dist_coeff" : 1,
+                        "dens_coeff": 3,
+                        "radius" : 2000,
+                        "dist_scale" : "linear",
+                        "dens_scale" : "linear"
+			}
+		},
+	"pit_patrimoine_naturel" : {
+		"name" : "pit_patrimoine_naturel",
+		"realname":"Patrimoine naturel",
+		"type" : "distance_based",
+		"params" : {
+			"min_dist" : 0,
+			"max_dist" : 2000,
+			"dist_scale" : "linear"
+			}
+		},
+	"le_enseignement" :{
+		"name" : "le_enseignement",
+		"realname":"Enseignement",
+		"type" : "dist_dens_based",
+		"params" : {
+			"min_dist" : 0,
+			"max_dist" : 1000,
+			"min_density" : 3,
+			"max_density" : 10000,
+                        "dist_coeff" : 3,
+                        "dens_coeff": 2,
+                        "radius" : 1000,
+                        "dist_scale" : "linear",
+                        "dens_scale" : "linear"
+			}
+		},
+	"pit_degustation":{
+		"name" : "pit_degustation",
+		"realname":"Degustation",
+		"type" : "dist_dens_based",
+		"params" : {
+			"min_dist" : 0,
+			"max_dist" : 2000,
+			"min_density" : 3,
+			"max_density" : 10000,
+                        "dist_coeff" : 3,
+                        "dens_coeff": 1,
+                        "radius" : 2000,
+                        "dist_scale" : "linear",
+                        "dens_scale" : "linear"
+			}
+		},
+	"pit_hebergement_locatif":{
+		"name" : "pit_hebergement_locatif",
+		"realname":"Hebergement locatif",
+		"type" : "density_based",
+		"params" : {
+			"min_density" : 10,
+			"max_density" : 10000,
+			"dens_scale" : "linear",
+                        "radius":500
+			}
+		},
+	"le_administration":{
+		"name" : "le_administration",
+		"realname":"Administration",
+		"type" : "distance_based",
+		"params" : {
+			"min_dist" : 0,
+			"max_dist" : 1000,
+			"dist_scale" : "linear"
+			}
+		},
+	"pit_hebergement_collectif":{
+		"name" : "pit_hebergement_collectif",
+		"realname":"Hebergement collectif",
+		"type" : "density_based",
+		"params" : {
+			"min_density" : 10,
+			"max_density" : 10000,
+                        "radius":500,
+			"dens_scale" : "linear"
+			}
+		},
+	"pit_hotellerie":{
+		"name" : "pit_hotellerie",
+		"realname":"Hôtellerie",
+		"type" : "density_based",
+		"params" : {
+			"min_density" : 5,
+			"max_density" : 10000,
+                        "radius":500,
+			"dens_scale" : "linear"
+			}
+		},
+	"pit_patrimoine_culturel":{
+		"name" : "pit_patrimoine_culturel",
+		"realname":"Patrimoine culturel",
+		"type" : "density_based",
+		"params" : {
+			"min_density" : 5,
+			"max_density" : 10000,
+			"dens_scale" : "linear",
+			"radius":500
+			}
+		},
+	"pit_restauration":{
+		"name" : "pit_restauration",
+		"realname":"Restauration",
+		"type" : "density_based",
+		"params" : {
+			"min_density" : 10,
+			"max_density" : 10000,
+                        "radius":500,
+                        "dens_scale": "linear"
+			}
+		}
+       }

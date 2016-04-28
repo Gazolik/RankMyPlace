@@ -6,4 +6,6 @@ from ..fs.fs import load_static
 
 
 def criterias_handler(path, data, api_params):
-    return Response(api_params).serialized(load_static('criteres'))
+    criteres = load_static('criteres')
+    name_list = [{'code':k,'name':criteres[k]['realname']} for k in criteres.keys()]
+    return Response(api_params).serialized({"criteres":name_list})

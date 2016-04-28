@@ -46,9 +46,9 @@ def distance_based(criteria, coord):
     scale = criteria['params']['dist_scale']
     # lecture dans la base
     records = load_database_psd(criteria['name'])
-	if not records :
-		print('[gen_criteria.distance_based] %s'%criteria['name'])
-		return (-1.0, None)
+    if not records:
+        print('[gen_criteria.distance_based] %s'%criteria['name'])
+        return (-1.0, None)
     # récupération du point le plus proche
     dist, record = closest_record(records, coord)
     # création de la note vide
@@ -85,9 +85,9 @@ def density_based(criteria, coord):
     scale = criteria['params']['dens_scale']
     # lecture dans la base
     records = load_database_psd(criteria['name'])
-	if not records :
-		print('[gen_criteria.density_based] %s'%criteria['name'])
-		return (-1.0, None)
+    if not records :
+    	print('[gen_criteria.density_based] %s'%criteria['name'])
+    	return (-1.0, None)
     # récupération de la densité
     density, closest, min_dist = density_around(records, coord, radius)
     # création de la note vide
@@ -138,15 +138,15 @@ def custom(criteria, coord):
     records_db = load_database_psd(criteria['name'])
     # récupération des records les plus proches
     records = records_around(records_db, coord, radius)
-	if not records :
-		print('[gen_criteria.custom] %s'%criteria['name'])
-		return (-1.0, None)
+    if not records :
+        print('[gen_criteria.custom] %s'%criteria['name'])
+        return (-1.0, None)
     # création des variables necessaires au traitement
     records_size = len(records)
     mark = 0
     sum = 0
     if records_size == 0:
-        # trop peu d'information le critère ne doit pas 
+        # trop peu d'information le critère ne doit pas
         # être pris en compte
         return (-1, None)
     else:
