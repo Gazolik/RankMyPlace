@@ -38,12 +38,8 @@ from api.maintenance.heatmap.drawer import draw_map_part, draw_map
 #
 #   Définit des fonctions permettant de construire des cartes de chaleur à partir de la grille et des critères
 #
-<<<<<<< HEAD
-from api.maintenance.heatmap.heatmap_creator import gen_heatmap, gen_all_heatmaps, reduce_grid, reduce_all
-=======
-from api.maintenance.heatmap.heatmap_creator import gen_heatmap, gen_all_heatmaps, avg_grid
+from api.maintenance.heatmap.heatmap_creator import gen_heatmap, gen_all_heatmaps, reduce_grid, reduce_all, avg_grid
 #
->>>>>>> 1ea20ed3ee7f940bdd79c1d8e82d80e346a44a04
 #
 #
 from api.criteria.criterias import criterias_dict
