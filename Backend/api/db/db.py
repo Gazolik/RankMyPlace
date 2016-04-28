@@ -41,6 +41,7 @@ def density_around(records, coord, radius):
                 min_dist = dist
                 closest = record
     # finally return record
+    print(density)
     return (density, closest, min_dist)
 
 #

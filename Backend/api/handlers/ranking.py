@@ -11,11 +11,13 @@ def ranking_handler(path, data, api_param):
 
     #evaluer les criteres
     notes = {}
+    somme = 0
     for i in nomcriteres:
         spec = {'criteria':criterias_dict[i],'coordinates':{'lat':d['lat'],'lon':d['lon']}}
         notes[i],e = rank(spec)
+        somme = somme + notes[i]*criteres[i]
     #faire une moyenne
-    moy = sum(notes.values())/len(nomcriteres)
+    moy = somme/sum(criteres.values())
 
     #retourner les notes
     ret_data = {"moyenne":moy,"notes":notes}
