@@ -38,9 +38,9 @@ from api.maintenance.heatmap.drawer import draw_map_part, draw_map
 #
 #   Définit des fonctions permettant de construire des cartes de chaleur à partir de la grille et des critères
 #
-from api.maintenance.heatmap.heatmap_creator import gen_heatmap, gen_all_heatmaps
+from api.maintenance.heatmap.heatmap_creator import gen_heatmap, gen_all_heatmaps, avg_grid
 #
-# 
+#
 #
 from api.criteria.criterias import criterias_dict
 
@@ -79,7 +79,7 @@ def cmd_list(category):
         abort('[maintenance.py]> unknown category to list, type "help list" to get a list of categories.')
     # print file list
     print('Listing %s files for %s :\n  +    ' % (len(files), category) + '\n  +    '.join(files))
-        
+
 # ----------------------- SCRIPT
 
 print('[maintenance.py]> working from "%s"\n-----------------------------' %os.getcwd())
@@ -106,7 +106,7 @@ elif command == 'gen_heatmap':
     assert_args(3, 'missing gridname after gen_heatmap')
     gen_heatmap(sys.argv[2],criterias_dict['le_deplacement'])
 elif command == 'gen_all_heatmaps':
-    gen_all_heatmaps()    
+    gen_all_heatmaps()
 elif command == 'process_streets':
     process_streets()
 elif command == 'process_all_files':
@@ -118,6 +118,9 @@ elif command == 'draw_map_part':
     draw_map_part(sys.argv[2])
 elif command == 'draw_map':
     draw_map()
+elif command == 'avg_coord':
+    assert_args(3, 'missing gridname after avg_coord')
+    avg_grid(sys.argv[2])
 else:
     abort('[maintenance.py]> unknown command !')
 

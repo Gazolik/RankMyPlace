@@ -6,7 +6,7 @@
 from ...fs.fs import load_heatmap_grid, dump_heatmap, list_heatmap_grids
 from ...criteria.gen_criteria import rank
 from ...criteria.criterias import criterias_dict
-
+from ...algorithm.algorithm import avg_geo_delta
 # ---------------- FUNCTIONS
 
 #
@@ -41,4 +41,8 @@ def gen_all_heatmaps():
         for key, criteria in criterias_dict.items():
             gen_heatmap(grid, criteria)
 
+def avg_grid(gridname):
+    grid = load_heatmap_grid(gridname)
+    moylat, moylon = avg_geo_delta(grid)
+    print('[heatmap_creator.py]> for grid: %s, avg lat=%s, avg lon=%s...' %(gridname, moylat, moylon))
 
