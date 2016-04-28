@@ -29,11 +29,12 @@ angular.module('smartCityFrontEndApp')
     $scope.gaugeConfig = {
         options: {
             chart: {
-                type: 'solidgauge'
+                type: 'solidgauge',
+                height: 250
             },
             pane: {
                 center: ['50%', '85%'],
-                size: '100%',
+                size: '140%',
                 startAngle: -90,
                 endAngle: 90,
                 background: {
@@ -57,8 +58,7 @@ angular.module('smartCityFrontEndApp')
 	        }
         }],
         title: {
-            text: 'Note globale',
-            y: 120
+            text: null
         },
         yAxis: {
             currentMin: 0,
@@ -84,6 +84,14 @@ angular.module('smartCityFrontEndApp')
                 type: 'bar'
             }
         },
+        yAxis: {
+            currentMin: 0,
+            tickInterval: 2,
+            currentMax: 10,
+            title: {
+                text: null
+            }
+        },
         xAxis: {
             categories: [],
             title: {
@@ -91,10 +99,12 @@ angular.module('smartCityFrontEndApp')
             }
         },
         series: [{
+            showInLegend: false,
+            name: 'score',
             data: []
         }],
         title: {
-            text: 'Résultats détaillés'
+            text: null
         },
 
         loading: false
