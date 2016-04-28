@@ -3,6 +3,7 @@
 
 # ------------------------------- IMPORT
 from ..py_geo.geo import geo_dist
+from ..printer.printer import print_progress
 
 # ------------------------------- FUNCTIONS
 
@@ -33,13 +34,15 @@ def density_around(records, coord, radius):
     closest = None
     density = 0
     min_dist = 100000000000000000.0 + radius # meters
-    for record in records:
-        dist = 1000 * geo_dist(coord, record['coordinates'])
+    for i in range(len(records)):
+        if i%1000 == 0 :
+            print_progress(i/range(len(records))*100 + '%')
+        dist = 1000 * geo_dist(coord, records[i]['coordinates'])
         if dist < radius:
             density += 1
             if dist < min_dist:
                 min_dist = dist
-                closest = record
+                closest = records[i]
     # finally return record
     return (density, closest, min_dist)
 
