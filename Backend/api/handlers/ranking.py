@@ -12,7 +12,6 @@ def ranking_handler(path, data, api_param):
     notes = {}
     ret_note = []
     somme = 0
-    print('nom   note   coef')
     for i in nomcriteres:
         spec = {'criteria':criterias_dict[i],'coordinates':{'lat':d['lat'],'lon':d['lon']}}
         notes[i],e = rank(spec)
@@ -23,5 +22,4 @@ def ranking_handler(path, data, api_param):
 
     #retourner les notes
     ret_data = {"moyenne":moy,"notes":ret_note}
-    print(json.dumps(ret_data))
     return Response(api_param).serialized(ret_data)
