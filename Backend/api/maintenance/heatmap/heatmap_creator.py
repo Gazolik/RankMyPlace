@@ -6,8 +6,12 @@
 from ...fs.fs import load_heatmap_grid, dump_heatmap, list_heatmap_grids, json_dump
 from ...criteria.gen_criteria import rank
 from ...criteria.criterias import criterias_dict
+<<<<<<< HEAD
 from ...algorithm.algorithm import reduce_precision
 
+=======
+from ...algorithm.algorithm import avg_geo_delta
+>>>>>>> 1ea20ed3ee7f940bdd79c1d8e82d80e346a44a04
 # ---------------- FUNCTIONS
 
 #
@@ -29,7 +33,7 @@ def gen_heatmap(grid_basename, criteria) :
         heatmap.append(p)
     print('[heatmap_creator.py]> done !')
     print('[heatmap_creator.py]> writing %s heatmap file...' % grid_basename)
-    # write output file        
+    # write output file
     dump_heatmap(grid_basename, criteria['name'], heatmap)
     print('[heatmap_creator.py]> done !')
 
@@ -57,3 +61,12 @@ def reduce_all(precision):
     files = list_heatmap_grids()
     for f in files:
         json_dump('./data/heatmap/psd/' + f + '_red_%s_grid' % int(precision), reduce_grid(f, precision))
+#
+#
+#
+def avg_grid(gridname):
+    grid = load_heatmap_grid(gridname)
+    moylat, moylon = avg_geo_delta(grid)
+    print('[heatmap_creator.py]> for grid: %s, avg lat=%s, avg lon=%s...' %(gridname, moylat, moylon))
+
+

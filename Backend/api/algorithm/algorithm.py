@@ -3,7 +3,7 @@
 
 # ------------------------------- IMPORT
 from ..py_geo.geo import geo_dist
-from ..printer.printer import print_progress
+from ..printer.printer import print_progress, print_over
 
 # ------------------------------- FUNCTIONS
 
@@ -81,4 +81,18 @@ def reduce_precision(grid, precision, determinist=True):
     # retour du ratio
     ratio = float(len(removed_idx))/grid_len
     return (ratio, len(removed_idx), grid_len)
+#
+#
+#
+def avg_geo_delta(grid):
+    dlat = []
+    dlon = []
+    k=0
+    for i in grid:
+        k = k+1
+        print_progress(k,len(grid))
+        for j in grid:
+            dlat.append(abs(i[0]-j[0]))
+            dlon.append(abs(i[1]-j[1]))
+    return (sum(dlat)/len(dlat),sum(dlon)/len(dlon))
 
