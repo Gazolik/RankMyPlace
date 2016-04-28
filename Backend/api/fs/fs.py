@@ -19,6 +19,7 @@ DATABASE = DATA + '/database'
 DATABASE_RAW = DATABASE + '/raw'
 DATABASE_PRE_PSD = DATABASE + '/pre_psd'
 DATABASE_PSD = DATABASE + '/psd'
+DATABASE_COORD = DATABASE + '/psd'
 # heatmap
 HEATMAP = DATA + '/heatmap'
 STREETS = 'streets'
@@ -32,7 +33,12 @@ HEATMAP_MAPS = HEATMAP + '/maps'
 #   TODO : doc
 #
 def basify(files, remove):
-    return [f.replace(remove, '') for f in files]
+    kept = []
+    #remove all non needed files
+    for i in range(len(files)):
+        if remove in files[i]:
+            kept.append(files[i].replace(remove,''))
+    return kept
 
 #
 #   Retourne une liste des fichiers statiques
@@ -43,26 +49,13 @@ def list_static():
 #   Retourne une liste des fichiers de type grille
 #
 def list_heatmap_grids():
-    files = os.listdir(HEATMAP_PSD)
-    kept = []
-    # remove all non grid files
-    for i in range(len(files)):
-        if '_grid' in files[i]:
-            kept.append(files[i].replace('_grid.json',''))
-    # finally return list of grid files
-    return kept
+    return basify(os.listdir(HEATMAP_PSD),'_grid.json')
+
 #
 #   Retourne une liste des fichiers de type psd
 #
 def list_heatmap_psd():
-    files = os.listdir(HEATMAP_PSD)
-    kept = []
-    # remove all non grid files
-    for i in range(len(files)):
-        if '_psd' in files[i]:
-            kept.append(files[i].replace('_psd.json',''))
-    # finally return list of psd files
-    return kept
+    return basify(os.listdir(HEATMAP_PSD), '_psd.json')
 #
 #   TODO : doc
 #
@@ -83,6 +76,12 @@ def list_database_pre_psd():
 #
 def list_database_psd():
     return basify(os.listdir(DATABASE_PSD), '_psd.json')
+
+#
+#    TODO:doc
+#
+def list_database_coord():
+    return basify(os.listdir(DATABASE_COORD), '_coord.json')
 #
 # ---------------------------------------- LOAD FUNCTIONS
 #
@@ -94,7 +93,7 @@ def json_load(path, basename):
         with open(path + '/' + basename + '.json', 'r', encoding=ENCODING) as f:
             data = json.load(f)
     except Exception as e :
-        print('[fs.json_load] File cannot be opened : %s'.format(e))
+        print('[fs.json_load] File cannot be opened : %s' % e)
     finally :
         return data
 #
