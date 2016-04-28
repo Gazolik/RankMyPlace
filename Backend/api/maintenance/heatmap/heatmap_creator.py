@@ -4,6 +4,7 @@
 # ---------------- IMPORTS
 
 from ...fs.fs import load_heatmap_grid, dump_heatmap, list_heatmap_grids
+from ...criteria.gen_criteria import rank
 from ...criteria.criterias import criterias_dict
 
 # ---------------- FUNCTIONS
@@ -18,10 +19,13 @@ def gen_heatmap(grid_basename, criteria) :
     # iterate on points
     heatmap=[]
     for p in points:
-        spec['criteria'] = criteria
-        spec['coordinates'] = {'lat':p[1],'lon':p[0]} # rappel lon est la plus petite valeur pour Lyon : aux alentours de 4
-        mark = rank(spec)
-        heatmap.append([p, mark])
+        spec={
+            'criteria' : criteria,
+            'coordinates' : {'lat':p[1],'lon':p[0]} # rappel lon est la plus petite valeur pour Lyon : aux alentours de 4
+        }
+        mark, obj = rank(spec)
+        p.append(mark)
+        heatmap.append(p)
     print('[heatmap_creator.py]> done !')
     print('[heatmap_creator.py]> writing %s heatmap file...' % grid_basename)
     # write output file        
