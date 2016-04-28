@@ -13,8 +13,6 @@
     $scope.searchData = searchData;
     $scope.show = false;
     $scope.msgCriteres = 'Afficher les critères';
-    $scope.min =[];
-    $scope.max =[];
     $scope.profilSelected = null;
     $scope.customProfil = {name : 'Profil Perso', imgPath : 'yeoman.png', coefs : []};
      
@@ -58,7 +56,6 @@
             $scope.show = true;
             $scope.msgCriteres ='Cacher les critères';
         }
-    };
-    
+    };     
          
   });

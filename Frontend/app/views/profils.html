@@ -16,12 +16,40 @@
     <div class="text-center">
         <a ng-click="showHideDetails()">{{msgCriteres}}</a>
     </div><br/>
-    <div ng-repeat="criteria in searchData.criterias" ng-show="show">  
-        <h3 class="text-center">{{criteria.name}}</h3><br/>
-        <div class="col-md-4 text-right">Critère peu important</div>
-        <div class="col-md-4 text-center">
-            <slider ng-model="criteria.coef" min="0" step="1" max="10" slider-tooltip="always"></slider>
-        </div>
-        <div class="col-md-4 text-left">Critère très important</div><br/><br/>
-    </div>         
+    <table class="table" ng-show="show">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="headerRadio0 text-center" >0</th>
+        <th class="headerRadio1 text-center" >1</th>
+        <th class="headerRadio2 text-center" >2</th>
+        <th class="headerRadio3 text-center" >3</th>
+        <th class="headerRadio4 text-center" >4</th>
+        <th class="headerRadio5 text-center" >5</th>
+        <th class="headerRadio6 text-center" >6</th>
+        <th class="headerRadio7 text-center" >7</th>
+        <th class="headerRadio8 text-center" >8</th>
+        <th class="headerRadio9 text-center" >9</th>
+        <th class="headerRadio10 text-center" >10</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="criteria in searchData.criterias">        
+            <td>{{criteria.name}}</td>
+            <td class="inlineRadio0"><input type="radio" ng-model="criteria.coef" value="0"></td>
+            <td class="inlineRadio1"><input type="radio" ng-model="criteria.coef" value="1"></td>
+            <td class="inlineRadio2"><input type="radio" ng-model="criteria.coef" value="2"></td>
+            <td class="inlineRadio3"><input type="radio" ng-model="criteria.coef" value="3"></td>
+            <td class="inlineRadio4"><input type="radio" ng-model="criteria.coef" value="4"></td>
+            <td class="inlineRadio5"><input type="radio" ng-model="criteria.coef" value="5"></td>
+            <td class="inlineRadio6"><input type="radio" ng-model="criteria.coef" value="6"></td>
+            <td class="inlineRadio7"><input type="radio" ng-model="criteria.coef" value="7"></td>
+            <td class="inlineRadio8"><input type="radio" ng-model="criteria.coef" value="8"></td>
+            <td class="inlineRadio9"><input type="radio" ng-model="criteria.coef" value="9"></td>
+            <td class="inlineRadio10"><input type="radio" ng-model="criteria.coef" value="10"></td>    
+        </tr>        
+    </tbody>
+  </table>
+</div>    
+
 </div>
