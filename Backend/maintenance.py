@@ -20,6 +20,10 @@ from api.maintenance.database.process import process_file, process_all_files
 #
 from api.maintenance.database.splitter import split_on_key, split_all
 #
+#   Définit des fonction de séparation des données pour extraires les coordonnées
+#
+from api.maintenance.database.extractor import extract_coords
+#
 #   Définit des fonctions de visualisation d'extrait de données des fichiers de données
 #
 from api.maintenance.database.preview import preview_raw, preview_psd
@@ -107,6 +111,8 @@ elif command == 'process_streets':
     process_streets()
 elif command == 'process_all_files':
     process_all_files()
+elif command == 'extract_coords':
+    extract_coords()
 else:
     abort('[maintenance.py]> unknown command !')
 

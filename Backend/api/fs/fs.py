@@ -82,7 +82,14 @@ def list_database_pre_psd():
 #   TODO : doc
 #
 def list_database_psd():
-    return basify(os.listdir(DATABASE_PSD), '_psd.json')
+    files = os.listdir(DATABASE_PSD)
+    kept = []
+    # remove all non grid files
+    for i in range(len(files)):
+        if '_psd' in files[i]:
+            kept.append(files[i].replace('_psd.json',''))
+    # finally return list of psd files
+    return kept
 #
 # ---------------------------------------- LOAD FUNCTIONS
 #
@@ -93,8 +100,8 @@ def json_load(path, basename):
     try :
         with open(path + '/' + basename + '.json', 'r', encoding=ENCODING) as f:
             data = json.load(f)
-    except Exception as e :
-        print('[fs.json_load] File cannot be opened : %s'.format(e))
+    except IOError as e :
+        print('[fs.json_load] File cannot be opened : %s' % e)
     finally :
         return data
 #
@@ -153,7 +160,7 @@ def json_dump(filepath_no_ext, data):
     try :
         with open(filepath_no_ext + '.json', 'w') as f:
             f.write(json.dumps(data, sort_keys=False))
-    except Exception as e :
+    except IOError as e :
         print('[fs.json_dump] Error while writing file %s'.format(e))
 #
 #   TODO : doc
