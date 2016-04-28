@@ -132,6 +132,13 @@ def load_database_pre_psd(basename):
 #
 def load_database_psd(basename):
     return json_load(DATABASE_PSD, basename+'_psd')
+
+#
+# TODO:doc
+#
+def load_data(basename, idx):
+    data_list = json_load(DATABASE_DATA, basename+'_dat')
+    return data_list[idx]
 #
 # ---------------------------------------- DUMP FUNCTIONS
 #
