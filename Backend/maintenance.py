@@ -101,6 +101,8 @@ elif command == 'update_dependencies':
 elif command == 'gen_heatmap':
     assert_args(3, 'missing gridname after gen_heatmap')
     gen_heatmap(sys.argv[2],criterias_dict['le_deplacement'])
+elif command == 'gen_all_heatmaps':
+    gen_all_heatmaps()    
 elif command == 'process_streets':
     process_streets()
 else:

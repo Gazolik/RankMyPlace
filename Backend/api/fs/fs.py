@@ -116,6 +116,11 @@ def load_heatmap_streets():
 #
 #   TODO : doc
 #
+def load_heatmap(grid_basename, criteria_name):
+    return json_load(HEATMAP_MAPS, grid_basename + '_' + criteria_name + '_map')
+#
+#   TODO : doc
+#
 def load_database_raw(basename):
     return json_load(DATABASE_RAW, basename)
 #
@@ -163,7 +168,7 @@ def dump_heatmap_psd(commune, data):
 #   Génère un fichier de heatmap pour le critere donné et la grille donnée
 #
 def dump_heatmap(grid_basename, criteria_name, heatmap):
-    filepath = HEATMAP_MAPS + '/' + grid_basename + '_' + criteria_name + '_heatmap'
+    filepath = HEATMAP_MAPS + '/' + grid_basename + '_' + criteria_name + '_map'
     json_dump(filepath, { 'criteria' : criteria_name, 'heatmap' : heatmap })
 #
 #   TODO : doc
