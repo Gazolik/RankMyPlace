@@ -39,7 +39,7 @@ def rank(spec):
 #
 #   retourne un couple (note_sur_dix, element_trouvé)
 #
-@watch_time
+#@watch_time
 def distance_based(criteria, coord):
     # récupération et calcul des paramètres
     max_dist = criteria['params']['max_dist']
@@ -48,7 +48,7 @@ def distance_based(criteria, coord):
     # lecture dans la base
     records = load_database_psd(criteria['name'])
     if not records:
-        print('[gen_criteria.distance_based] %s'%criteria['name'])
+        print('[gen_criteria.distance_based]> %s' % criteria['name'])
         return (-1.0, None)
     # récupération du point le plus proche
     dist, record = closest_record(records, coord)
@@ -78,7 +78,7 @@ def distance_based(criteria, coord):
 #
 #   retourne un couple (note_sur_dix, element_trouvé)
 #
-@watch_time
+#@watch_time
 def density_based(criteria, coord):
     # récupération et calcul des paramètres
     max_density = criteria['params']['max_density']
@@ -88,7 +88,7 @@ def density_based(criteria, coord):
     # lecture dans la base
     records = load_database_psd(criteria['name'])
     if not records :
-    	print('[gen_criteria.density_based] %s'%criteria['name'])
+    	print('[gen_criteria.density_based]> %s' % criteria['name'])
     	return (-1.0, None)
     # récupération de la densité
     density, closest, min_dist = density_around(records, coord, radius)
@@ -122,7 +122,7 @@ def density_based(criteria, coord):
 #
 #   retourne un couple (note_sur_dix, element_trouvé)
 #
-@watch_time
+#@watch_time
 def dist_dens_based(criteria, coord):
     mark_density, record = density_based(criteria, coord)
     mark_dist, closest = distance_based(criteria, coord)
@@ -132,7 +132,7 @@ def dist_dens_based(criteria, coord):
 #
 #   Calcul customisé pour les données spéciales
 #
-@watch_time
+#@watch_time
 def custom(criteria, coord):
     if criteria == "bruit":
         custom_bruit(criteria, coord)
@@ -143,7 +143,7 @@ def custom(criteria, coord):
 #
 #   Calcul customisé pour le bruit
 #
-@watch_time
+#@watch_time
 def custom_bruit(criteria, coord):
     # récupération du rayon
     radius = criteria['params']['radius']

@@ -34,7 +34,7 @@ from api.maintenance.heatmap.process_streets import update_streets_data, downloa
 #
 #   Définit des fonctions permettant de visualiser les données de la grille
 #
-from api.maintenance.heatmap.drawer import draw_map_part, draw_map
+from api.maintenance.heatmap.drawer import draw_map_part, draw_map, draw_heatmap_part
 #
 #   Définit des fonctions permettant de construire des cartes de chaleur à partir de la grille et des critères
 #
@@ -47,89 +47,180 @@ from api.criteria.criterias import criterias_dict
 import sys, os
 
 # ----------------------- FUNCTIONS
-
+#
+#
+#
 def abort(msg):
     print('[maintenance.py]> ' + msg)
     print('-----------------------------\n[maintenance.py]> aborted !')
     exit()
-
+#
+#
+#
+def arg_count():
+    return len(sys.argv)
+#
+#
+#
 def assert_args(min_size, msg):
-    if len(sys.argv) < min_size:
+    if arg_count() < min_size+1:
         abort(msg)
+#
+#
+#
+def arg(idx):
+    return sys.argv[idx]
 
 # ------------------------- COMMANDS FUNCTIONS
-
+#
+#
+#
 def cmd_help():
-    print('[maintenance.py]> Help yourself !')
+    print("""[maintenance.py]> 
+------------------------------- HELP -------------------------------
+    + help : display this message
 
-def cmd_list(category):
+    + list <sub_cmd> : list files for the given subcommand 
+        - sub_cmd :
+            + static
+            + heatmap_grids
+            + heatmap_psd
+            + database_raw
+            + database_pre_psd
+            + database_psd
+
+    + display <sub_cmd> :
+        - sub_cmd :
+            + raw <database_raw_file>
+            + psd <database_psd_file>
+            + map_part <heatmap_grid_file>
+            + map
+
+    + heatmap <sub_cmd> :
+        - sub_cmd :
+            + gen <heatmap_grid_file> <criteria_name>
+            + gen_all
+            + reduce <heatmap_grid_file> <int:precision>
+            + reduce_all <int:precision>
+            + avg_geo_delta <heatmap_grid_file>
+
+    + database <sub_cmd> :
+        - sub_cmd :
+            + process_streets
+            + process_all_files
+            + extract_coords
+
+--------------------------------------------------------------------""")
+#
+#
+#
+def cmd_list(sub_cmd):
     files = []
-    if category == 'static':
+    if sub_cmd == 'static':
         files = list_static()
-    elif category == 'heatmap_grids':
+    elif sub_cmd == 'heatmap_grids':
         files = list_heatmap_grids()
-    elif category == 'heatmap_psd':
+    elif sub_cmd == 'heatmap_psd':
         files = list_heatmap_psd()
-    elif category == 'database_raw':
+    elif sub_cmd == 'database_raw':
         files = list_database_raw()
-    elif category == 'database_pre_psd':
+    elif sub_cmd == 'database_pre_psd':
         files = list_database_pre_psd()
-    elif category == 'database_psd':
+    elif sub_cmd == 'database_psd':
         files = list_database_psd()
     else:
-        abort('[maintenance.py]> unknown category to list, type "help list" to get a list of categories.')
+        abort('unknown list subcommand, run "./maintenance.py help" to get a list of subcommands.')
     # print file list
     print('Listing %s files for %s :\n  +    ' % (len(files), category) + '\n  +    '.join(files))
+#
+#
+#
+def cmd_display(sub_cmd):
+    if sub_cmd == 'raw':
+        assert_args(3, 'expected : display raw <database_raw_file>')
+        preview_raw(arg(3))
+    elif sub_cmd == 'psd':
+        assert_args(3, 'expected : display psd <database_psd_file>')
+        preview_psd(arg(3))
+    elif sub_cmd == 'map_part':
+        assert_args(3, 'expected : display map_part <heatmap_grid_file>')
+        draw_map_part(arg(3))
+    elif sub_cmd == 'map':
+        draw_map()
+    elif sub_cmd == 'heatmap_part':
+        assert_args(4, 'expected : display heatmap_part <heatmap_grid_file> <criteria_name>')
+        draw_heatmap_part(arg(3), arg(4))
+    else:
+        abort('unknown display subcommand, run "./maintenance.py help" to get a list of subcommands.')
+#
+#
+#
+def cmd_dependencies(sub_cmd):
+    if sub_cmd == 'update':
+        update_dependencies()
+    else:
+        abort('unknown dependencies subcommand, run "./maintenance.py help" to get a list of subcommands.')        
+#
+#
+#
+def cmd_heatmap(sub_cmd):
+    if sub_cmd == 'gen':
+        assert_args(4, 'expected : heatmap gen <heatmap_grid_file> <criteria_name>')
+        gen_heatmap(arg(3),criterias_dict[arg(4)])
+    elif sub_cmd == 'gen_all':
+        gen_all_heatmaps()
+    elif sub_cmd == 'reduce':
+        assert_args(4, 'expected : heatmap reduce <heatmap_grid_file> <int:precision>')
+        reduce_grid(arg(3), int(arg(4)) )
+    elif sub_cmd == 'reduce_all':
+        assert_args(3, 'expected : heatmap reduce_all <int:precision>')
+        reduce_all(int(arg(3)))
+    elif command == 'avg_geo_delta':
+        assert_args(3, 'expected : heatmap avg_geo_delta <heatmap_grid_file>')
+        avg_grid(arg(2))
+    else:
+        abort('unknown heatmap subcommand, run "./maintenance.py help" to get a list of subcommands.')        
+#
+#
+#
+def cmd_database(sub_cmd):
+    if sub_cmd == 'process_streets':
+        process_streets()
+    elif sub_cmd == 'process_all_files':
+        process_all_files()
+    elif sub_cmd == 'extract_coords':
+        extract_coords()
+    else:
+        abort('unknown database subcommand, run "./maintenance.py help" to get a list of subcommands.')        
 
 # ----------------------- SCRIPT
 
 print('[maintenance.py]> working from "%s"\n-----------------------------' %os.getcwd())
 
 # vérification des paramètres
-assert_args(2, 'usage : ./maintenance.py <command> [<options>]')
+assert_args(1, 'usage : ./maintenance.py <command> [<options>]')
 # récupération de la commande
-command = sys.argv[1]
+command = arg(1)
 # traitement de la commande
 if command == 'help':
     cmd_help()
 elif command == 'list':
-    assert_args(3, 'missing category after list')
-    cmd_list(sys.argv[2])
-elif command == 'preview_raw':
-    assert_args(3, 'missing filename after preview_raw')
-    preview_raw(sys.argv[2])
-elif command == 'preview_psd':
-    assert_args(3, 'missing filename after preview_psd')
-    preview_psd(sys.argv[2])
-elif command == 'update_dependencies':
-    update_dependencies()
-elif command == 'gen_heatmap':
-    assert_args(3, 'missing grid_basename after gen_heatmap')
-    gen_heatmap(sys.argv[2],criterias_dict['le_deplacement'])
-elif command == 'gen_all_heatmaps':
-    gen_all_heatmaps()
-elif command == 'reduce_grid':
-    assert_args(4, 'missing grid_basename or/and precision after reduce_grid')
-    reduce_grid(sys.argv[2], int(sys.argv[3]))
-elif command == 'reduce_all':
-    assert_args(3, 'missing precision after reduce_all')
-    reduce_all(int(sys.argv[2]))
-elif command == 'process_streets':
-    process_streets()
-elif command == 'process_all_files':
-    process_all_files()
-elif command == 'extract_coords':
-    extract_coords()
-elif command == 'draw_map_part':
-    assert_args(3, 'missing grid_basename after draw_map_part')
-    draw_map_part(sys.argv[2])
-elif command == 'draw_map':
-    draw_map()
-elif command == 'avg_grid':
-    assert_args(3, 'missing gridname after avg_coord')
-    avg_grid(sys.argv[2])
+    assert_args(2, 'expected : list <sub_cmd>')
+    cmd_list(arg(2))
+elif command == 'display':
+    assert_args(2, 'expected : display <sub_cmd> ')
+    cmd_display(arg(2))
+elif command == 'dependencies':
+    assert_args(2, 'expected : dependencies <sub_cmd>')
+    cmd_dependencies(arg(2))
+elif command == 'heatmap':
+    assert_args(2, 'expected : heatmap <sub_cmd>')
+    cmd_heatmap(arg(2))
+elif command == 'database':
+    assert_args(2, 'expected : database <sub_cmd>')
+    cmd_database(arg(2))
 else:
-    abort('[maintenance.py]> unknown command !')
+    abort('unknown command !')
 
 print('-----------------------------\n[maintenance.py]> done !')
 

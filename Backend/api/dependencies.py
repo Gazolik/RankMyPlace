@@ -31,10 +31,10 @@ def update_dependencies():
     os.chdir('api')
     try:
         # remove old dependencies if needed
-        rem_dep('py_geo')
+        #rem_dep('py_geo')
         rem_dep('py_rest')
         # cloning deps
-        git_clone('https://github.com/pdautry/py_geo.git')
+        #git_clone('https://github.com/pdautry/py_geo.git')
         git_clone('https://github.com/pdautry/py_rest.git')
     except Exception as e:
         print('[dependencies.py]> an error occured : %s' % e)
