@@ -3,8 +3,7 @@
 "imgPath" : "student.jpg",
 "coefs" : [{"name" : "Bruit", "coef" : 1},
 			{"name" : "Transport commun", "coef" : 8},
-			{"name" : "Ecole", "coef" : 0},
-			{"name" : "
+			{"name" : "Ecole", "coef" : 0}
 			]
 },
 
