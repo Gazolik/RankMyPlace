@@ -116,11 +116,11 @@ def density_based(criteria, coord):
 #
 def dist_dens_based(criteria, coord):
     # todo
-    return (None, None)
+    return (0, None)
 
 #
 #   Calcul customisé pour les données spéciales
 #
 def custom(criteria, coord):
     # todo
-    return (None, None)
+    return (0, None)

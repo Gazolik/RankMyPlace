@@ -31,7 +31,7 @@
          searchData.criterias.length = 0;
          for (var i = 0 ; i < data.length ; ++i){
              $scope.customProfil.coefs.push({name : data[i].name, coef : 5});
-             searchData.criterias.push({name : data[i].name, coef : 5});          
+             searchData.criterias.push({name : data[i].name, coef : 5, code : data[i].code});          
          }
       });
     };          
