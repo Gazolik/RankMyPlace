@@ -81,8 +81,8 @@ body {
     border-bottom: 0;
   }
     
- .myStyle {
-     background-color:#E8E8E8;
+  .myStyle {
+      color : cadetblue;   
     }
     
     .headerRadio10 {
@@ -172,4 +172,27 @@ body {
     .inlineRadio0 {
          background-color:rgba(192, 32, 0, 0.6);
     }
+    
+    .sample-show-hide {
+      padding:10px;
+      background:white;
+    }
+
+    .sample-show-hide {
+      -webkit-transition:all linear 0.5s;
+      transition:all linear 0.5s;
+    }
+
+    .sample-show-hide.ng-hide {
+      opacity:0;
+    }
+    
+    a, a:hover{
+        color :black;
+    }
+    
+    a:hover {
+      text-decoration : underline;  
+    }
+
 }

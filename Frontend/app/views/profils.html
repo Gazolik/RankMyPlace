@@ -3,8 +3,8 @@
         <h2 class="text-center">Quel est votre profil ?</h2>
         <div class="col-md-1"></div>
         <div class="col-md-2" ng-repeat="profil in profils">
-            <a ng-click="updateCoef($index)">
-                <div ng-class="{'myStyle': $index == profilSelected}">
+            <a ng-click="updateCoef(profil)" style="cursor:pointer">
+                <div ng-class="{'myStyle': profil == profilSelected}">
                     <img ng-src="images/dynamic/{{profil.imgPath}}" width="150" height="150"/>
                     <h3 class="text-center">{{profil.name}}</h3>
                 </div>
@@ -14,9 +14,9 @@
     </div>
     <br/>
     <div class="text-center">
-        <a ng-click="showHideDetails()">{{msgCriteres}}</a>
+        <a class="btn btn-default btn-lg active" ng-click="showHideDetails()">{{msgCriteres}}</a>
     </div><br/>
-    <table class="table" ng-show="show">
+    <table class="table sample-show-hide" ng-show="show">
     <thead>
       <tr>
         <th></th>
@@ -50,6 +50,4 @@
         </tr>        
     </tbody>
   </table>
-</div>    
-
-</div>
+</div> 
