@@ -8,14 +8,15 @@ def ranking_handler(path, data, api_param):
     d = json.loads(data['data'][0])
     criteres= d['criteres']
     nomcriteres=[k for k,v in criteres.items() if v !=0]
-
     #evaluer les criteres
     notes = {}
     somme = 0
+    print('nom   note   coef')
     for i in nomcriteres:
         spec = {'criteria':criterias_dict[i],'coordinates':{'lat':d['lat'],'lon':d['lon']}}
         notes[i],e = rank(spec)
         somme = somme + notes[i]*criteres[i]
+        print(i, notes[i], criteres[i])
     #faire une moyenne
     moy = somme/sum(criteres.values())
 

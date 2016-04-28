@@ -28,16 +28,20 @@ angular.module('smartCityFrontEndApp')
                        ]);*/
         },
         criterias: function(successFct){
-           // $http.get('http://501srv-2.insa-lyon.fr:8000/criterias').success(function (data){successFct(data.content.profiles)});
+           // $http.get('http://501srv-2.insa-lyon.fr:8000/criterias').success(function (data){successFct(data.content.criteres)});
             $http.get('http://localhost:8000/criterias').success(function (data){successFct(data.content.criteres);});
             /*successFct([{name : 'Bruit'},
                         {name : 'Transport commun'},
                         {name : 'Ecole'}]);*/
         },
-        search: function(data, successFct){
-            // $http.get('http://501srv-2.insa-lyon.fr:8000/criterias').success(function (data){successFct(data.content.profiles)});
-            //$http.get('http://localhost:8000/criterias').success(function (data){successFct(data.content.criteres);});
-            successFct({note : 8});
+        search: function(searchData, successFct){
+            var args = {criteres : {}, lat : parseFloat(searchData.lat), lon : parseFloat(searchData.lon)};
+            for (var i = 0 ; i < searchData.criterias.length ; ++i){
+                args.criteres[searchData.criterias[i].code] = 5;          
+            }
+            // $http.POST('http://501srv-2.insa-lyon.fr:8000/criterias').success(function (data){successFct(data.content.profiles)});
+            $http.post('http://localhost:8000/ranking', 'data=' + JSON.stringify(args)).success(function (data){successFct(data.content);});
+           // successFct({note : 8});
         },
         latlon: function(q, city, successFct){
             var url = 'http://nominatim.openstreetmap.org/search.php?q=' + encodeURI(q) + '&city=' + encodeURI(city) + '&state= France&format=json';

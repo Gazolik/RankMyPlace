@@ -90,9 +90,13 @@ def list_database_psd():
 #
 def json_load(path, basename):
     data = None
-    with open(path + '/' + basename + '.json', 'r', encoding=ENCODING) as f:
-        data = json.load(f)
-    return data
+    try :
+        with open(path + '/' + basename + '.json', 'r', encoding=ENCODING) as f:
+            data = json.load(f)
+    except Exception as e :
+        print('[fs.json_load] File cannot be opened : %s'.format(e))
+    finally :
+        return data
 #
 #   TODO : doc
 #
@@ -139,8 +143,11 @@ def load_database_psd(basename):
 #   TODO : doc
 #
 def json_dump(filepath_no_ext, data):
-    with open(filepath_no_ext + '.json', 'w') as f:
-        f.write(json.dumps(data, sort_keys=False))
+    try :
+        with open(filepath_no_ext + '.json', 'w') as f:
+            f.write(json.dumps(data, sort_keys=False))
+    except Exception as e :
+        print('[fs.json_dump] Error while writing file %s'.format(e))
 #
 #   TODO : doc
 #
