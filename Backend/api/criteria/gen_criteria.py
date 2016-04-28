@@ -130,10 +130,17 @@ def dist_dens_based(criteria, coord):
 #   Calcul customisé pour les données spéciales
 #
 def custom(criteria, coord):
-    # if criteria == "bruit":
+    if criteria == "bruit":
+        custom_bruit(criteria, coord)
+    else
+        abort('Profil custom non disponible')
+
+#
+#   Calcul customisé pour le bruit
+#
+def custom_bruit(criteria, coord):
     # récupération du rayon
-    # radius = criteria['params']['radius']
-    radius = 500
+    radius = criteria['params']['radius']
     # lecture dans la base
     records_db = load_database_psd(criteria['name'])
     # récupération des records les plus proches
