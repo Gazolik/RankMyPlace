@@ -47,7 +47,7 @@ def distance_based(criteria, coord):
     # lecture dans la base
     records = load_database_psd(criteria['name'])
 	if not records :
-		print('[gen_criteria.distance_based] %s'.format(criteria['name']))
+		print('[gen_criteria.distance_based] %s'%criteria['name'])
 		return (-1.0, None)
     # récupération du point le plus proche
     dist, record = closest_record(records, coord)
@@ -86,7 +86,7 @@ def density_based(criteria, coord):
     # lecture dans la base
     records = load_database_psd(criteria['name'])
 	if not records :
-		print('[gen_criteria.density_based] %s'.format(criteria['name']))
+		print('[gen_criteria.density_based] %s'%criteria['name'])
 		return (-1.0, None)
     # récupération de la densité
     density, closest, min_dist = density_around(records, coord, radius)
@@ -139,7 +139,7 @@ def custom(criteria, coord):
     # récupération des records les plus proches
     records = records_around(records_db, coord, radius)
 	if not records :
-		print('[gen_criteria.custom] %s'.format(criteria['name']))
+		print('[gen_criteria.custom] %s'%criteria['name'])
 		return (-1.0, None)
     # création des variables necessaires au traitement
     records_size = len(records)
