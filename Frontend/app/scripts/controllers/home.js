@@ -9,9 +9,8 @@
  */
 angular.module('smartCityFrontEndApp')
   .controller('HomeCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    angular.element('#homeCarousel').carousel({
+        interval: 4000,
+        cycle: true
+        });
   });

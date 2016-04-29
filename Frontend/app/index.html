@@ -11,15 +11,14 @@
     <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
     <!-- Custom CSS -->
-    <link href="css/modern-business.css" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   </head>
   <body ng-app="smartCityFrontEndApp">
     <!--[if lte IE 8]>
@@ -27,8 +26,8 @@
     <![endif]-->
 
     <div class="header">      
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
           <div class="navbar-header">
             <a class="navbar-brand" href="#/">PLD SmartCity</a>
           </div>
@@ -43,28 +42,8 @@
       </div>        
     </div>
 
-    <div class="container-fluid">
-    <div ng-view=""></div>
-    </div>
+    <div ng-view="" class="fade"></div>
 
-    <div class="footer">
-      <div class="container-fluid">
-        <p>Par Hexanonyme</p>
-      </div>
-    </div>
-
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
- 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>

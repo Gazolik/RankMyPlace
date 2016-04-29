@@ -33,6 +33,11 @@
         "dist/js/bootstrap.js"
       ]
     },
+    "font-awesome": {
+      "main": [
+        "css/font-awesome.css"  
+      ]
+    },
     "highcharts": {
       "main": [
         "highcharts.js",

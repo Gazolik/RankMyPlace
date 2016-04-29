@@ -1,19 +1,22 @@
-<h1 class="page-header">Quelle est votre adresse ?</h1>
-<form name="form.addressForm" ng-submit="getLatLon()" novalidate>
-    <div class="form-group" ng-class="{ 'has-error' : (form.addressForm.address.$invalid && !form.addressForm.address.$pristine) || (addressError && form.addressForm.address.$pristine)}">
-        <label class="control-label" for="address">Adresse : </label>
-        <input class="form-control" ng-model="searchData.address" name="address" type="text" required ng-minlength="10" />
-        <p ng-show="form.addressForm.address.$invalid && !form.addressForm.address.$pristine" class="help-block">
-            L'adresse est requise et doit faire 10 caractères au minimum.
-        </p>
-        <p ng-show="addressError && form.addressForm.address.$pristine" class="help-block">
-            Adresse incorrecte
-        </p>  
-    </div>  
-    <label class="control-label" for="cityCB">Ville : </label>
-    <select class="form-control" name="cityCB" id="cityCB" 
-            ng-model="searchData.citySelected" 
-            ng-options="city.name for city in citiesData.cities track by city.name">
-    </select>
-    <br/>
-</form>
+<div class="container">
+    <h1 class="page-header">Quelle est votre adresse ?</h1>
+    <form name="form.addressForm" ng-submit="getLatLon()" novalidate>
+        <div class="form-group" ng-class="{ 'has-error' : (form.addressForm.address.$invalid && !form.addressForm.address.$pristine) || (addressError && form.addressForm.address.$pristine)}">
+            <label class="control-label" for="address">Adresse : </label>
+            <input class="form-control" ng-model="searchData.address" name="address" type="text" required ng-minlength="10" />
+            <p ng-show="form.addressForm.address.$invalid && !form.addressForm.address.$pristine" class="help-block">
+                L'adresse est requise et doit faire 10 caractères au minimum.
+            </p>
+            <p ng-show="addressError && form.addressForm.address.$pristine" class="help-block">
+                Adresse incorrecte
+            </p>  
+        </div>  
+        <label class="control-label" for="cityCB">Ville : </label>
+        <select class="form-control" name="cityCB" id="cityCB" 
+                ng-model="searchData.citySelected" 
+                ng-options="city.name for city in citiesData.cities track by city.name">
+        </select>
+        <br/>
+    </form>
+    <div class="footer"><p>Par Hexanonyme</p></div>
+</div>
