@@ -49,7 +49,7 @@
                         {"name" : "Hébergement locatif", "coef" : 0},
                         {"name" : "Hébergement collectif", "coef" : 0},
                         {"name" : "Loisirs", "coef" : 4},
-                        {"name" : "Sport", "coef" : 1},
+                        {"name" : "Sport", "coef" : 1}
                     ]
     },
 
@@ -76,7 +76,7 @@
                         {"name" : "Hébergement locatif", "coef" : 0},
                         {"name" : "Hébergement collectif", "coef" : 0},
                         {"name" : "Loisirs", "coef" : 9},
-                        {"name" : "Sport", "coef" : 9},
+                        {"name" : "Sport", "coef" : 9}
                     ]
     },
 
@@ -103,7 +103,7 @@
                         {"name" : "Hébergement locatif", "coef" : 0},
                         {"name" : "Hébergement collectif", "coef" : 0},
                         {"name" : "Loisirs", "coef" : 7},
-                        {"name" : "Sport", "coef" : 7},
+                        {"name" : "Sport", "coef" : 7}
                     ]
     }
 ]
