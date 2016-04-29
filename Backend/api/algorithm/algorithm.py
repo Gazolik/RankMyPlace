@@ -4,6 +4,7 @@
 # ------------------------------- IMPORT
 
 from ..printer.printer import print_progress, print_over
+from ..fs.fs import load_heatmap_grid, load_heatmap
 import math
 
 # ------------------------------- CONFIGURATION
@@ -12,7 +13,7 @@ EARTH_RADIUS = 6367.0
 
 # ------------------------------- FUNCTIONS
 #
-#   
+#
 #
 def coord_dist(ori, dest, geodist=True):
     res = None
@@ -111,4 +112,34 @@ def avg_geo_delta(grid):
             dlat.append(abs(i[0]-j[0]))
             dlon.append(abs(i[1]-j[1]))
     return (sum(dlat)/len(dlat),sum(dlon)/len(dlon))
+
+
+def avg_heatmap(heatmap_name, criterias_coef):
+    print(heatmap_name)
+    coef_tot = sum(criterias_coef.values())
+
+    #la heatmap qui sera retournee
+    avg_map = {}
+    avg_map['heatmap'] = load_heatmap_grid(heatmap_name)
+    #TODO : changer les valeurs
+    avg_map['centlat'] = avg_map['heatmap'][0][1]
+    avg_map['centlon'] = avg_map['heatmap'][0][0]
+    avg_map['zoom'] = 14
+    #tableau des notes moyennes
+    notes = [0 for i in avg_map['heatmap']]
+    nomcriteres= [k for k,v in criterias_coef.items() if v != 0]
+
+    for criteria in nomcriteres:
+        print(criteria)
+        loaded_heatmap = load_heatmap(heatmap_name, criteria)
+        if loaded_heatmap is None:
+            continue
+        for idx, val in enumerate(loaded_heatmap['heatmap']):
+            notes[idx] = notes[idx] + val[2]*criterias_coef[criteria]/coef_tot
+        #pour enlever le json de la memoire
+        #del loaded_heatmap
+
+    for idx, val in enumerate(notes):
+        avg_map['heatmap'][idx].append(notes[idx])
+    return avg_map
 
