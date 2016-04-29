@@ -22,12 +22,14 @@ def gen_heatmap(grid_basename, criteria) :
     points_len = len(points)
     for i in range(points_len):
         print_progress(i, points_len)
+        lat = points[i][1]
+        lon = points[i][0]
         spec={
             'criteria' : criteria,
-            'coordinates' : {'lat':points[i][1],'lon':points[i][0]} # rappel lon est la plus petite valeur pour Lyon : aux alentours de 4
+            'coordinates' : { 'lat':lat, 'lon':lon } # rappel lon est la plus petite valeur pour Lyon : aux alentours de 4
         }
-        mark, obj = rank(spec)
-        heatmap.append([round(points[i][1],5),round(points[i][0],5),round(mark,2)])
+        mark, ul1, ul2 = rank(spec)
+        heatmap.append([round(lon,5), round(lat,5), round(mark,2)])
 
     print('[heatmap_creator.py]> done !')
     print('[heatmap_creator.py]> writing %s heatmap file...' % grid_basename, end='')
@@ -62,10 +64,10 @@ def reduce_grid(grid_basename, precision, method=''):
 #
 #
 #
-def reduce_all(precision):
+def reduce_all(precision, method=''):
     grid_basenames = list_heatmap_grids()
     for grid_basename in grid_basenames:
-        reduce_grid(grid_basename, precision)
+        reduce_grid(grid_basename, precision, method)
 #
 #
 #
