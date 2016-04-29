@@ -13,7 +13,7 @@ EARTH_RADIUS = 6367.0
 
 # ------------------------------- FUNCTIONS
 #
-#   TODO : doc 
+#   TODO : doc
 #
 def coord_dist(ori, dest, geodist=True):
     res = None
@@ -163,8 +163,8 @@ def avg_heatmap(heatmap_name, criterias_coef):
     avg_map = {}
     avg_map['heatmap'] = load_heatmap_grid(heatmap_name)
     #TODO : changer les valeurs
-    avg_map['centlat'] = avg_map['heatmap'][0][1]
-    avg_map['centlon'] = avg_map['heatmap'][0][0]
+    avg_map['centLat'] = avg_map['heatmap'][0][1]
+    avg_map['centLon'] = avg_map['heatmap'][0][0]
     avg_map['zoom'] = 14
     #tableau des notes moyennes
     notes = [0 for i in avg_map['heatmap']]

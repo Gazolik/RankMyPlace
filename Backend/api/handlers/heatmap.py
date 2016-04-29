@@ -25,8 +25,8 @@ def heatmap_grid_handler(path, data, api_params):
         criteria_name = parts[3]
         data['heatmap'] = load_heatmap(grid_basename, criteria_name)['heatmap']
         data['zoom'] = 14
-        data['centlat'] = data['heatmap'][0][1]
-        data['centlon'] = data['heatmap'][0][0]
+        data['centLat'] = data['heatmap'][0][1]
+        data['centLon'] = data['heatmap'][0][0]
     return Response(api_params).serialized(data)
 
 
