@@ -19,7 +19,9 @@ angular
     'ngTouch',
     'ui.bootstrap-slider',
     'highcharts-ng', 
-    'angularSpinner'
+    'angularSpinner',
+    'leaflet-directive',
+    'heatmap'
   ])
   .config(function ($routeProvider) {
     $routeProvider

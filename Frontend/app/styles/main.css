@@ -237,3 +237,8 @@ body {
     text-align: center;
     vertical-align: middle; 
 }
+
+#heatmap{
+    width:1032px;
+    height: 600px;
+}
