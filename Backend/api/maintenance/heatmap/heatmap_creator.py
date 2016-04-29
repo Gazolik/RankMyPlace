@@ -6,7 +6,7 @@
 from ...fs.fs import load_heatmap_grid, dump_heatmap, list_heatmap_grids, dump_heatmap_grid
 from ...criteria.gen_criteria import rank
 from ...criteria.criterias import criterias_dict
-from ...algorithm.algorithm import reduce_precision, avg_geo_delta
+from ...algorithm.algorithm import reduce_precision_QCGR, reduce_precision_FGR, avg_geo_delta
 from ...printer.printer import print_progress
 
 # ---------------- FUNCTIONS
@@ -45,13 +45,20 @@ def gen_all_heatmaps():
 #
 #   Calcul de réduction de précision d'une grille
 #
-def reduce_grid(grid_basename, precision):
+def reduce_grid(grid_basename, precision, method=''):
     grid = load_heatmap_grid(grid_basename)
     print('[heatmap_creator.py]> cruching %s...' % grid_basename)
-    red_grid, ratio, removed, total = reduce_precision(grid, precision)
+    #
+    method_name = 'fgr'
+    if method == 'QCGR':
+        method_name = 'qgcr'
+        red_grid, ratio, removed, total = reduce_precision_QCGR(grid, precision)    
+    else:
+        red_grid, ratio, removed, total = reduce_precision_FGR(grid, precision)
+    #
     print('[heatmap_creator.py]> done !')
     print('[heatmap_creator.py]> reduction ratio is %.2f%% for grid %s. Details : removed = %s, total = %s' % (ratio*100, grid_basename, removed, total))
-    dump_heatmap_grid(grid_basename + '_red_%s' % int(precision), red_grid)
+    dump_heatmap_grid(grid_basename + '_red_%s_%s' % (int(precision), method_name), red_grid)
 #
 #
 #

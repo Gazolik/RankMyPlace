@@ -6,6 +6,13 @@ from ..fs.fs import load_static
 
 
 def criterias_handler(path, data, api_params):
-    criteres = load_static('criteres')
-    name_list = [{'code':k,'name':criteres[k]['realname']} for k in criteres.keys()]
-    return Response(api_params).serialized({"criteres":name_list})
+    database_datas = load_static('criteres')
+    group_list = []
+    groups = database_datas['groupes']
+    for data in groups.keys() :
+        group = groups[data]
+        criterias = group['membres']
+        criterias_list = [{'code':k,'name':criterias[k]['realname'], 'description':criterias[k]['description']} for k in criterias.keys()]
+        group_list.append({'name':group['name'], 'description':group['description'], 'membres':criterias_list, 'ordre':group['ordre']})
+   
+    return Response(api_params).serialized({'groupes':group_list})
