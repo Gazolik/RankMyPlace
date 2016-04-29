@@ -144,6 +144,6 @@ def avg_heatmap(heatmap_name, criterias_coef):
         #del loaded_heatmap
 
     for idx, val in enumerate(notes):
-        avg_map['heatmap'][idx].append(notes[idx])
+        avg_map['heatmap'][idx].append(round(notes[idx],2))
     return avg_map
 
