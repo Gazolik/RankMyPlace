@@ -1,330 +1,336 @@
 {
-    "groupe" : {
-        "name" : "Transports",
-        "description" : "",
-        "ordre" : 1,
-        "membres" : {
-            "le_deplacement" : {
-                "name" : "le_deplacement",
-                "realname": "Gares",
-                "description" : "Gares et aérodromes proches de chez vous !",
-                "type" : "distance_based",
-                "params" : {
-                    "min_dist" : 0,
-                    "max_dist" : 1000,
-                    "dist_scale" : "linear"
-                }
-            },
-            
-            "velov" : {
-                "name" : "velov",
-                "realname":"Velo'v",
-                "description" : "Station de vélos en libre service à proximité !",
-                "type" : "dist_dens_based",
-                "params" : {
-                    "min_dist" : 0,
-                    "max_dist" : 500,
-                    "min_density" : 3,
-                    "max_density" : 100000,
-                    "dist_coeff" : 2,
-                    "dens_coeff": 1,
-                    "radius" : 500,
-                    "dist_scale" : "linear",
-                    "dens_scale" : "linear"
-                }
-            },
-            
-            "tcl" : {
-                "name" : "tcl",
-                "realname":"TCL",
-                "description" : "Stations de métro, tramway et arrêts de bus",
-                "type" : "dist_dens_based",
-                "params" : {
-                    "min_dist" : 0,
-                    "max_dist" : 500,
-                    "min_density" : 3,
-                    "max_density" : 10000,
-                    "dist_coeff" : 2,
-                    "dens_coeff": 1,
-                    "radius" : 500,
-                    "dist_scale" : "linear",
-                    "dens_scale" : "linear"
-                }
-            }
-        } 
-    },
-    
-    "groupe" : {
-        "name" : "Vie quotidienne",
-        "description" : "",
-        "ordre" : 3,
-        "membres" : {
-        	"bruit" : {
-                "name" : "bruit",
-                "realname": "Bruit",
-                "description": "Niveau de bruit ambiant moyen dans votre zone",
-                "type" : "custom",
-                "params" : {
-                    "radius" : 500
-                }
-            },
-            
-            "le_enseignement" : {
-                "name" : "le_enseignement",
-                "realname" : "Enseignement",
-                "description" : "Ensemble des écoles, collèges, lycées et universités",
-                "type" : "dist_dens_based",
-                "params" : {
-                    "min_dist" : 0,
-                    "max_dist" : 1000,
-                    "min_density" : 3,
-                    "max_density" : 10000,
-                    "dist_coeff" : 3,
-                    "dens_coeff": 2,
-                    "radius" : 1000,
-                    "dist_scale" : "linear",
-                    "dens_scale" : "linear"
-                }
-            },
-            
-            "le_culte" : {
-                "name" : "le_culte",
-                "realname": "Culte",
-                "description" : "Lieux de cultes principaux : églises, mosquées, synagogues, temples ...",
-                "type" : "distance_based",
-                "params" : {
-                    "min_dist" : 0,
-                    "max_dist" : 2000,
-                    "dist_scale" : "linear"
-                }
-            },
-            
-            "pit_commerce_et_service": {
-                "name" : "pit_commerce_et_service",
-                "realname": "Commerces et services",
-                "description" : "Magasins, boutiques, associations ...",
-                "type" : "dist_dens_based",
-                "params" : {
-                    "min_dist" : 0,
-                    "max_dist" : 1000,
-                    "min_density" : 10,
-                    "max_density" : 100000,
-                    "dist_coeff" : 1,
-                    "dens_coeff": 3,
-                    "radius" : 1000,
-                    "dist_scale" : "linear",
-                    "dens_scale" : "linear"
-                }
-            }
-        }
-    },
-    
-    "groupe" : {
-        "name" : "Administration et santé",
-        "description" : "Polices, pompiers, urgences, gendarmeries et mairies",
-        "ordre" : 6,
-        "membres" : {
-        	"le_administration":{
-                "name" : "le_administration",
-                "realname": "Mairies",
-                "description" : "Mairies",
-                "type" : "distance_based",
-                "params" : {
-                    "min_dist" : 0,
-                    "max_dist" : 1000,
-                    "dist_scale" : "linear"
-                }
-            },
+    "groupes" : {
+        "Transports" : {
+            "name" : "Transports",
+            "description" : "",
+            "ordre" : 1,
+            "membres" : {
+                "le_deplacement" : {
+                    "name" : "le_deplacement",
+                    "realname": "Gares",
+                    "description" : "Gares et aérodromes proches de chez vous !",
+                    "type" : "distance_based",
+                    "params" : {
+                        "min_dist" : 0,
+                        "max_dist" : 1000,
+                        "dist_scale" : "linear"
+                    }
+                },
                 
-            "le_urgence" : {
-                "name" : "le_urgence",
-                "realname":"Sécurité",
-                "description" : "Urgences : polices, gendarmeries, pompiers",
-                "type" : "distance_based",
-                "params" : {
-                    "min_dist" : 0,
-                    "max_dist" : 1000,
-                    "dist_scale" : "linear"
-                }
-            },
-            
-            "le_sante" : {
-                "name" : "le_sante",
-                "realname": "Sante",
-                "description" : "Cliniques et hôpitaux",
-                "type" : "distance_based",
-                "params" : {
-                    "min_dist" : 0,
-                    "max_dist" : 5000,
-                    "dist_scale" : "linear"
+                "velov" : {
+                    "name" : "velov",
+                    "realname":"Velo'v",
+                    "description" : "Station de vélos en libre service à proximité !",
+                    "type" : "dist_dens_based",
+                    "params" : {
+                        "min_dist" : 0,
+                        "max_dist" : 500,
+                        "min_density" : 3,
+                        "max_density" : 100000,
+                        "dist_coeff" : 2,
+                        "dens_coeff": 1,
+                        "radius" : 500,
+                        "dist_scale" : "linear",
+                        "dens_scale" : "linear"
+                    }
+                },
+                
+                "tcl" : {
+                    "name" : "tcl",
+                    "realname":"TCL",
+                    "description" : "Stations de métro, tramway et arrêts de bus",
+                    "type" : "dist_dens_based",
+                    "params" : {
+                        "min_dist" : 0,
+                        "max_dist" : 500,
+                        "min_density" : 3,
+                        "max_density" : 10000,
+                        "dist_coeff" : 2,
+                        "dens_coeff": 1,
+                        "radius" : 500,
+                        "dist_scale" : "linear",
+                        "dens_scale" : "linear"
+                    }
                 }
             }
-        }
-    },
-    
-    "groupe" : {
-        "name" : "Hôtellerie et restaurations",
-        "description" : "",
-        "ordre" : 4,
-        "membres" : {   
-        	"pit_hotellerie":{
-                "name" : "pit_hotellerie",
-                "realname": "Hôtellerie",
-                "description" : "",
-                "type" : "density_based",
-                "params" : {
-                    "min_density" : 5,
-                    "max_density" : 10000,
-                                "radius":500,
-                    "dens_scale" : "linear"
+        },
+  
+        "Vie quotidienne" : {
+            "name" : "Vie quotidienne",
+            "description" : "",
+            "ordre" : 3,
+            "membres" : {
+                "bruit" : {
+                    "name" : "bruit",
+                    "realname": "Bruit",
+                    "description": "Niveau de bruit ambiant moyen dans votre zone",
+                    "type" : "custom",
+                    "params" : {
+                        "radius" : 500
+                    }
+                },
+                
+                "le_enseignement" : {
+                    "name" : "le_enseignement",
+                    "realname" : "Enseignement",
+                    "description" : "Ensemble des écoles, collèges, lycées et universités",
+                    "type" : "dist_dens_based",
+                    "params" : {
+                        "min_dist" : 0,
+                        "max_dist" : 1000,
+                        "min_density" : 3,
+                        "max_density" : 10000,
+                        "dist_coeff" : 3,
+                        "dens_coeff": 2,
+                        "radius" : 1000,
+                        "dist_scale" : "linear",
+                        "dens_scale" : "linear"
+                    }
+                },
+                
+                "le_culte" : {
+                    "name" : "le_culte",
+                    "realname": "Culte",
+                    "description" : "Lieux de cultes principaux : églises, mosquées, synagogues, temples ...",
+                    "type" : "distance_based",
+                    "params" : {
+                        "min_dist" : 0,
+                        "max_dist" : 2000,
+                        "dist_scale" : "linear"
+                    }
+                },
+                
+                "pit_commerce_et_service": {
+                    "name" : "pit_commerce_et_service",
+                    "realname": "Commerces et services",
+                    "description" : "Magasins, boutiques, associations ...",
+                    "type" : "dist_dens_based",
+                    "params" : {
+                        "min_dist" : 0,
+                        "max_dist" : 1000,
+                        "min_density" : 10,
+                        "max_density" : 100000,
+                        "dist_coeff" : 1,
+                        "dens_coeff": 3,
+                        "radius" : 1000,
+                        "dist_scale" : "linear",
+                        "dens_scale" : "linear"
+                    }
                 }
-            },
+            }
+        },
         
-            "pit_hotellerie_plein_air" : {
-                "name" : "pit_hotellerie_plein_air",
-                "realname": "Campings",
-                "description" : "",
-                "type" : "density_based",
-                "params" : {
-                    "min_density" : 5,
-                    "max_density" : 100000,
-                    "radius" : 1000,
-                    "dens_scale" : "linear"
+        "Administration et santé" : {
+            "name" : "Administration et santé",
+            "description" : "Polices, pompiers, urgences, gendarmeries et mairies",
+            "ordre" : 6,
+            "membres" : {
+                "le_administration":{
+                    "name" : "le_administration",
+                    "realname": "Mairies",
+                    "description" : "Mairies",
+                    "type" : "distance_based",
+                    "params" : {
+                        "min_dist" : 0,
+                        "max_dist" : 1000,
+                        "dist_scale" : "linear"
+                    }
+                },
+                    
+                "le_urgence" : {
+                    "name" : "le_urgence",
+                    "realname":"Sécurité",
+                    "description" : "Urgences : polices, gendarmeries, pompiers",
+                    "type" : "distance_based",
+                    "params" : {
+                        "min_dist" : 0,
+                        "max_dist" : 1000,
+                        "dist_scale" : "linear"
+                    }
+                },
+                
+                "le_sante" : {
+                    "name" : "le_sante",
+                    "realname": "Sante",
+                    "description" : "Cliniques et hôpitaux",
+                    "type" : "distance_based",
+                    "params" : {
+                        "min_dist" : 0,
+                        "max_dist" : 5000,
+                        "dist_scale" : "linear"
+                    }
                 }
-            },
+            }
+        },
+        
+        "Hôtellerie et restaurations" : {
+            "name" : "Hôtellerie et restaurations",
+            "description" : "",
+            "ordre" : 4,
+            "membres" : {   
+                "pit_hotellerie":{
+                    "name" : "pit_hotellerie",
+                    "realname": "Hôtellerie",
+                    "description" : "",
+                    "type" : "density_based",
+                    "params" : {
+                        "min_density" : 5,
+                        "max_density" : 10000,
+                                    "radius":500,
+                        "dens_scale" : "linear"
+                    }
+                },
             
-            "pit_restauration": {
-                "name" : "pit_restauration",
-                "realname": "Restauration",
-                "description" : "",
-                "type" : "density_based",
-                "params" : {
-                    "min_density" : 10,
-                    "max_density" : 10000,
-                            "radius":500,
-                            "dens_scale": "linear"
-                }
-            },
-            
-            "pit_degustation":{
-                "name" : "pit_degustation",
-                "realname": "Degustation",
-                "description" : "Dégustations de vins et de spécialités locales !",
-                "type" : "dist_dens_based",
-                "params" : {
-                    "min_dist" : 0,
-                    "max_dist" : 2000,
-                    "min_density" : 3,
-                    "max_density" : 10000,
-                    "dist_coeff" : 3,
-                    "dens_coeff": 1,
-                    "radius" : 2000,
-                    "dist_scale" : "linear",
-                    "dens_scale" : "linear"
-                }
-            }
-		}
-    },
-    
-    "groupe" : {
-        "name" : "Patrimoine culturel et naturel",
-        "description" : "",
-        "ordre" : 5,
-        "membres" : {
-            "pit_patrimoine_culturel": {
-                "name" : "pit_patrimoine_culturel",
-                "realname": "Patrimoine culturel",
-                "description" : "Ensemble de lieux et monuments historiques",
-                "type" : "density_based",
-                "params" : {
-                    "min_density" : 5,
-                    "max_density" : 10000,
-                    "dens_scale" : "linear",
-                    "radius":500
-                }
-            },
-    
-            "pit_patrimoine_naturel" : {
-                "name" : "pit_patrimoine_naturel",
-                "realname": "Patrimoine naturel",
-                "description" : "Lacs, îles, plan d'eau",
-                "type" : "distance_based",
-                "params" : {
-                    "min_dist" : 0,
-                    "max_dist" : 2000,
-                    "dist_scale" : "linear"
+                "pit_hotellerie_plein_air" : {
+                    "name" : "pit_hotellerie_plein_air",
+                    "realname": "Campings",
+                    "description" : "",
+                    "type" : "density_based",
+                    "params" : {
+                        "min_density" : 5,
+                        "max_density" : 100000,
+                        "radius" : 1000,
+                        "dens_scale" : "linear"
+                    }
+                },
+                
+                "pit_restauration": {
+                    "name" : "pit_restauration",
+                    "realname": "Restauration",
+                    "description" : "",
+                    "type" : "density_based",
+                    "params" : {
+                        "min_density" : 10,
+                        "max_density" : 10000,
+                                "radius":500,
+                                "dens_scale": "linear"
+                    }
+                },
+                
+                "pit_degustation":{
+                    "name" : "pit_degustation",
+                    "realname": "Degustation",
+                    "description" : "Dégustations de vins et de spécialités locales !",
+                    "type" : "dist_dens_based",
+                    "params" : {
+                        "min_dist" : 0,
+                        "max_dist" : 2000,
+                        "min_density" : 3,
+                        "max_density" : 10000,
+                        "dist_coeff" : 3,
+                        "dens_coeff": 1,
+                        "radius" : 2000,
+                        "dist_scale" : "linear",
+                        "dens_scale" : "linear"
+                    }
                 }
             }
-        }
-    },
-    
-    "groupe" : {
-        "name" : "Hébergements",
-        "description" : "",
-        "ordre" : 7,
-        "membres" : {
-            "pit_hebergement_locatif":{
-                "name" : "pit_hebergement_locatif",
-                "realname":"Hebergement locatif",
-                "type" : "density_based",
-                "params" : {
-                    "min_density" : 10,
-                    "max_density" : 10000,
-                    "dens_scale" : "linear",
-                    "radius":500
+        },
+        
+        "Patrimoine culturel et naturel" : {
+            "name" : "Patrimoine culturel et naturel",
+            "description" : "",
+            "ordre" : 5,
+            "membres" : {
+                "pit_patrimoine_culturel": {
+                    "name" : "pit_patrimoine_culturel",
+                    "realname": "Patrimoine culturel",
+                    "description" : "Ensemble de lieux et monuments historiques",
+                    "type" : "density_based",
+                    "params" : {
+                        "min_density" : 5,
+                        "max_density" : 10000,
+                        "dens_scale" : "linear",
+                        "radius":500
+                    }
+                },
+        
+                "pit_patrimoine_naturel" : {
+                    "name" : "pit_patrimoine_naturel",
+                    "realname": "Patrimoine naturel",
+                    "description" : "Lacs, îles, plan d'eau",
+                    "type" : "distance_based",
+                    "params" : {
+                        "min_dist" : 0,
+                        "max_dist" : 2000,
+                        "dist_scale" : "linear"
+                    }
                 }
-            },
+            }
+        },
+        
+        "Hébergements" : {
+            "name" : "Hébergements",
+            "description" : "",
+            "ordre" : 7,
+            "membres" : {
+                "pit_hebergement_locatif":{
+                    "name" : "pit_hebergement_locatif",
+                    "realname": "Hebergement locatif",
+                    "description" : "",
+                    "type" : "density_based",
+                    "params" : {
+                        "min_density" : 10,
+                        "max_density" : 10000,
+                        "dens_scale" : "linear",
+                        "radius":500
+                    }
+                },
 
-            "pit_hebergement_collectif":{
-                "name" : "pit_hebergement_collectif",
-                "realname":"Hebergement collectif",
-                "type" : "density_based",
-                "params" : {
-                    "min_density" : 10,
-                    "max_density" : 10000,
-                    "radius":500,
-                    "dens_scale" : "linear"
+                "pit_hebergement_collectif":{
+                    "name" : "pit_hebergement_collectif",
+                    "realname": "Hebergement collectif",
+                    "description" : "",
+                    "type" : "density_based",
+                    "params" : {
+                        "min_density" : 10,
+                        "max_density" : 10000,
+                        "radius":500,
+                        "dens_scale" : "linear"
+                    }
                 }
             }
-        }
-    },
-    
-    "groupe" : {
-        "name" : "Loisirs",
-        "description" : "",
-        "ordre" : 2,
-        "membres" : {
-            "pit_equipement" : {
-                "name" : "pit_equipement",
-                "realname":"Loisirs",
-                "type" : "dist_dens_based",
-                "params" : {
-                    "min_dist" : 0,
-                    "max_dist" : 2000,
-                    "min_density" : 5,
-                    "max_density" : 100000,
-                    "dist_coeff" : 1,
-                    "dens_coeff": 3,
-                    "radius" : 2000,
-                    "dist_scale" : "linear",
-                    "dens_scale" : "linear"
-                }
-            },
+        },
+        
+        "Loisirs" : {
+            "name" : "Loisirs",
+            "description" : "",
+            "ordre" : 2,
+            "membres" : {
+                "pit_equipement" : {
+                    "name" : "pit_equipement",
+                    "realname":"Loisirs",
+                    "description" : "",
+                    "type" : "dist_dens_based",
+                    "params" : {
+                        "min_dist" : 0,
+                        "max_dist" : 2000,
+                        "min_density" : 5,
+                        "max_density" : 100000,
+                        "dist_coeff" : 1,
+                        "dens_coeff": 3,
+                        "radius" : 2000,
+                        "dist_scale" : "linear",
+                        "dens_scale" : "linear"
+                    }
+                },
 
-            "le_sport" : {
-                "name" : "le_sport",
-                "realname":"Sport",
-                "type" : "dist_dens_based",
-                "params" : {
-                    "min_dist" : 0,
-                    "max_dist" : 2000,
-                    "min_density" : 3,
-                    "max_density" : 100000,
-                    "dist_coeff" : 1,
-                    "dens_coeff": 3,
-                    "radius" : 2000,
-                    "dist_scale" : "linear",
-                    "dens_scale" : "linear"
+                "le_sport" : {
+                    "name" : "le_sport",
+                    "realname": "Sport",
+                    "description" : "",
+                    "type" : "dist_dens_based",
+                    "params" : {
+                        "min_dist" : 0,
+                        "max_dist" : 2000,
+                        "min_density" : 3,
+                        "max_density" : 100000,
+                        "dist_coeff" : 1,
+                        "dens_coeff": 3,
+                        "radius" : 2000,
+                        "dist_scale" : "linear",
+                        "dens_scale" : "linear"
+                    }
                 }
             }
         }
