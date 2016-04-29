@@ -2,7 +2,7 @@
   "decines": {
     "code": "decines",
     "imgPath": "decines.png",
-    "name": "Decines"
+    "name": "Décines"
   },
   "couzon": {
     "code": "couzon",
@@ -22,12 +22,12 @@
   "amberieux": {
     "code": "amberieux",
     "imgPath": "amberieux.png",
-    "name": "Amberieux"
+    "name": "Ambérieux"
   },
   "marcyle": {
     "code": "marcyle",
     "imgPath": "marcyle.png",
-    "name": "Marcyle"
+    "name": "Marcy-l'Etoile"
   },
   "mions": {
     "code": "mions",
@@ -37,22 +37,22 @@
   "lyon3": {
     "code": "lyon3",
     "imgPath": "lyon3.png",
-    "name": "Lyon3"
+    "name": "Lyon 3ème"
   },
   "loiresurr": {
     "code": "loiresurr",
     "imgPath": "loiresurr.png",
-    "name": "Loiresurr"
+    "name": "Loire-sur-Rhône"
   },
   "cailloux": {
     "code": "cailloux",
     "imgPath": "cailloux.png",
-    "name": "Cailloux"
+    "name": "Cailloux-sur-Fontaines"
   },
   "sathonayv": {
     "code": "sathonayv",
     "imgPath": "sathonayv.png",
-    "name": "Sathonayv"
+    "name": "Sathonay-Village"
   },
   "quincieux": {
     "code": "quincieux",
@@ -77,7 +77,7 @@
   "lyon4": {
     "code": "lyon4",
     "imgPath": "lyon4.png",
-    "name": "Lyon 4"
+    "name": "Lyon 4ème"
   },
   "dagneux": {
     "code": "dagneux",
@@ -87,7 +87,7 @@
   "chasse": {
     "code": "chasse",
     "imgPath": "chasse.png",
-    "name": "Chasse"
+    "name": "Chasse-sur-Rhône"
   },
   "massieux": {
     "code": "massieux",
@@ -97,7 +97,7 @@
   "stmaurice": {
     "code": "stmaurice",
     "imgPath": "stmaurice.png",
-    "name": "Stmaurice"
+    "name": "Saint-Maurice-de-Beynost"
   },
   "jonage": {
     "code": "jonage",
@@ -107,12 +107,12 @@
   "stdidier": {
     "code": "stdidier",
     "imgPath": "stdidier.png",
-    "name": "St Didier"
+    "name": "Saint-Didier-au-Mont-d'Or"
   },
   "stquentin": {
     "code": "stquentin",
     "imgPath": "stquentin.png",
-    "name": "St Quentin"
+    "name": "Saint-Quentin-Fallavier"
   },
   "jons": {
     "code": "jons",
@@ -122,17 +122,17 @@
   "stgenislaval": {
     "code": "stgenislaval",
     "imgPath": "stgenislaval.png",
-    "name": "St Genislaval"
+    "name": "Saint-Genis-Laval"
   },
   "lyon5": {
     "code": "lyon5",
     "imgPath": "lyon5.png",
-    "name": "Lyon 5"
+    "name": "Lyon 5ème"
   },
   "poleymieux": {
     "code": "poleymieux",
     "imgPath": "poleymieux.png",
-    "name": "Poleymieux"
+    "name": "Poleymieux-au-Mont-d'Or"
   },
   "chaponnay": {
     "code": "chaponnay",
@@ -167,17 +167,17 @@
   "collonges": {
     "code": "collonges",
     "imgPath": "collonges.png",
-    "name": "Collonges"
+    "name": "Collonges-au-Mont-d'Or"
   },
   "caluire": {
     "code": "caluire",
     "imgPath": "caluire.png",
-    "name": "Caluire"
+    "name": "Caluire-et-Cuire"
   },
   "lyon7_red_50_qgcr": {
     "code": "lyon7_red_50_qgcr",
     "imgPath": "lyon7_red_50_qgcr.png",
-    "name": "Lyon 7"
+    "name": "Lyon 7ème"
   },
   "grigny": {
     "code": "grigny",
@@ -207,22 +207,22 @@
   "lyon9": {
     "code": "lyon9",
     "imgPath": "lyon9.png",
-    "name": "Lyon 9"
+    "name": "Lyon 9ème"
   },
   "lyon2": {
     "code": "lyon2",
     "imgPath": "lyon2.png",
-    "name": "Lyon 2"
+    "name": "Lyon 2ème"
   },
   "rillieux": {
     "code": "rillieux",
     "imgPath": "rillieux.png",
-    "name": "Rillieux"
+    "name": "Rillieux-la-Pape"
   },
   "lyon7": {
     "code": "lyon7",
     "imgPath": "lyon7.png",
-    "name": "Lyon 7"
+    "name": "Lyon 7ème"
   },
   "craponne": {
     "code": "craponne",
@@ -242,7 +242,7 @@
   "stgenisleso": {
     "code": "stgenisleso",
     "imgPath": "stgenisleso.png",
-    "name": "St Genis-les-Ollieres"
+    "name": "Saint-Genis-les-Ollières"
   },
   "thil": {
     "code": "thil",
@@ -272,7 +272,7 @@
   "rochetaillee": {
     "code": "rochetaillee",
     "imgPath": "rochetaillee.png",
-    "name": "Rochetaillee"
+    "name": "Rochetaillée-sur-Saône"
   },
   "feyzin": {
     "code": "feyzin",
@@ -292,12 +292,12 @@
   "albigny": {
     "code": "albigny",
     "imgPath": "albigny.png",
-    "name": "Albigny"
+    "name": "Albigny-sur-Saône"
   },
   "stsymphorien": {
     "code": "stsymphorien",
     "imgPath": "stsymphorien.png",
-    "name": "St Symphorien"
+    "name": "Saint-Symphorien-d'Ozon"
   },
   "corbas": {
     "code": "corbas",
@@ -327,37 +327,37 @@
   "serezin": {
     "code": "serezin",
     "imgPath": "serezin.png",
-    "name": "Serezin"
+    "name": "Sérézin-du-Rhône"
   },
   "steconsorce": {
     "code": "steconsorce",
     "imgPath": "steconsorce.png",
-    "name": "Steconsorce"
+    "name": "Sainte-Consorce"
   },
   "stgermain": {
     "code": "stgermain",
     "imgPath": "stgermain.png",
-    "name": "Stgermain"
+    "name": "Saint-Germain-au-Mont-d'Or"
   },
   "vaulx": {
     "code": "vaulx",
     "imgPath": "vaulx.png",
-    "name": "Vaulx"
+    "name": "Vaulx-en-Velin"
   },
   "villetteda": {
     "code": "villetteda",
     "imgPath": "villetteda.png",
-    "name": "Villetteda"
+    "name": "Villette-d'Anthon"
   },
   "grezieu": {
     "code": "grezieu",
     "imgPath": "grezieu.png",
-    "name": "Grezieu"
+    "name": "Grézieu-la-Varenne"
   },
   "lyon8": {
     "code": "lyon8",
     "imgPath": "lyon8.png",
-    "name": "Lyon 8"
+    "name": "Lyon 8ème"
   },
   "montluel": {
     "code": "montluel",
@@ -367,17 +367,17 @@
   "fontainesss": {
     "code": "fontainesss",
     "imgPath": "fontainesss.png",
-    "name": "Fontainesss"
+    "name": "Fontaines-sur-Saône"
   },
   "nievroz": {
     "code": "nievroz",
     "imgPath": "nievroz.png",
-    "name": "Nievroz"
+    "name": "Niévroz"
   },
   "neuville": {
     "code": "neuville",
     "imgPath": "neuville.png",
-    "name": "Neuville"
+    "name": "Neuville-sur-Saône"
   },
   "neyron": {
     "code": "neyron",
@@ -387,17 +387,17 @@
   "tassin": {
     "code": "tassin",
     "imgPath": "tassin.png",
-    "name": "Tassin"
+    "name": "Tassin-la-Demi-Lune"
   },
   "stromain": {
     "code": "stromain",
     "imgPath": "stromain.png",
-    "name": "Stromain"
+    "name": "Saint-Romain-au-Mont-d'Or"
   },
   "stfons": {
     "code": "stfons",
     "imgPath": "stfons.png",
-    "name": "Stfons"
+    "name": "Saint-Fons"
   },
   "limonest": {
     "code": "limonest",
@@ -407,17 +407,17 @@
   "champagne": {
     "code": "champagne",
     "imgPath": "champagne.png",
-    "name": "Champagne"
+    "name": "Champagne-au-Mont-d'Or"
   },
   "stlaurentdem": {
     "code": "stlaurentdem",
     "imgPath": "stlaurentdem.png",
-    "name": "St Daurent De m"
+    "name": "Saint-Laurent-de-Mure"
   },
   "trevoux": {
     "code": "trevoux",
     "imgPath": "trevoux.png",
-    "name": "Trevoux"
+    "name": "Trévoux"
   },
   "chassieu": {
     "code": "chassieu",
@@ -427,17 +427,17 @@
   "stefoy": {
     "code": "stefoy",
     "imgPath": "stefoy.png",
-    "name": "Stefoy"
+    "name": "Sainte-Foy-lès-Lyon"
   },
   "civrieux": {
     "code": "civrieux",
     "imgPath": "civrieux.png",
-    "name": "Civrieux"
+    "name": "Civrieux-d'Azergues"
   },
   "marcilly": {
     "code": "marcilly",
     "imgPath": "marcilly.png",
-    "name": "Marcilly"
+    "name": "Marcilly-d'Azergues"
   },
   "grenay": {
     "code": "grenay",
@@ -447,7 +447,7 @@
   "fontainesstm": {
     "code": "fontainesstm",
     "imgPath": "fontainesstm.png",
-    "name": "Fontainesstm"
+    "name": "Fontaines-Saint-Martin"
   },
   "givors": {
     "code": "givors",
@@ -457,7 +457,7 @@
   "venissieux": {
     "code": "venissieux",
     "imgPath": "venissieux.png",
-    "name": "Venissieux"
+    "name": "Vénissieux"
   },
   "brindas": {
     "code": "brindas",
@@ -467,7 +467,7 @@
   "lyon7_red_50_fgr": {
     "code": "lyon7_red_50_fgr",
     "imgPath": "lyon7_red_50_fgr.png",
-    "name": "Lyon 7"
+    "name": "Lyon 7ème"
   },
   "balan": {
     "code": "balan",
@@ -482,7 +482,7 @@
   "stcyr": {
     "code": "stcyr",
     "imgPath": "stcyr.png",
-    "name": "St-Cyr"
+    "name": "Saint-Cyr-au-Mont-d'Or"
   },
   "oullins": {
     "code": "oullins",
@@ -502,12 +502,12 @@
   "stpriest": {
     "code": "stpriest",
     "imgPath": "stpriest.png",
-    "name": "St Priest"
+    "name": "Saint-Priest"
   },
   "fleurieu": {
     "code": "fleurieu",
     "imgPath": "fleurieu.png",
-    "name": "Fleurieu"
+    "name": "Fleurieu-sur-Saône"
   },
   "francheville": {
     "code": "francheville",
@@ -522,27 +522,27 @@
   "pierrebenite": {
     "code": "pierrebenite",
     "imgPath": "pierrebenite.png",
-    "name": "Pierrebenite"
+    "name": "Pierre-Bénite"
   },
   "latour": {
     "code": "latour",
     "imgPath": "latour.png",
-    "name": "Latour"
+    "name": "La Tour-de-Salvagny"
   },
   "lamulatiere": {
     "code": "lamulatiere",
     "imgPath": "lamulatiere.png",
-    "name": "Lamulatiere"
+    "name": "La Mulatière"
   },
   "lyon1": {
     "code": "lyon1",
     "imgPath": "lyon1.png",
-    "name": "Lyon 1"
+    "name": "Lyon 1er"
   },
   "curis": {
     "code": "curis",
     "imgPath": "curis.png",
-    "name": "Curis"
+    "name": "Curis-au-Mont-d'Or"
   },
   "ecully": {
     "code": "ecully",
@@ -567,27 +567,27 @@
   "laboisse": {
     "code": "laboisse",
     "imgPath": "laboisse.png",
-    "name": "Laboisse"
+    "name": "La Boisse"
   },
   "lyon6": {
     "code": "lyon6",
     "imgPath": "lyon6.png",
-    "name": "Lyon 6"
+    "name": "Lyon 6ème"
   },
   "charbonnieres": {
     "code": "charbonnieres",
     "imgPath": "charbonnieres.png",
-    "name": "Charbonnieres"
+    "name": "Charbonnières-les-Bains"
   },
   "stpierredec": {
     "code": "stpierredec",
     "imgPath": "stpierredec.png",
-    "name": "St Pierre de C"
+    "name": "Saint-Pierre-de-Chandieu"
   },
   "lescheres": {
     "code": "lescheres",
     "imgPath": "lescheres.png",
-    "name": "Lescheres"
+    "name": "Les Chères"
   },
   "irigny": {
     "code": "irigny",
@@ -597,16 +597,16 @@
   "stbonnet": {
     "code": "stbonnet",
     "imgPath": "stbonnet.png",
-    "name": "St Bonnet"
+    "name": "Saint-Bonnet-de-Mure"
   },
   "standeol": {
     "code": "standeol",
     "imgPath": "standeol.png",
-    "name": "St Andeol"
+    "name": "Saint-Andéol-le-Château"
   },
   "sathonayc": {
     "code": "sathonayc",
     "imgPath": "sathonayc.png",
-    "name": "Sathonayc"
+    "name": "Sathonay-Camp"
   }
 }
