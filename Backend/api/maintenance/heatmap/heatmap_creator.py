@@ -51,7 +51,7 @@ def reduce_grid(grid_basename, precision, method=''):
     #
     method_name = 'fgr'
     if method == 'QCGR':
-        method_name = 'qgcr'
+        method_name = 'qcgr'
         red_grid, ratio, removed, total = reduce_precision_QCGR(grid, precision)    
     else:
         red_grid, ratio, removed, total = reduce_precision_FGR(grid, precision)
