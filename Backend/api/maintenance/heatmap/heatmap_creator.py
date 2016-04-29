@@ -28,7 +28,7 @@ def gen_heatmap(grid_basename, criteria) :
             'criteria' : criteria,
             'coordinates' : { 'lat':lat, 'lon':lon } # rappel lon est la plus petite valeur pour Lyon : aux alentours de 4
         }
-        mark, obj = rank(spec)
+        mark, ul1, ul2 = rank(spec)
         heatmap.append([round(lon,5), round(lat,5), round(mark,2)])
 
     print('[heatmap_creator.py]> done !')
