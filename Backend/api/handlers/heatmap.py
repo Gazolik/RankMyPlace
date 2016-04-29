@@ -23,7 +23,10 @@ def heatmap_grid_handler(path, data, api_params):
     if len(parts) == 4: # on attend ['','heatmap','<grid_name>','<criteria_name>']
         grid_basename = parts[2]
         criteria_name = parts[3]
-        data = { 'heatmap' : load_heatmap(grid_basename, criteria_name)['heatmap']}
+        data['heatmap'] = load_heatmap(grid_basename, criteria_name)['heatmap']
+        data['zoom'] = 14
+        data['centLat'] = data['heatmap'][0][1]
+        data['centLon'] = data['heatmap'][0][0]
     return Response(api_params).serialized(data)
 
 
