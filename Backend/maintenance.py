@@ -95,7 +95,7 @@ def cmd_help():
             + psd <database_psd_file>
             + map_part <heatmap_grid_file>
             + map
-            + heatmap_part <heatmap_grid_file> <criteria_name>
+            + heatmap_part <gridname> <heatmap_grid_file> <criteria_name>
 
     + heatmap <sub_cmd> :
         - sub_cmd :
@@ -132,7 +132,7 @@ def cmd_list(sub_cmd):
     else:
         abort('unknown list subcommand, run "./maintenance.py help" to get a list of subcommands.')
     # print file list
-    print('Listing %s files for %s :\n  +    ' % (len(files), category) + '\n  +    '.join(files))
+    print('Listing %s files for %s :\n  +    ' % (len(files), sub_cmd) + '\n  +    '.join(files))
 #
 #
 #
@@ -149,8 +149,8 @@ def cmd_display(sub_cmd):
     elif sub_cmd == 'map':
         draw_map()
     elif sub_cmd == 'heatmap_part':
-        assert_args(4, 'expected : display heatmap_part <heatmap_grid_file> <criteria_name>')
-        draw_heatmap_part(arg(3), arg(4))
+        assert_args(5, 'expected : display heatmap_part <gridname> <heatmap_grid_file> <criteria_name>')
+        draw_heatmap_part(arg(3), arg(4), arg(5))
     else:
         abort('unknown display subcommand, run "./maintenance.py help" to get a list of subcommands.')
 #

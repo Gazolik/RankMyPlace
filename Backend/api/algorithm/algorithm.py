@@ -94,11 +94,13 @@ def reduce_precision(grid, precision, determinist=True):
                             removed_idx.append(j)
     print('[algorithm.py]> done !')
     # suppression des points en trop
-    for idx in removed_idx:
-        del grid[idx]
+    kept = []
+    for i in range(grid_len):
+        if not i in removed_idx:
+            kept.append(grid[i])
     # retour du ratio
     ratio = float(len(removed_idx))/grid_len
-    return (ratio, len(removed_idx), grid_len)
+    return (kept, ratio, len(removed_idx), grid_len)
 #
 #
 #

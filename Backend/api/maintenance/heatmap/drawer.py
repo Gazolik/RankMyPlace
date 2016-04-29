@@ -47,8 +47,8 @@ def draw_file_data(draw, grid_basename):
 #
 #   TODO : doc
 #
-def draw_heatmap_data(draw, grid_basename, criteria_name):
-    data = load_heatmap(grid_basename, criteria_name)
+def draw_heatmap_data(draw, heatmap_basename, criteria_name):
+    data = load_heatmap(heatmap_basename, criteria_name)
     draw_heatmap(draw, data['heatmap'])
 #
 #   TODO : doc
@@ -149,14 +149,14 @@ def draw_map():
     im.show()
     print('[drawer.py]> done !')
 
-def draw_heatmap_part(grid_basename, criteria_name):
+def draw_heatmap_part(grid_basename, heatmap_basename, criteria_name):
     print('[drawer.py]> computing %s heatmap for %s...' % (grid_basename, criteria_name))
     # init image
     im , draw = img_init()
     # draw grid
     draw_file_data(draw, grid_basename)
     # draw heatmap on previously drawn grid
-    draw_heatmap_data(draw, grid_basename, criteria_name)
+    draw_heatmap_data(draw, heatmap_basename, criteria_name)
     # show image
     im.show()
     print('[drawer.py]> done !')
