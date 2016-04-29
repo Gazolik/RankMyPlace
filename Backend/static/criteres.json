@@ -245,6 +245,7 @@
     "pit_hebergement_locatif":{
         "name" : "pit_hebergement_locatif",
         "realname":"Hébergement locatif",
+        "description" : "",
         "group" : "Hébergement",
         "type" : "density_based",
         "params" : {
@@ -258,6 +259,7 @@
     "pit_hebergement_collectif":{
         "name" : "pit_hebergement_collectif",
         "realname":"Hébergement collectif",
+        "description" : "",
         "group" : "Hébergement",
         "type" : "density_based",
         "params" : {
@@ -271,6 +273,7 @@
     "pit_equipement" : {
         "name" : "pit_equipement",
         "realname":"Loisirs",
+        "description" : "",
         "type" : "dist_dens_based",
         "group" : "Sport et loisirs",
         "params" : {
@@ -289,6 +292,7 @@
     "le_sport" : {
         "name" : "le_sport",
         "realname":"Sport",
+        "description" : "",
         "type" : "dist_dens_based",
         "group" : "Sport et loisirs",
         "params" : {
