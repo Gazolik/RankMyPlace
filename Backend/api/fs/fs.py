@@ -28,7 +28,6 @@ HEATMAP_GRIDS = HEATMAP + '/grids'
 HEATMAP_PSD = HEATMAP + '/psd'
 HEATMAP_MAPS = HEATMAP + '/maps'
 
-
 # ---------------------------------------- LIST FUNCTIONS
 #
 #   TODO : doc
@@ -94,7 +93,7 @@ def json_load(path, basename):
         with open(path + '/' + basename + '.json', 'r', encoding=ENCODING) as f:
             data = json.load(f)
     except IOError as e :
-        print('[fs.json_load] File cannot be opened : %s' % e)
+        print('[fs.json_load]> File cannot be opened : %s' % e)
     finally :
         return data
 #
@@ -149,51 +148,52 @@ def load_data(basename, idx):
 #
 #   TODO : doc
 #
-def json_dump(filepath_no_ext, data):
+def json_dump(filepath_no_ext, data, indent = None):
     try :
         with open(filepath_no_ext + '.json', 'w') as f:
-            f.write(json.dumps(data, sort_keys=False))
+            f.write(json.dumps(data, sort_keys=False, indent=indent))
     except IOError as e :
         print('[fs.json_dump] Error while writing file %s'.format(e))
 #
 #   TODO : doc
 #
-def dump_static(basename, data):
-    json_dump(STATIC + '/' + basename, data)
+def dump_static(basename, data, indent = None):
+    json_dump(STATIC + '/' + basename, data, indent)
 #
 #   TODO : doc
 #
-def dump_heatmap_grid(commune, coordinates):
+def dump_heatmap_grid(commune, coordinates, indent = None):
     basename = re.sub('[^\w\.]','',commune).lower()
     if len(basename) == 0:
         basename = 'unnamed'
     filepath = HEATMAP_GRIDS + '/' + basename + '_grid'
-    json_dump(filepath, coordinates)
+    json_dump(filepath, coordinates, indent)
+
 #
 #   TODO : doc
 #
-def dump_heatmap_psd(commune, data):
+def dump_heatmap_psd(commune, data, indent = None):
     basename = re.sub('[^\w\.]','',commune).lower()
     if len(basename) == 0:
         basename = 'unnamed'
     filepath = HEATMAP_PSD + '/' + basename + '_psd'
-    json_dump(filepath, data)
+    json_dump(filepath, data, indent)
 #
 #   Génère un fichier de heatmap pour le critere donné et la grille donnée
 #
-def dump_heatmap(grid_basename, criteria_name, heatmap):
+def dump_heatmap(grid_basename, criteria_name, heatmap, indent = None):
     filepath = HEATMAP_MAPS + '/' + grid_basename + '_' + criteria_name + '_map'
-    json_dump(filepath, { 'criteria' : criteria_name, 'heatmap' : heatmap })
+    json_dump(filepath, { 'criteria' : criteria_name, 'heatmap' : heatmap }, indent)
 #
 #   TODO : doc
 #
-def dump_database_pre_psd(basename, data):
-    return json_dump(DATABASE_PRE_PSD + '/' + basename, data)
+def dump_database_pre_psd(basename, data, indent = None):
+    return json_dump(DATABASE_PRE_PSD + '/' + basename, data, indent)
 #
 #   TODO : doc
 #
-def dump_database_psd(basename, data):
-    return json_dump(DATABASE_PSD + '/' + basename, data)
+def dump_database_psd(basename, data, indent = None):
+    return json_dump(DATABASE_PSD + '/' + basename, data, indent)
 
 
 
