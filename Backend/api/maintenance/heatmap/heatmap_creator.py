@@ -103,9 +103,8 @@ def gen_script(precision, method='QCGR'):
         for criteria in criterias:
             # create and add heatmap generation command
             heatmap_cmds.append('./maintenance.py heatmap gen %s %s' % (grid_name, criteria))
-    # write script file
-    with open(script_name, 'w') as f:
-        f.write("""#!/bin/bash
+    # create script
+    script = """#!/bin/bash
 # -!- encoding:utf8 -!-
 #
 echo "[BASH]> starting grid crunching."
@@ -115,10 +114,19 @@ echo "[BASH]> starting grid crunching."
 echo "[BASH]> grid crunching done."
 echo "[BASH]> starting heatmap generation."
 #
-%s
-#
+""" % '\n'.join(reduce_cmds)
+    # add heatmap commands
+    heatmap_cmds_len = len(heatmap_cmds)
+    for i in range(heatmap_cmds_len): 
+        script += heatmap_cmds[i] + '; '
+        script += 'echo "[BASH]> overall progress : %s/%s"\n' % (i+1, heatmap_cmds_len) 
+    # add script end
+    script += """#
 echo "[BASH]> heatmap generation done."
 #
-""" % ('\n'.join(reduce_cmds), '\n'.join(heatmap_cmds)))
+    """
+    # write script file
+    with open(script_name, 'w') as f:
+        f.write(script)
     # print message
     print('[heatmap_creator.py]> %s generation done !' % script_name)
