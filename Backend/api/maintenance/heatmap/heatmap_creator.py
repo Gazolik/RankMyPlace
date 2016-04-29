@@ -27,9 +27,7 @@ def gen_heatmap(grid_basename, criteria) :
             'coordinates' : {'lat':points[i][1],'lon':points[i][0]} # rappel lon est la plus petite valeur pour Lyon : aux alentours de 4
         }
         mark, obj = rank(spec)
-        heatmap.append(round(points[i][1], 5))
-        heatmap.append(round(points[i][0],5))
-        heatmap.append(round(mark,2))
+        heatmap.append([round(points[i][1],5),round(points[i][0],5),round(mark,2)])
 
     print('[heatmap_creator.py]> done !')
     print('[heatmap_creator.py]> writing %s heatmap file...' % grid_basename, end='')
@@ -54,7 +52,7 @@ def reduce_grid(grid_basename, precision, method=''):
     method_name = 'fgr'
     if method == 'QCGR':
         method_name = 'qgcr'
-        red_grid, ratio, removed, total = reduce_precision_QCGR(grid, precision)    
+        red_grid, ratio, removed, total = reduce_precision_QCGR(grid, precision)
     else:
         red_grid, ratio, removed, total = reduce_precision_FGR(grid, precision)
     #
