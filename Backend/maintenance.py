@@ -101,7 +101,7 @@ def cmd_help():
         - sub_cmd :
             + gen <heatmap_grid_file> <criteria_name>
             + gen_all
-            + reduce <heatmap_grid_file> <int:precision>
+            + reduce <heatmap_grid_file> <int:precision> <enum:method["FGR","QCGR"]>
             + reduce_all <int:precision>
             + avg_geo_delta <heatmap_grid_file>
 
@@ -171,8 +171,8 @@ def cmd_heatmap(sub_cmd):
     elif sub_cmd == 'gen_all':
         gen_all_heatmaps()
     elif sub_cmd == 'reduce':
-        assert_args(4, 'expected : heatmap reduce <heatmap_grid_file> <int:precision>')
-        reduce_grid(arg(3), int(arg(4)) )
+        assert_args(5, 'expected : heatmap reduce <heatmap_grid_file> <int:precision> <enum:method["FGR","QCGR"]>')
+        reduce_grid(arg(3), int(arg(4)), arg(5))
     elif sub_cmd == 'reduce_all':
         assert_args(3, 'expected : heatmap reduce_all <int:precision>')
         reduce_all(int(arg(3)))

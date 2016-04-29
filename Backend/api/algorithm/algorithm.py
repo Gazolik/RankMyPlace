@@ -12,7 +12,7 @@ EARTH_RADIUS = 6367.0
 
 # ------------------------------- FUNCTIONS
 #
-# 
+#   TODO : doc 
 #
 def coord_dist(ori, dest, geodist=True):
     res = None
@@ -29,6 +29,14 @@ def coord_dist(ori, dest, geodist=True):
         d = math.sqrt(math.pow(dlat,2) + math.pow(dlon,2))
         res = math.tan(d)
     return 1000 * EARTH_RADIUS * res
+#
+#   TODO : doc
+#
+def axis_dist(ori_lat, ori_lon, dest_lat, dest_lon, geodist=True):
+    res = None
+    dlat = coord_dist({'lat':ori_lat,'lon':0.0},{'lat':dest_lat,'lon':0.0})
+    dlon = coord_dist({'lat':0.0,'lon':ori_lon},{'lat':0.0,'lon':dest_lon})
+    return (dlat, dlon)
 #
 # Récupère les N records les plus proches géographiquement de la coordonnée passée en paramètre
 #
@@ -77,7 +85,7 @@ def records_around(records, coord, radius):
 #
 #   Fonction de réduction de la granularité de la grille
 #
-def reduce_precision(grid, precision, determinist=True):
+def reduce_precision_QCGR(grid, precision, determinist=True):
     print('[algorithm.py]> reducing grid precision...')
     grid_len = len(grid)
     removed_idx = []
@@ -100,7 +108,33 @@ def reduce_precision(grid, precision, determinist=True):
             kept.append(grid[i])
     # retour du ratio
     ratio = float(len(removed_idx))/grid_len
+    # retour de la grille, du ratio de reduction et du nombre de points enlevés et du total
     return (kept, ratio, len(removed_idx), grid_len)
+#
+#
+#
+MIN_LON = 4.681  # degrees
+MIN_LAT = 45.55  # degrees
+def reduce_precision_FGR(grid, precision, determinist=True):
+    grid_len = len(grid)
+    removed = 0
+    matrix = {}
+    for i in range(grid_len):
+        # calcul de l'index du point à insérer
+        dlat, dlon = axis_dist(MIN_LAT, MIN_LON, grid[i][1], grid[i][0])
+        lat_idx = int(math.floor(dlat)/precision)
+        lon_idx = int(math.floor(dlon)/precision)
+        key = '%s-%s' % (lat_idx, lon_idx)
+        # insertion du point dans le dico
+        # - verif existence clé
+        if key in matrix.keys():
+            removed += 1
+        else:
+            matrix[key] = grid[i]
+    # calcul du ratio
+    ratio = float(removed)/grid_len
+    # retour de la grille, du ratio de reduction et du nombre de points enlevés et du total
+    return (list(matrix.values()), ratio, removed, grid_len)
 #
 #
 #
