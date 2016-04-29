@@ -47,26 +47,26 @@ def distance_based(criteria, coord):
     scale = criteria['params']['dist_scale']
     # lecture dans la base
     records = load_database_psd(criteria['name'])
+    # création de la note vide
+    mark = -1.0
     if not records:
         print('[gen_criteria.distance_based]> %s' % criteria['name'])
-        return (-1.0, None, None)
-    # récupération du point le plus proche
-    dist, record = closest_record(records, coord)
-    # création de la note vide
-    mark = None
-    # vérification d'appartenance à l'anneau
-    if dist < min_dist or dist > max_dist:
-        # le lieu le plus proche n'est pas dans l'anneau, on retourne 0
-        mark = 0.0
-        record = None
-    # calcul de la note en fonction de l'échelle
     else:
-        if scale == 'log':
-            # todo
-            mark = -1.0
-        elif scale == 'linear':
-            mark = 10.0 * ( 1.0 - ( (dist - min_dist) / (max_dist - min_dist) ) )
-        # else: mark = None (cf. initialisation de mark)
+        # récupération du point le plus proche
+        dist, record = closest_record(records, coord)
+        # vérification d'appartenance à l'anneau
+        if dist < min_dist or dist > max_dist:
+            # le lieu le plus proche n'est pas dans l'anneau, on retourne 0
+            mark = 0.0
+            record = None
+        # calcul de la note en fonction de l'échelle
+        else:
+            if scale == 'log':
+                # todo
+                mark = -1.0
+            elif scale == 'linear':
+                mark = 10.0 * ( 1.0 - ( (dist - min_dist) / (max_dist - min_dist) ) )
+            # else: mark = None (cf. initialisation de mark)
     # finally return mark and record for details
     return (mark, record, None)
 
@@ -87,25 +87,25 @@ def density_based(criteria, coord):
     scale = criteria['params']['dens_scale']
     # lecture dans la base
     records = load_database_psd(criteria['name'])
+    # création de la note vide
+    mark = -1.0
     if not records :
     	print('[gen_criteria.density_based]> %s' % criteria['name'])
-    	return (-1.0, None)
-    # récupération de la densité
-    density, closest, min_dist = density_around(records, coord, radius)
-    # création de la note vide
-    mark = None
-    # vérification d'appartenance à l'anneau
-    if density < min_density:
-        mark =  10*(density/min_density)
-        closest = None
-    elif density > max_density:
-        if density > max_density + min_density:
-            mark = 0.0
-        else:
-            mark = 10*((max_density+min_density-density)/min_density)
-    # calcul de la note en fonction de l'échelle
     else:
-        mark = 10.0
+        # récupération de la densité
+        density, closest, min_dist = density_around(records, coord, radius)
+        # vérification d'appartenance à l'anneau
+        if density < min_density:
+            mark =  10*(density/min_density)
+            closest = None
+        elif density > max_density:
+            if density > max_density + min_density:
+                mark = 0.0
+            else:
+                mark = 10*((max_density+min_density-density)/min_density)
+        # calcul de la note en fonction de l'échelle
+        else:
+            mark = 10.0
     # finally return mark and record for details
     return (mark, closest, density)
 
@@ -135,10 +135,10 @@ def dist_dens_based(criteria, coord):
 #@watch_time
 def custom(criteria, coord):
     if criteria == "bruit":
-        custom_bruit(criteria, coord)
+        return custom_bruit(criteria, coord)
     else:
-        print('Profil custom non disponible')
-        return(-1.0, None) 
+        print('[gen_criteria.py]> /!\ Profil custom non disponible.')
+        return(-1.0, None, None) 
 
 #
 #   Calcul customisé pour le bruit
@@ -151,20 +151,14 @@ def custom_bruit(criteria, coord):
     records_db = load_database_psd(criteria['name'])
     # récupération des records les plus proches
     records = records_around(records_db, coord, radius)
+    mark = -1.0
     if not records:
         print('[gen_criteria.custom] %s'%criteria['name'])
-        return (-1.0, None)
-    # création des variables necessaires au traitement
-    records_size = len(records)
-    mark = 0
-    sum = 0
-    if records_size == 0:
-        # trop peu d'information le critère ne doit pas
-        # être pris en compte
-        return (-1, None)
     else:
+        # création des variables necessaires au traitement
+        s = 0
         for record in records:
-            sum += record['data']['value']
-        mark = sum/records_size
+            s += record['data']['value']
+        mark = s/records_size
     # on retoure la note et pas de record
-    return (mark, None)
+    return (mark, None, None)
