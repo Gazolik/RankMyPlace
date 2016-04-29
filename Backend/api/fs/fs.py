@@ -24,6 +24,7 @@ DATABASE_COORD = DATABASE + '/psd'
 HEATMAP = DATA + '/heatmap'
 STREETS = 'streets'
 HEATMAP_STREETS = HEATMAP + '/'+ STREETS +'.json'
+HEATMAP_GRIDS = HEATMAP + '/grids'
 HEATMAP_PSD = HEATMAP + '/psd'
 HEATMAP_MAPS = HEATMAP + '/maps'
 
@@ -49,7 +50,7 @@ def list_static():
 #   Retourne une liste des fichiers de type grille
 #
 def list_heatmap_grids():
-    return basify(os.listdir(HEATMAP_PSD),'_grid.json')
+    return basify(os.listdir(HEATMAP_GRIDS),'_grid.json')
 
 #
 #   Retourne une liste des fichiers de type psd
@@ -105,7 +106,7 @@ def load_static(basename):
 #   TODO : doc
 #
 def load_heatmap_grid(basename):
-    return json_load(HEATMAP_PSD, basename + '_grid')
+    return json_load(HEATMAP_GRIDS, basename + '_grid')
 #
 #   TODO : doc
 #
@@ -166,7 +167,7 @@ def dump_heatmap_grid(commune, coordinates):
     basename = re.sub('[^\w\.]','',commune).lower()
     if len(basename) == 0:
         basename = 'unnamed'
-    filepath = HEATMAP_PSD + '/' + basename + '_grid'
+    filepath = HEATMAP_GRIDS + '/' + basename + '_grid'
     json_dump(filepath, coordinates)
 #
 #   TODO : doc

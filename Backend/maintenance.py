@@ -38,7 +38,7 @@ from api.maintenance.heatmap.drawer import draw_map_part, draw_map, draw_heatmap
 #
 #   Définit des fonctions permettant de construire des cartes de chaleur à partir de la grille et des critères
 #
-from api.maintenance.heatmap.heatmap_creator import gen_heatmap, gen_all_heatmaps, reduce_grid, reduce_all, avg_grid
+from api.maintenance.heatmap.heatmap_creator import gen_heatmap, gen_all_heatmaps, reduce_grid, reduce_all, avg_grid, gen_shell_script
 #
 #
 #
@@ -104,6 +104,7 @@ def cmd_help():
             + reduce <heatmap_grid_file> <int:precision> <enum:method["FGR","QCGR"]>
             + reduce_all <int:precision>
             + avg_geo_delta <heatmap_grid_file>
+            + gen_script <int:precision> <enum:method["FGR","QCGR"]>
 
     + database <sub_cmd> :
         - sub_cmd :
