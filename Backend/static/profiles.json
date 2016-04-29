@@ -1,36 +1,109 @@
-[{
-"name" : "Etudiant",
-"imgPath" : "student.png",
-"coefs" : [{"name" : "Bruit", "coef" : 1},
-			{"name" : "Transport commun", "coef" : 8},
-			{"name" : "Ecole", "coef" : 0}
-			]
-},
+[
+    {
+        "name" : "Etudiant",
+        "imgPath" : "student.png",
+        "coefs" :   [ 
+                        {"name" : "Gares", "coef" : 8},
+                        {"name" : "Velo'v", "coef" : 9},
+                        {"name" : "TCL", "coef" : 9},
+                        {"name" : "Bruit", "coef" : 5},
+                        {"name" : "Enseignement", "coef" : 7},
+                        {"name" : "Culte", "coef" : 6},
+                        {"name" : "Commerces et services", "coef" : 10},
+                        {"name" : "Mairies", "coef" : 0},
+                        {"name" : "Sécurité", "coef" : 0},
+                        {"name" : "Santé", "coef" : 0},
+                        {"name" : "Hôtellerie", "coef" : 0},
+                        {"name" : "Campings", "coef" : 0},
+                        {"name" : "Restauration", "coef" : 4},
+                        {"name" : "Dégustation", "coef" : 0},
+                        {"name" : "Patrimoine culturel", "coef" : 3},
+                        {"name" : "Patrimoine naturel", "coef" : 3},
+                        {"name" : "Hébergement locatif", "coef" : 0},
+                        {"name" : "Hébergement collectif", "coef" : 0},
+                        {"name" : "Loisirs", "coef" : 7},
+                        {"name" : "Sport", "coef" : 7}
+                    ]
+    },
 
-{
-"name" : "Senior",
-"imgPath" : "retired.png",
-"coefs" : [{"name" : "Bruit", "coef" : 8},
-			{"name" : "Transport commun", "coef" : 1},
-			{"name" : "Ecole", "coef" : 0}
-			]
-},
+    {
+        "name" : "Senior",
+        "imgPath" : "retired.png",
+        "coefs" :   [ 
+                        {"name" : "Gares", "coef" : 7},
+                        {"name" : "Velo'v", "coef" : 2},
+                        {"name" : "TCL", "coef" : 10},
+                        {"name" : "Bruit", "coef" : 7},
+                        {"name" : "Enseignement", "coef" : 0},
+                        {"name" : "Culte", "coef" : 7},
+                        {"name" : "Commerces et services", "coef" : 10},
+                        {"name" : "Mairies", "coef" : 5},
+                        {"name" : "Sécurité", "coef" : 6},
+                        {"name" : "Santé", "coef" : 7},
+                        {"name" : "Hôtellerie", "coef" : 0},
+                        {"name" : "Campings", "coef" : 0},
+                        {"name" : "Restauration", "coef" : 7},
+                        {"name" : "Dégustation", "coef" : 7},
+                        {"name" : "Patrimoine culturel", "coef" : 7},
+                        {"name" : "Patrimoine naturel", "coef" : 7},
+                        {"name" : "Hébergement locatif", "coef" : 0},
+                        {"name" : "Hébergement collectif", "coef" : 0},
+                        {"name" : "Loisirs", "coef" : 4},
+                        {"name" : "Sport", "coef" : 1},
+                    ]
+    },
 
-{
-"name" : "Famille",
-"imgPath" : "family.png",
-"coefs" : [{"name" : "Bruit", "coef" : 2},
-			{"name" : "Transport commun", "coef" : 1},
-			{"name" : "Ecole", "coef" : 8}
-			]
-},
+    {
+        "name" : "Famille",
+        "imgPath" : "family.png",
+        "coefs" :   [ 
+                        {"name" : "Gares", "coef" : 5},
+                        {"name" : "Velo'v", "coef" : 2},
+                        {"name" : "TCL", "coef" : 8},
+                        {"name" : "Bruit", "coef" : 5},
+                        {"name" : "Enseignement", "coef" : 8},
+                        {"name" : "Culte", "coef" : 5},
+                        {"name" : "Commerces et services", "coef" : 5},
+                        {"name" : "Mairies", "coef" : 1},
+                        {"name" : "Sécurité", "coef" : 3},
+                        {"name" : "Santé", "coef" : 4},
+                        {"name" : "Hôtellerie", "coef" : 0},
+                        {"name" : "Campings", "coef" : 0},
+                        {"name" : "Restauration", "coef" : 6},
+                        {"name" : "Dégustation", "coef" : 2},
+                        {"name" : "Patrimoine culturel", "coef" : 9},
+                        {"name" : "Patrimoine naturel", "coef" : 10},
+                        {"name" : "Hébergement locatif", "coef" : 0},
+                        {"name" : "Hébergement collectif", "coef" : 0},
+                        {"name" : "Loisirs", "coef" : 9},
+                        {"name" : "Sport", "coef" : 9},
+                    ]
+    },
 
-{
-"name" : "Jeune Actif",
-"imgPath" : "young_worker.png",
-"coefs" : [{"name" : "Bruit", "coef" : 1},
-			{"name" : "Transport commun", "coef" : 8},
-			{"name" : "Ecole", "coef" : 1}
-			]
-}
+    {
+        "name" : "Jeune Actif",
+        "imgPath" : "young_worker.png",
+        "coefs" :   [ 
+                        {"name" : "Gares", "coef" : 9},
+                        {"name" : "Velo'v", "coef" : 9},
+                        {"name" : "TCL", "coef" : 9},
+                        {"name" : "Bruit", "coef" : 5},
+                        {"name" : "Enseignement", "coef" : 0},
+                        {"name" : "Culte", "coef" : 2},
+                        {"name" : "Commerces et services", "coef" : 10},
+                        {"name" : "Mairies", "coef" : 0},
+                        {"name" : "Sécurité", "coef" : 0},
+                        {"name" : "Santé", "coef" : 0},
+                        {"name" : "Hôtellerie", "coef" : 0},
+                        {"name" : "Campings", "coef" : 0},
+                        {"name" : "Restauration", "coef" : 8},
+                        {"name" : "Dégustation", "coef" : 5},
+                        {"name" : "Patrimoine culturel", "coef" : 4},
+                        {"name" : "Patrimoine naturel", "coef" : 4},
+                        {"name" : "Hébergement locatif", "coef" : 0},
+                        {"name" : "Hébergement collectif", "coef" : 0},
+                        {"name" : "Loisirs", "coef" : 7},
+                        {"name" : "Sport", "coef" : 7},
+                    ]
+    }
 ]
