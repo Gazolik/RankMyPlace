@@ -20,7 +20,7 @@ angular.module('smartCityFrontEndApp')
       serviceAjax.areas(function(data){
           $scope.areas = data;
           searchData.selectedArea = 0;
-          searchData.area = $scope.areas[0].name;
+          searchData.areaCode = $scope.areas[0].code;
       });
     };
     loadAreas();

@@ -22,6 +22,11 @@ module.exports = function(config) {
       // bower:js
       'bower_components/jquery/dist/jquery.js',
       'bower_components/angular/angular.js',
+      'bower_components/leaflet/dist/leaflet-src.js',
+      'bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js',
+      'bower_components/heatmap.js-amd/build/heatmap.js',
+      'bower_components/heatmap.js-amd/plugins/leaflet-heatmap.js',
+      'bower_components/heatmap.js-amd/plugins/angular-heatmap.js',
       'bower_components/bootstrap/dist/js/bootstrap.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-animate/angular-animate.js',
