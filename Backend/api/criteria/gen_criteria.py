@@ -29,7 +29,7 @@ def rank(spec):
     elif typ == 'custom':
         return custom(spec['criteria'], spec['coordinates'])
     else:
-        return (None, None) # error case
+        return (None, None, None) # error case
 
 #
 #   Calcul de distance générique, paramètres attendus :
@@ -49,7 +49,7 @@ def distance_based(criteria, coord):
     records = load_database_psd(criteria['name'])
     if not records:
         print('[gen_criteria.distance_based]> %s' % criteria['name'])
-        return (-1.0, None)
+        return (-1.0, None, None)
     # récupération du point le plus proche
     dist, record = closest_record(records, coord)
     # création de la note vide
@@ -68,7 +68,7 @@ def distance_based(criteria, coord):
             mark = 10.0 * ( 1.0 - ( (dist - min_dist) / (max_dist - min_dist) ) )
         # else: mark = None (cf. initialisation de mark)
     # finally return mark and record for details
-    return (mark, record)
+    return (mark, record, None)
 
 #
 #   Calcul de densité générique, paramètres attendus :
@@ -107,7 +107,7 @@ def density_based(criteria, coord):
     else:
         mark = 10.0
     # finally return mark and record for details
-    return (mark, closest)
+    return (mark, closest, density)
 
 #
 #   Calcul générique couplage de distance et densité, paramètres attendus :
@@ -124,10 +124,10 @@ def density_based(criteria, coord):
 #
 #@watch_time
 def dist_dens_based(criteria, coord):
-    mark_density, record = density_based(criteria, coord)
-    mark_dist, closest = distance_based(criteria, coord)
+    mark_density, record, density = density_based(criteria, coord)
+    mark_dist, closest, empty = distance_based(criteria, coord)
     mark = (criteria['params']['dist_coeff']*mark_dist+criteria['params']['dens_coeff']*mark_density)/(criteria['params']['dist_coeff']+criteria['params']['dens_coeff'])
-    return (mark, closest)
+    return (mark, closest, density)
 
 #
 #   Calcul customisé pour les données spéciales
