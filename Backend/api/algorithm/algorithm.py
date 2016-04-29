@@ -87,7 +87,7 @@ def records_around(records, coord, radius):
 #   Fonction de réduction de la granularité de la grille
 #
 def reduce_precision_QCGR(grid, precision, determinist=True):
-    print('[algorithm.py]> reducing grid precision...')
+    print('[algorithm.py]> reducing grid precision using QCGR algorithm...')
     grid_len = len(grid)
     removed_idx = []
     # calcul des points à supprimer
@@ -101,7 +101,6 @@ def reduce_precision_QCGR(grid, precision, determinist=True):
                         p = { 'lon':grid[j][0], 'lat':grid[j][1] }
                         if coord_dist(o, p) < precision:
                             removed_idx.append(j)
-    print('[algorithm.py]> done !')
     # suppression des points en trop
     kept = []
     for i in range(grid_len):
@@ -109,6 +108,7 @@ def reduce_precision_QCGR(grid, precision, determinist=True):
             kept.append(grid[i])
     # retour du ratio
     ratio = float(len(removed_idx))/grid_len
+    print('[algorithm.py]> done !')
     # retour de la grille, du ratio de reduction et du nombre de points enlevés et du total
     return (kept, ratio, len(removed_idx), grid_len)
 #
@@ -117,6 +117,7 @@ def reduce_precision_QCGR(grid, precision, determinist=True):
 MIN_LON = 4.681  # degrees
 MIN_LAT = 45.55  # degrees
 def reduce_precision_FGR(grid, precision, determinist=True):
+    print('[algorithm.py]> reducing grid precision using FGR algorithm...')
     grid_len = len(grid)
     removed = 0
     matrix = {}
@@ -134,6 +135,7 @@ def reduce_precision_FGR(grid, precision, determinist=True):
             matrix[key] = grid[i]
     # calcul du ratio
     ratio = float(removed)/grid_len
+    print('[algorithm.py]> done !')
     # retour de la grille, du ratio de reduction et du nombre de points enlevés et du total
     return (list(matrix.values()), ratio, removed, grid_len)
 #
