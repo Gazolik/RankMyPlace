@@ -42,6 +42,10 @@ from api.maintenance.heatmap.heatmap_creator import gen_heatmap, gen_all_heatmap
 #
 #
 #
+from api.maintenance.heatmap.area import generate_areas
+#
+#
+#
 from api.criteria.criterias import criterias_dict
 
 import sys, os
@@ -76,11 +80,11 @@ def arg(idx):
 #
 #
 def cmd_help():
-    print("""[maintenance.py]> 
+    print("""[maintenance.py]>
 ------------------------------- HELP -------------------------------
     + help : display this message
 
-    + list <sub_cmd> : list files for the given subcommand 
+    + list <sub_cmd> : list files for the given subcommand
         - sub_cmd :
             + static
             + heatmap_grids
@@ -104,6 +108,7 @@ def cmd_help():
             + reduce <heatmap_grid_file> <int:precision> <enum:method["FGR","QCGR"]>
             + reduce_all <int:precision>
             + avg_geo_delta <heatmap_grid_file>
+            + gen_areas
 
     + database <sub_cmd> :
         - sub_cmd :
@@ -160,7 +165,7 @@ def cmd_dependencies(sub_cmd):
     if sub_cmd == 'update':
         update_dependencies()
     else:
-        abort('unknown dependencies subcommand, run "./maintenance.py help" to get a list of subcommands.')        
+        abort('unknown dependencies subcommand, run "./maintenance.py help" to get a list of subcommands.')
 #
 #
 #
@@ -176,11 +181,13 @@ def cmd_heatmap(sub_cmd):
     elif sub_cmd == 'reduce_all':
         assert_args(3, 'expected : heatmap reduce_all <int:precision>')
         reduce_all(int(arg(3)))
-    elif command == 'avg_geo_delta':
+    elif sub_cmd == 'avg_geo_delta':
         assert_args(3, 'expected : heatmap avg_geo_delta <heatmap_grid_file>')
         avg_grid(arg(2))
+    elif sub_cmd == 'gen_areas':
+        generate_areas()
     else:
-        abort('unknown heatmap subcommand, run "./maintenance.py help" to get a list of subcommands.')        
+        abort('unknown heatmap subcommand, run "./maintenance.py help" to get a list of subcommands.')
 #
 #
 #
@@ -192,7 +199,7 @@ def cmd_database(sub_cmd):
     elif sub_cmd == 'extract_coords':
         extract_coords()
     else:
-        abort('unknown database subcommand, run "./maintenance.py help" to get a list of subcommands.')        
+        abort('unknown database subcommand, run "./maintenance.py help" to get a list of subcommands.')
 
 # ----------------------- SCRIPT
 
