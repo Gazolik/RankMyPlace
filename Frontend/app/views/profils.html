@@ -15,9 +15,11 @@
     </div>
     <br/>
     <div class="text-center">
-        <a class="btn btn-default btn-lg" ng-click="showHideDetails()"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{msgCriteres}}</a>
+        <a class="btn btn-default" ng-click="showHideDetails()"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{msgCriteres}}</a>
     </div><br/>
-    <table class="table sample-show-hide" ng-show="show">
+    
+    <h3 class="page-header sample-show-hide" ng-show="show">Dans quelles mesures les critères suivant vous intéressent-ils ?</h3>
+    <table class="tableCriteres table sample-show-hide" ng-show="show">
     <thead>
       <tr>
         <th></th>
