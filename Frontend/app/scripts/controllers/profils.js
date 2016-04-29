@@ -10,16 +10,19 @@
  angular.module('smartCityFrontEndApp')
   .controller('ProfilsCtrl', function ($scope, serviceAjax, searchData) {
      
-    $scope.searchData = searchData;    
-    $scope.customProfil = {name : 'Profil Perso', imgPath : 'personal.png', coefs : []};
+    $scope.searchData = searchData;  
+    $scope.profils = [];
      
     var loadProfils = function (){
       serviceAjax.profils(function(data){
           $scope.profils = data;
-          $scope.profils.push($scope.customProfil);
+          $scope.profils.push({name : 'Profil Perso', imgPath : 'personal.png', coefs : []});
           $scope.show = false;
           searchData.selectedProfil = 0;
           $scope.msgCriteres ='Afficher les critères';
+         if (searchData.criterias.length !== 0){
+            $scope.updateCoef($scope.profils[0], 0);
+         }
           
       });
     };
@@ -29,8 +32,10 @@
       serviceAjax.criterias(function(data) {
          searchData.criterias.length = 0;
          for (var i = 0 ; i < data.length ; ++i){
-             $scope.customProfil.coefs.push({name : data[i].name, coef : 5});
-             searchData.criterias.push({name : data[i].name, coef : $scope.customProfil.coefs[i].coef, code : data[i].code});          
+             searchData.criterias.push({name : data[i].name, coef : data[i].coef, code : data[i].code});          
+         }
+         if ($scope.profils.length !== 0){
+            $scope.updateCoef($scope.profils[0], 0);
          }
       });
     };          
@@ -49,11 +54,16 @@
     };
      
     $scope.updateCoef = function (profil, index){
-        for (var i = 0 ; i < Math.min(searchData.criterias.length, profil.coefs.length) ; ++i){
-            searchData.criterias[i].coef = profil.coefs[i].coef;        
+        for (var i = 0 ; i < searchData.criterias.length ; ++i){
+            if (i < profil.coefs.length){
+                searchData.criterias[i].coef = profil.coefs[i].coef;   
+            }
+            else{
+                searchData.criterias[i].coef = 5;
+            }
         }
         searchData.selectedProfil = index;
-        if ($scope.profilSelected === $scope.customProfil){
+        if (profil.coefs.length === 0){
             $scope.show = true;
             $scope.msgCriteres ='Cacher les critères';
           }
