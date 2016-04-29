@@ -16,28 +16,31 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <!-- Custom CSS -->
+    <link href="css/modern-business.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   </head>
   <body ng-app="smartCityFrontEndApp">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="header">
+    <div class="header">      
       <div class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
           <div class="navbar-header">
             <a class="navbar-brand" href="#/">PLD SmartCity</a>
           </div>
-
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
-            <ul ng-controller="HeaderCtrl" class="nav navbar-nav">
-              <li ng-class="{ active: isActive('/') }"><a ng-href="#/">Recherches</a></li>
+            <ul ng-controller="HeaderCtrl" class="nav navbar-nav navbar-right">              
+              <li ng-class="{ active: isActive('/search') }"><a ng-href="#/search">Recherches</a></li>
               <li ng-class="{ active: isActive('/map') }"><a ng-href="#/map">Carte</a></li>
               <li ng-class="{ active: isActive('/about') }"><a ng-href="#/about">A Propos</a></li>
             </ul>
           </div>
         </div>
-      </div>
+      </div>        
     </div>
 
     <div class="container-fluid">
@@ -104,6 +107,7 @@
         <script src="scripts/services/searchdata.js"></script>
         <script src="scripts/directives/loading.js"></script>
         <script src="scripts/controllers/area.js"></script>
+        <script src="scripts/controllers/home.js"></script>
         <!-- endbuild -->
 </body>
 </html>

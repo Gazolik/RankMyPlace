@@ -25,7 +25,7 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/search', {
         templateUrl: 'views/search.html',
         controller: 'SearchCtrl',
         controllerAs: 'search'
@@ -39,6 +39,11 @@ angular
         templateUrl: 'views/map.html',
         controller: 'MapCtrl',
         controllerAs: 'map'
+      })
+      .when('/', {
+        templateUrl: 'views/home.html',
+        controller: 'HomeCtrl',
+        controllerAs: 'home'
       })
       .otherwise({
         redirectTo: '/'
