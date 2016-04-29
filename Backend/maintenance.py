@@ -38,7 +38,7 @@ from api.maintenance.heatmap.drawer import draw_map_part, draw_map, draw_heatmap
 #
 #   Définit des fonctions permettant de construire des cartes de chaleur à partir de la grille et des critères
 #
-from api.maintenance.heatmap.heatmap_creator import gen_heatmap, gen_all_heatmaps, reduce_grid, reduce_all, avg_grid, gen_shell_script
+from api.maintenance.heatmap.heatmap_creator import gen_heatmap, gen_all_heatmaps, reduce_grid, reduce_all, avg_grid, gen_script
 #
 #
 #
@@ -187,6 +187,9 @@ def cmd_heatmap(sub_cmd):
         avg_grid(arg(2))
     elif sub_cmd == 'gen_areas':
         generate_areas()
+    elif sub_cmd == 'gen_script':
+        assert_args(4, 'expected : heatmap gen_script <int:precision> <enum:method["FGR","QCGR"]>')
+        gen_script(int(arg(3)), arg(4))
     else:
         abort('unknown heatmap subcommand, run "./maintenance.py help" to get a list of subcommands.')
 #

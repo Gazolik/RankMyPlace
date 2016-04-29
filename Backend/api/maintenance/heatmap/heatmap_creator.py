@@ -84,7 +84,7 @@ def avg_grid(gridname):
 #
 #
 #
-def gen_shell_script(precision, method='QCGR'):
+def gen_script(precision, method='QCGR'):
     # initialize command lists
     reduce_cmds = []
     heatmap_cmds = []
@@ -94,7 +94,7 @@ def gen_shell_script(precision, method='QCGR'):
     # list criterias files
     criterias = list_database_psd()
     # for each base grid
-    for initial_grid in initial_grids:
+    for initial_grid in initial_psd:
         # create and add reduce equivalent command
         reduce_cmds.append('./maintenance.py heatmap reduce %s %s %s' % (initial_grid, int(precision), method))
         # initialize new grid name
@@ -104,7 +104,7 @@ def gen_shell_script(precision, method='QCGR'):
             # create and add heatmap generation command
             heatmap_cmds.append('./maintenance.py heatmap gen %s %s' % (grid_name, criteria))
     # write script file
-    with open('heatmap.sh', 'w') as f:
+    with open(script_name, 'w') as f:
         f.write("""#!/bin/bash
 # -!- encoding:utf8 -!-
 #
@@ -120,3 +120,5 @@ echo "[BASH]> starting heatmap generation."
 echo "[BASH]> heatmap generation done."
 #
 """ % ('\n'.join(reduce_cmds), '\n'.join(heatmap_cmds)))
+    # print message
+    print('[heatmap_creator.py]> %s generation done !' % script_name)
