@@ -15,7 +15,7 @@ from ...printer.printer import print_progress
 #   Génère une heatmap à partir d'une grille et d'un critère
 #
 def gen_heatmap(grid_basename, criteria) :
-    print('[heatmap_creator.py]> generating %s heatmap for criteria %s...' % (grid_basename, criteria['name']), end='')
+    print('[heatmap_creator.py]> generating %s heatmap for criteria %s...' % (grid_basename, criteria['name']))
     # read input file
     points = load_heatmap_grid(grid_basename)
     # iterate on points
@@ -50,7 +50,7 @@ def gen_all_heatmaps():
 #
 def reduce_grid(grid_basename, precision):
     grid = load_heatmap_grid(grid_basename)
-    print('[heatmap_creator.py]> cruching %s...' % grid_basename, end='')
+    print('[heatmap_creator.py]> cruching %s...' % grid_basename)
     ratio, removed, total = reduce_precision(grid, precision)
     print('[heatmap_creator.py]> cruching %s...done !' % grid_basename)
     print('[heatmap_creator.py]> reduction ratio is %.2f%% for grid %s. Details : removed = %s, total = %s' % (ratio*100, grid_basename, removed, total))

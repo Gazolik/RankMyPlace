@@ -95,6 +95,7 @@ def cmd_help():
             + psd <database_psd_file>
             + map_part <heatmap_grid_file>
             + map
+            + heatmap_part <heatmap_grid_file> <criteria_name>
 
     + heatmap <sub_cmd> :
         - sub_cmd :

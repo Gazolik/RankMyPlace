@@ -54,17 +54,17 @@ def draw_heatmap_data(draw, grid_basename, criteria_name):
 #   TODO : doc
 #
 def draw_streets(draw, streets):
-    print('[drawer.py]> drawing grid elements...', end='')
+    print('[drawer.py]> drawing grid elements...')
     streets_len = len(streets)
     for i in range(streets_len):
         print_progress(i, streets_len)
         draw_multi_line(draw, streets[i]['coordinates'])
-    print('[drawer.py]> drawing grid elements...done !')
+    print('[drawer.py]> done !')
 #
 #   TODO : doc
 #
 def draw_heatmap(draw, triples):
-    print('[drawer.py]> drawing heatmap elements...', end='')
+    print('[drawer.py]> drawing heatmap elements...')
     triples_len = len(triples)
     for i in range(triples_len):
         print_progress(i, triples_len)
