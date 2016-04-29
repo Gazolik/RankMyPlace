@@ -19,8 +19,6 @@ body {
 
 /* Custom page header */
 .header {
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
 }
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
@@ -83,11 +81,7 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
-    
-  .myStyle {
-      color : cadetblue;   
-    }
-    
+        
     .headerRadio10 {
         color:rgba(192, 192, 0, 1);
     }
@@ -238,4 +232,9 @@ body {
 .tableCriteres{
     text-align: center;
     vertical-align: middle; 
+}
+
+#heatmap{
+    width:1032px;
+    height: 600px;
 }

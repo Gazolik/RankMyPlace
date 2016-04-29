@@ -33,11 +33,9 @@ def heatmap_grid_handler(path, data, api_params):
 def avg_heatmap_grid_handler(path, data, api_params):
     #extraction des criteres utiles
     d = json.loads(data['data'][0])
-    print(data)
     criteres = d['criteres']
     nomcriteres = [k for k,v in criteres.items() if v != 0]
     parts = path.split('/')
-    print(parts)
     avg_map = avg_heatmap(parts[2],criteres)
     return Response(api_params).serialized(avg_map)
 

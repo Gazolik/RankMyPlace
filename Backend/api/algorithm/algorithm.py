@@ -14,11 +14,10 @@ EARTH_RADIUS = 6367.0
 # ------------------------------- FUNCTIONS
 #
 #
-#
 def coord_dist(ori, dest, geodist=True):
     res = None
-    dlat = math.radians(dest['lat']-ori['lat'])
-    dlon = math.radians(dest['lon']-ori['lon'])
+    dlat = math.radians(dest['lat'] - ori['lat'])
+    dlon = math.radians(dest['lon'] - ori['lon'])
     if geodist:
         a = math.pow(
             math.sin(dlat / 2.0), 2) + math.cos(
@@ -79,6 +78,7 @@ def records_around(records, coord, radius):
 #   Fonction de réduction de la granularité de la grille
 #
 def reduce_precision(grid, precision, determinist=True):
+    print('[algorithm.py]> reducing grid precision...')
     grid_len = len(grid)
     removed_idx = []
     # calcul des points à supprimer
@@ -92,25 +92,29 @@ def reduce_precision(grid, precision, determinist=True):
                         p = { 'lon':grid[j][0], 'lat':grid[j][1] }
                         if coord_dist(o, p) < precision:
                             removed_idx.append(j)
+    print('[algorithm.py]> done !')
     # suppression des points en trop
-    for idx in removed_idx:
-        del grid[idx]
+    kept = []
+    for i in range(grid_len):
+        if not i in removed_idx:
+            kept.append(grid[i])
     # retour du ratio
     ratio = float(len(removed_idx))/grid_len
-    return (ratio, len(removed_idx), grid_len)
+    return (kept, ratio, len(removed_idx), grid_len)
 #
 #
 #
 def avg_geo_delta(grid):
+    print('[algorithm.py]> computing grid stats...')
     dlat = []
     dlon = []
-    k=0
-    for i in grid:
-        k = k+1
-        print_progress(k,len(grid))
+    grid_len = len(grid)
+    for i in range(grid_len):
+        print_progress(i, grid_len)
         for j in grid:
-            dlat.append(abs(i[0]-j[0]))
-            dlon.append(abs(i[1]-j[1]))
+            dlat.append(abs(grid[i][0]-j[0]))
+            dlon.append(abs(grid[i][1]-j[1]))
+    print('[algorithm.py]> done !')
     return (sum(dlat)/len(dlat),sum(dlon)/len(dlon))
 
 
