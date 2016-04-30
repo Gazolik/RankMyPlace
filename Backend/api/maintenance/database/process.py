@@ -4,6 +4,7 @@
 # ----------------------------------- IMPORTS
 
 from ...fs.fs import load_database_raw, dump_database_pre_psd
+from ...algorithm.algorithm import isobarycenter
 
 import json
 
@@ -30,17 +31,6 @@ INPUTS = {
 }
 
 # ------------------------------------ FUNCTIONS
-#
-#   Approximation du barycentre car coordonnées géographiques
-#
-def isobarycenter(coordinates):
-    n = len(coordinates)
-    sumlat = 0.0
-    sumlon = 0.0
-    for i in range(n):
-        sumlat += coordinates[i][1]
-        sumlon += coordinates[i][0]
-    return { 'lat':sumlat/n, 'lon':sumlon/n }
 #
 #   Extraction des coordonnées du record
 #

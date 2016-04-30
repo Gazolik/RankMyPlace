@@ -13,7 +13,18 @@ EARTH_RADIUS = 6367.0
 
 # ------------------------------- FUNCTIONS
 #
-#   TODO : doc
+#   Barycentre en coordonnées géographiques
+#
+def isobarycenter(coordinates):
+    n = len(coordinates)
+    sumlat = 0.0
+    sumlon = 0.0
+    for i in range(n):
+        sumlat += coordinates[i][1]
+        sumlon += coordinates[i][0]
+    return { 'lat' : sumlat/n, 'lon' : sumlon/n }
+#
+#   Calcul paramétrable de la distance entre deux coordonnées géographique
 #
 def coord_dist(ori, dest, geodist=True):
     res = None
@@ -31,7 +42,7 @@ def coord_dist(ori, dest, geodist=True):
         res = math.tan(d)
     return 1000 * EARTH_RADIUS * res
 #
-#   TODO : doc
+#   Calcul de la distance selon la latitude et selon la longitude
 #
 def axis_dist(ori_lat, ori_lon, dest_lat, dest_lon, geodist=True):
     res = None
@@ -39,7 +50,7 @@ def axis_dist(ori_lat, ori_lon, dest_lat, dest_lon, geodist=True):
     dlon = coord_dist({'lat':0.0,'lon':ori_lon},{'lat':0.0,'lon':dest_lon})
     return (dlat, dlon)
 #
-# Récupère les N records les plus proches géographiquement de la coordonnée passée en paramètre
+#   Récupère les N records les plus proches géographiquement de la coordonnée passée en paramètre
 #
 def n_closest_records(records, coord, n):
     recs = []
@@ -51,13 +62,13 @@ def n_closest_records(records, coord, n):
     # finally return n first records
     return sorted_recs[:n]
 #
-# Récupère le record le plus proche de la coordonnée géographiquement
+#   Récupère le record le plus proche de la coordonnée géographiquement
 #
 def closest_record(records, coord):
     cr = n_closest_records(records, coord, 1)[0]
     return cr
 #
-# Retourne un tuple contenant la densité, le record le plus proche et sa distance à la coordonnée
+#   Retourne un tuple contenant la densité, le record le plus proche et sa distance à la coordonnée
 #
 def density_around(records, coord, radius):
     closest = None
@@ -73,7 +84,7 @@ def density_around(records, coord, radius):
     # finally return record
     return (density, closest, min_dist)
 #
-# Retourne tous les records compris dans un rayon (radius) autour de coord
+#   Retourne tous les records compris dans un rayon (radius) autour de coord
 #
 def records_around(records, coord, radius):
     recs = []
@@ -112,7 +123,7 @@ def reduce_precision_QCGR(grid, precision, determinist=True):
     # retour de la grille, du ratio de reduction et du nombre de points enlevés et du total
     return (kept, ratio, len(removed_idx), grid_len)
 #
-#
+#   Fonction de réduction de la granularité de la grille
 #
 MIN_LON = 4.681  # degrees
 MIN_LAT = 45.55  # degrees
@@ -139,7 +150,7 @@ def reduce_precision_FGR(grid, precision, determinist=True):
     # retour de la grille, du ratio de reduction et du nombre de points enlevés et du total
     return (list(matrix.values()), ratio, removed, grid_len)
 #
-#
+#   TODO : doc
 #
 def avg_geo_delta(grid):
     print('[algorithm.py]> computing grid stats...')
@@ -153,8 +164,9 @@ def avg_geo_delta(grid):
             dlon.append(abs(grid[i][1]-j[1]))
     print('[algorithm.py]> done !')
     return (sum(dlat)/len(dlat),sum(dlon)/len(dlon))
-
-
+#
+#   TODO : doc
+#
 def avg_heatmap(heatmap_name, criterias_coef):
     print(heatmap_name)
     coef_tot = sum(criterias_coef.values())

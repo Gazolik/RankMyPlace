@@ -1,7 +1,18 @@
+#!/usr/bin/python3
+# -!- encoding:utf8 -!-
+
+# ---------------------------------- IMPORTS
+
 from ..py_rest.pyrest.rest_server.rest_api.response import Response
 from ..fs.fs import load_heatmap, list_database_psd, list_heatmap_grids,load_static
-from ..algorithm.algorithm import avg_heatmap
+from ..algorithm.algorithm import avg_heatmap, isobarycenter
 import json
+
+# ---------------------------------- CONFIGURATION
+
+GRID_SET = '_red_100_fgr'
+
+# ---------------------------------- HANDLERS
 #
 #
 #
@@ -11,7 +22,7 @@ def heatmap_base_handler(path, data, api_params):
     print(data)
     return Response(api_params).serialized({'data':data})
 #
-#Calcul une heatmap d'un critere
+# Calcul une heatmap d'un critere
 #
 def heatmap_grid_handler(path, data, api_params):
     data = {}
@@ -19,15 +30,14 @@ def heatmap_grid_handler(path, data, api_params):
     if len(parts) == 4: # on attend ['','heatmap','<grid_name>','<criteria_name>']
         grid_basename = parts[2]
         criteria_name = parts[3]
-        data['heatmap'] = load_heatmap(grid_basename, criteria_name)['heatmap']
+        data['heatmap'] = load_heatmap(grid_basename+GRID_SET, criteria_name)['heatmap']
         data['zoom'] = 14
-        data['centLat'] = data['heatmap'][0][1]
-        data['centLon'] = data['heatmap'][0][0]
+        data['center'] = isobarycenter(data['heatmap'])
     return Response(api_params).serialized(data)
 
 
 #
-#Calcul une heatmap de plusieurs criteres
+# Calcul une heatmap de plusieurs criteres
 #
 def avg_heatmap_grid_handler(path, data, api_params):
     #extraction des criteres utiles
