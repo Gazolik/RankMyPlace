@@ -4,5 +4,5 @@ Frontend/bower_components/*
 Frontend/node_modules/*
 *__pycache__*
 LICENSE
-Backend/data/heatmap/grids/*
-Backend/data/heatmap/maps/*
+Backend/data/heatmap/grids/*.json
+Backend/data/heatmap/maps/*.json

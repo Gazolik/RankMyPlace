@@ -1,7 +1,7 @@
+<h1 class="page-header">Quel quartier vous intéresse ?</h1>
 <div class="row">
-    <h1 class="page-header">Quel quartier vous intéresse ?</h1>
     <div class="col-lg-3 col-sm-4 text-center" ng-repeat="area in areas">
-        <div ng-click="clickOnBubble($index, area.name);">
+        <div ng-click="clickOnBubble($index, area.code);">
             <div class="bubble">
                 <div class="img-circle " ng-class="{selectedBubble : searchData.selectedArea == $index}"></div>
                 <img class="img-circle img-responsive img-center" ng-src="images/dynamic/{{area.imgPath}}" alt="">
@@ -10,3 +10,4 @@
         </div>
     </div>
 </div>
+<div class="footer"><p>Par Hexanonyme</p></div>

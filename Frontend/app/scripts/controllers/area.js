@@ -11,9 +11,9 @@ angular.module('smartCityFrontEndApp')
   .controller('AreasCtrl', function ($scope, serviceAjax, searchData) {
     $scope.searchData = searchData;
     
-    $scope.clickOnBubble = function(index, name){
+    $scope.clickOnBubble = function(index, code){
         searchData.selectedArea = index;
-        searchData.area = name;
+        searchData.areaCode = code;
     };
     
     var loadAreas = function (){
