@@ -4,7 +4,9 @@
       <div class="form-group m-x-10">
         <label class="control-label" for="zoneCB">Zones :</label>
           <select class="form-control" name="zoneCB" id="zoneCB" ng-model="searchData.selectedArea"> 
-            <option ng-selected="{{searchData.selectedArea === area.code}}" ng-repeat="area in areas" value="{{area.code}}">
+            <option ng-selected="{{searchData.selectedArea === area.code}}"
+                    ng-repeat="area in areas | orderBy:'name'"
+                    value="{{area.code}}">
                 {{area.name}}
             </option>
         </select>
@@ -12,7 +14,9 @@
       <div class="form-group m-x-10">
           <label class="control-label" for="critereCB">Critères :</label>
           <select class="form-control" name="critereCB" id="critereCB" ng-model="searchData.selectedCritere"> 
-            <option ng-selected="{{searchDara.selectedCritere === critere.code}}" ng-repeat="critere in criterias" value="{{critere.code}}">
+            <option ng-selected="{{searchDara.selectedCritere === critere.code}}" 
+                    ng-repeat="critere in criterias | orderBy:'name'" 
+                    value="{{critere.code}}">
                 {{critere.name}}
             </option>
         </select>

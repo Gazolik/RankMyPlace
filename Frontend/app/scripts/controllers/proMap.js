@@ -10,6 +10,8 @@
 angular.module('smartCityFrontEndApp')
   .controller('ProMapCtrl', function ($scope, searchData, serviceAjax) {
     $scope.searchData = searchData;
+    var oldCritere = '';
+    var loadedAreas = [];
     var loadAreas = function (){
       serviceAjax.areas(function(data){
           $scope.areas = data;
@@ -26,6 +28,14 @@ angular.module('smartCityFrontEndApp')
     loadCriterias();
     
     $scope.updateMap = function(){
-        $scope.$broadcast('updateMap');
+        if (oldCritere !== searchData.selectedCritere){
+            loadedAreas.length = 0;
+        }
+        if (loadedAreas.indexOf(searchData.selectedArea) !== -1){
+            return;
+        }
+        $scope.$broadcast('updateMap', oldCritere !== searchData.selectedCritere);
+        oldCritere = searchData.selectedCritere;
+        loadedAreas.push(searchData.selectedArea);
     };
   });

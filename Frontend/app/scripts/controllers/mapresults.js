@@ -15,7 +15,13 @@ angular.module('smartCityFrontEndApp')
     $scope.topTooltip = '0px';
     $scope.leftTooltip = '0px';
     $scope.tooltipValue = 0;
+    var heatMapData = {
+          max:1000,
+          min:0,
+          data: []
+        };
     $scope.initMap = function(){ 
+       heatMapData.data.length = 0;
        var baseLayer = L.tileLayer(
           'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
             attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
@@ -43,13 +49,8 @@ angular.module('smartCityFrontEndApp')
     };
     
     var setData = function(data){
-        var heatMapData = {
-          max:10,
-          min:0,
-          data: []
-        };
         for (var i = 0 ; i < data.heatmap.length ; ++i){
-            heatMapData.data.push({lat: data.heatmap[i][1], lon:data.heatmap[i][0], rank: data.heatmap[i][2]});
+            heatMapData.data.push({lat: data.heatmap[i][1], lon:data.heatmap[i][0], rank: data.heatmap[i][2]*100});
         }
 
         map.setZoom(data.zoom);
@@ -59,7 +60,10 @@ angular.module('smartCityFrontEndApp')
     $scope.updateMap = function(){
         serviceAjax.heatmapCriterias(searchData, setData);
     };
-    $scope.$on('updateMap', function(){
+    $scope.$on('updateMap', function(event, clear){
+        if (clear === true){
+            heatMapData.data.length = 0;
+        }
         serviceAjax.heatmapCriteria(searchData.selectedArea, searchData.selectedCritere, setData);
     });
     
@@ -68,9 +72,9 @@ angular.module('smartCityFrontEndApp')
       var y = event.offsetY;
       var value = heatmapLayer._heatmap.getValueAt({x: x, y: y});
       $scope.displayTooltip = 'block';
-      $scope.topTooltip = (event.pageY - 40) + 'px';
-      $scope.leftTooltip = (event.pageX - 12) + 'px';
-      $scope.tooltipValue = value;
+      $scope.topTooltip = (event.clientY - 40) + 'px';
+      $scope.leftTooltip = (event.clientX - 20) + 'px';
+      $scope.tooltipValue = value/100;
     };
     
     $scope.hideTooltip = function() {

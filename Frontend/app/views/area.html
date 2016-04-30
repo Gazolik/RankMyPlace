@@ -16,7 +16,9 @@
 <div class="form-inline col-md-4">
       <label class="control-label" for="zoneCB">Autres zones :</label>
       <select class="form-control" name="zoneCB" id="zoneCB" ng-model="searchData.selectedArea"> 
-        <option ng-selected="{{searchData.selectedArea === area.code}}" ng-repeat="area in areas" value="{{area.code}}">
+        <option ng-selected="{{searchData.selectedArea === area.code}}"
+                ng-repeat="area in areas | orderBy:'name'"
+                value="{{area.code}}">
             {{area.name}}
         </option>
     </select>
