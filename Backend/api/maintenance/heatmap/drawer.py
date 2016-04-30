@@ -6,7 +6,7 @@
 from PIL import Image, ImageDraw, ImageFont
 import sys, json, os, math
 
-from ...fs.fs import load_heatmap_psd, list_heatmap_psd, load_heatmap
+from ...fs.fs import load_heatmap_psd, list_heatmap_psd, load_heatmap, load_database_psd
 from ...printer.printer import print_progress
 
 # ---------------------------- CONFIGURATION
@@ -29,6 +29,7 @@ BG_COLOR = (255, 255, 255, 0)
 STREET_COLOR = (0, 0, 0, 0)
 INTERSECT_COLOR = (255, 0, 0, 128)
 HM_INTERS_COLOR = (0, 0, 255, 128)
+CRIT_LOCA_COLOR = (0, 102, 0, 128)
 
 # ---------------------------- FUNCTIONS
 #
@@ -41,7 +42,7 @@ def scale_point(lon, lat):
 #
 #   TODO : doc
 #
-def draw_file_data(draw, grid_basename):
+def draw_grid_data(draw, grid_basename):
     streets = load_heatmap_psd(grid_basename)
     draw_streets(draw, streets)
 #
@@ -50,6 +51,16 @@ def draw_file_data(draw, grid_basename):
 def draw_heatmap_data(draw, heatmap_basename, criteria_name):
     data = load_heatmap(heatmap_basename, criteria_name)
     draw_heatmap(draw, data['heatmap'])
+#
+#   TODO : doc
+#
+def draw_criteria_data(draw, criteria_name):
+    print('[drawer.py]> drawing criteria elements...')
+    data = load_database_psd(criteria_name)
+    for obj in data:
+        x, y = scale_point(obj['coordinates']['lon'], obj['coordinates']['lat'])
+        draw_square(draw, x, y, outline=CRIT_LOCA_COLOR)
+    print('[drawer.py]> done !')
 #
 #   TODO : doc
 #
@@ -88,7 +99,7 @@ def draw_multi_line(draw, points):
 def draw_heatmap_triple(draw, triple):
     x, y = scale_point(triple[0], triple[1])
     mark = '%.0f' % triple[2]
-    draw_square(draw, x, y)
+    draw_square(draw, x, y, outline=HM_INTERS_COLOR)
     draw_text(draw, x, y, mark)
 
 #
@@ -107,10 +118,10 @@ def draw_point(draw, x, y, px_radius=1):
 #
 #   TODO : doc
 #
-def draw_square(draw, x, y, px_half_side=1):
+def draw_square(draw, x, y, px_half_side=1, fill=None, outline=None):
     draw.rectangle([(x-px_half_side, y-px_half_side),
                     (x+px_half_side, y+px_half_side)],
-                    fill = None, outline=HM_INTERS_COLOR)
+                    fill=fill, outline=outline)
 
 def draw_text(draw, x, y, text):
     font = ImageFont.load_default()
@@ -130,7 +141,7 @@ def draw_map_part(grid_basename):
     # init image
     im , draw = img_init()
     # draw image part for given basename
-    draw_file_data(draw, grid_basename)
+    draw_grid_data(draw, grid_basename)
     # show image
     im.show()
     print('[drawer.py]> done !')
@@ -144,7 +155,7 @@ def draw_map():
     # for each basename draw image part
     basenames = list_heatmap_psd()
     for basename in basenames:
-        draw_file_data(draw, basename)
+        draw_grid_data(draw, basename)
     # show image
     im.show()
     print('[drawer.py]> done !')
@@ -154,9 +165,11 @@ def draw_heatmap_part(grid_basename, heatmap_basename, criteria_name):
     # init image
     im , draw = img_init()
     # draw grid
-    draw_file_data(draw, grid_basename)
+    draw_grid_data(draw, grid_basename)
     # draw heatmap on previously drawn grid
     draw_heatmap_data(draw, heatmap_basename, criteria_name)
+    # draw criteria data
+    draw_criteria_data(draw, criteria_name)
     # show image
     im.show()
     print('[drawer.py]> done !')
