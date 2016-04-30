@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name smartCityFrontEndApp.controller:ResultsCtrl
+ * @name smartCityFrontEndApp.controller:AddressResultsCtrl
  * @description
  * # ResultsCtrl
  * Controller of the smartCityFrontEndApp
  */
 angular.module('smartCityFrontEndApp')
-  .controller('SearchResultsCtrl', function ($scope, serviceAjax, searchData) {
+  .controller('AddressResultsCtrl', function ($scope, serviceAjax, searchData) {
     $scope.searchData = searchData;
     $scope.loading = true;
     var color = ['#FF6666', '#FFCC66', '#CCFF66', '#66FF66', '#66FFCC', '#66CCFF', '#CC66FF', '#8000FF', '#0080FF', '#008080'];

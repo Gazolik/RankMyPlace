@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name smartCityFrontEndApp.controller:MainCtrl
+ * @name smartCityFrontEndApp.controller:ProAddressCtrl
  * @description
  * # SearchCtrl
  * Controller of the smartCityFrontEndApp
  */
 angular.module('smartCityFrontEndApp')
-  .controller('SearchCtrl', function ($scope, $rootScope) {
+  .controller('ProAddressCtrl', function ($scope, $rootScope) {
     $scope.displayedView = 0;
     $scope.prev = function() {
         if ($scope.displayedView > 0) {

@@ -1,0 +1,33 @@
+<div class="container">
+    <h1 class="page-header">Visualisation de la qualité de vie</h1>
+    <form class="form-inline text-center">
+      <div class="form-group m-x-10">
+        <label class="control-label" for="zoneCB">Zones :</label>
+          <select class="form-control" name="zoneCB" id="zoneCB" ng-model="searchData.selectedArea"> 
+            <option ng-selected="{{searchData.selectedArea === area.code}}" ng-repeat="area in areas" value="{{area.code}}">
+                {{area.name}}
+            </option>
+        </select>
+      </div>
+      <div class="form-group m-x-10">
+          <label class="control-label" for="critereCB">Critères :</label>
+          <select class="form-control" name="critereCB" id="critereCB" ng-model="searchData.selectedCritere"> 
+            <option ng-selected="{{searchDara.selectedCritere === critere.code}}" ng-repeat="critere in criterias" value="{{critere.code}}">
+                {{critere.name}}
+            </option>
+        </select>
+      </div>
+      <button class="btn btn-primary m-x-10" ng-click="updateMap(false)">Visualiser</button>
+    </form>
+    <hr/>
+    <div ng-controller="MapResultsCtrl" ng-init="initMap();">
+        <div id="heatmap" ng-mousemove="showTooltip($event)" ng-mouseleave="hideTooltip()"></div>
+        <div id="heatmapTooltip" ng-style="{'display':displayTooltip, 'top': topTooltip, 'left': leftTooltip}">{{tooltipValue}}</div>
+        <div id="heatmapLegend" >
+            <span id="minLegend">0</span>
+            <span id="maxLegend">10</span>
+            <img id="gradientLegend" src="" />
+      </div>
+    </div>
+    <div class="footer"><p>Par Hexanonyme</p></div>
+</div>

@@ -8,10 +8,16 @@
  * Controller of the smartCityFrontEndApp
  */
 angular.module('smartCityFrontEndApp')
-  .controller('AddressCtrl', function ($scope, serviceAjax, searchData) {
+  .controller('AddressCtrl', function ($scope, $route, serviceAjax, searchData) {
     $scope.addressError = false;
     $scope.searchData = searchData;
     $scope.form = {};
+    if ($route.current.isPro){
+        $scope.pageTitle =  'Quelle adresse vous intéresse ?';
+    }
+    else{
+        $scope.pageTitle =  'Quelle est votre adresse ?';
+    }
     
     $scope.$on('getLatLon', function(event, next){
         $scope.form.addressForm.address.$setDirty();

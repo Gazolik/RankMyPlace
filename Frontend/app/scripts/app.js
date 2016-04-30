@@ -25,20 +25,34 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/search', {
-        templateUrl: 'views/search.html',
-        controller: 'SearchCtrl',
-        controllerAs: 'search'
+      .when('/ind/address', {
+        templateUrl: 'views/indAddress.html',
+        controller: 'IndAddressCtrl',
+        controllerAs: 'indAddress',
+        isPro: false
+      })
+      .when('/ind/map', {
+        templateUrl: 'views/indMap.html',
+        controller: 'IndMapCtrl',
+        controllerAs: 'indMap',
+        isPro: false
+      })
+      .when('/pro/address', {
+        templateUrl: 'views/proAddress.html',
+        controller: 'ProAddressCtrl',
+        controllerAs: 'proAddress',
+        isPro: true
+      })
+      .when('/pro/map', {
+        templateUrl: 'views/proMap.html',
+        controller: 'ProMapCtrl',
+        controllerAs: 'proMap',
+        isPro: true
       })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
-      })
-      .when('/map', {
-        templateUrl: 'views/map.html',
-        controller: 'MapCtrl',
-        controllerAs: 'map'
       })
       .when('/', {
         templateUrl: 'views/home.html',

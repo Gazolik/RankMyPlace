@@ -1,5 +1,5 @@
 
-<h1 class="page-header">Quelle est votre adresse ?</h1>
+<h1 class="page-header">{{pageTitle}}</h1>
 <form name="form.addressForm" ng-submit="getLatLon()" novalidate>
     <div class="form-group" ng-class="{ 'has-error' : (form.addressForm.address.$invalid && !form.addressForm.address.$pristine) || (addressError && form.addressForm.address.$pristine)}">
         <label class="control-label" for="address">Adresse : </label>

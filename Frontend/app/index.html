@@ -5,6 +5,9 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <!--[if gte IE 9]
+        <style type="text/css">.gradient {filter: none;}</style>
+    <![endif]-->
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -32,9 +35,30 @@
             <a class="navbar-brand" href="#/">PLD SmartCity</a>
           </div>
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
-            <ul ng-controller="HeaderCtrl" class="nav navbar-nav navbar-right">              
-              <li ng-class="{ active: isActive('/search') }"><a ng-href="#/search">Recherches</a></li>
-              <li ng-class="{ active: isActive('/map') }"><a ng-href="#/map">Carte</a></li>
+            <ul ng-controller="HeaderCtrl" class="nav navbar-nav navbar-right"> 
+                <li ng-class="{ active: isActive('/') }"><a ng-href="#/">Accueil</a></li>
+                <li class="dropdown" ng-class="{ active: isActive('/ind/address') || isActive('/ind/map') }">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Particulier <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li ng-class="{ active: isActive('/ind/address') }">
+                            <a href="#/ind/address">Notation d'adresse</a>
+                        </li>
+                        <li ng-class="{ active: isActive('/ind/map') }">
+                            <a href="#/ind/map">Recherche d'un quartier</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown" ng-class="{ active: isActive('/pro/address') || isActive('/pro/map') }">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Professionnel <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li ng-class="{ active: isActive('/pro/address') }">
+                            <a href="#/pro/address">Adéquation profil/adresse</a>
+                        </li>
+                        <li ng-class="{ active: isActive('/pro/map') }">
+                            <a href="#/pro/map">Qualité de vie d'un quartier</a>
+                        </li>
+                    </ul>
+                </li>
               <li ng-class="{ active: isActive('/about') }"><a ng-href="#/about">A Propos</a></li>
             </ul>
           </div>
@@ -74,15 +98,17 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/search.js"></script>
+        <script src="scripts/controllers/indAddress.js"></script>
+        <script src="scripts/controllers/proAddress.js"></script>
         <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/map.js"></script>
+        <script src="scripts/controllers/indMap.js"></script>
+        <script src="scripts/controllers/proMap.js"></script>
         <script src="scripts/controllers/header.js"></script>
         <script src="scripts/services/serviceajax.js"></script>
         <script src="scripts/controllers/profils.js"></script>
         <script src="scripts/controllers/address.js"></script>
-        <script src="scripts/controllers/searchResults.js"></script>
-        <script src="scripts/controllers/mapresults.js"></script>
+        <script src="scripts/controllers/addressResults.js"></script>
+        <script src="scripts/controllers/mapResults.js"></script>
         <script src="scripts/services/searchdata.js"></script>
         <script src="scripts/directives/loading.js"></script>
         <script src="scripts/controllers/area.js"></script>
