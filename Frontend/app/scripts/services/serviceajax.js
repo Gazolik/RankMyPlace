@@ -36,8 +36,8 @@ angular.module('smartCityFrontEndApp')
         },
         areas: function(successFct){
            // $http.get('http://501srv-2.insa-lyon.fr:8000/criterias').success(function (data){successFct(data.content.criteres)});
-            //$http.get('http://localhost:8000/heatmap').success(function (data){successFct(data.content.heatmap);});
-            successFct([{name : 'Lyon 1er', imgPath : 'lyon1.png', code:'lyon1'},
+            $http.get('http://localhost:8000/heatmap').success(function (data){successFct(data.content.data);});
+            /*successFct([{name : 'Lyon 1er', imgPath : 'lyon1.png', code:'lyon1'},
                         {name : 'Lyon 2ème', imgPath : 'lyon2.png', code:'lyon2'},
                         {name : 'Lyon 3ème', imgPath : 'lyon3.png', code:'lyon3'},
                         {name : 'Lyon 4ème', imgPath : 'lyon4.png', code:'lyon4'},
@@ -45,7 +45,7 @@ angular.module('smartCityFrontEndApp')
                         {name : 'Lyon 6ème', imgPath : 'lyon6.png', code:'lyon6'},
                         {name : 'Lyon 7ème', imgPath : 'lyon7.png', code:'lyon7'},
                         {name : 'Lyon 8ème', imgPath : 'lyon8.png', code:'lyon8'},
-                        {name : 'Lyon 9ème', imgPath : 'lyon9.png', code:'lyon9'}]);
+                        {name : 'Lyon 9ème', imgPath : 'lyon9.png', code:'lyon9'}]);*/
         },
         search: function(searchData, successFct){
             var args = {criteres : {}, lat : parseFloat(searchData.lat), lon : parseFloat(searchData.lon)};
