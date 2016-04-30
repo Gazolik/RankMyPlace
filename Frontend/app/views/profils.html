@@ -5,7 +5,9 @@
         <div class="col-md-2 col-sm-4 text-center" ng-repeat="profil in profils">
             <div ng-click="updateCoef(profil, $index)" style="cursor:pointer">
                 <div class="bubble">
-                    <div class="img-circle " ng-class="{selectedBubble : searchData.selectedProfil == $index}"></div>
+                    <div class="img-circle" ng-class="(searchData.selectedProfil == $index) ? 'selectedBubble' : 'notSelectedBubble'">
+                        <p><i class="fa fa-check fa-5x text-primary"></i></p>
+                    </div>
                     <img class="img-circle img-responsive img-center" ng-src="images/dynamic/{{profil.imgPath}}" alt="">
                 </div>
                 <h3 class="titleBuble">{{profil.name}}</h3>
@@ -15,7 +17,7 @@
     </div>
     <br/>
     <div class="text-center">
-        <a class="btn btn-default" ng-click="showHideDetails()"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{msgCriteres}}</a>
+        <a class="btn btn-primary" ng-click="showHideDetails()"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{msgCriteres}}</a>
     </div><br/>
     
     <h3 class="page-header sample-show-hide" ng-show="show">Dans quelle mesure les critères suivant vous intéressent-ils ?</h3>
