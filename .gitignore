@@ -6,3 +6,5 @@ Frontend/node_modules/*
 LICENSE
 Backend/data/heatmap/grids/*.json
 Backend/data/heatmap/maps/*.json
+
+Frontend/dist.zip

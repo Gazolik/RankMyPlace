@@ -13,6 +13,7 @@ angular.module('smartCityFrontEndApp')
     var map;
     $scope.initMap = function(){
         var heatMapData = {
+          max:10,
           data: []
         };
         serviceAjax.heatmap(searchData, function(data){
@@ -41,7 +42,7 @@ angular.module('smartCityFrontEndApp')
             heatmapLayer = new HeatmapOverlay(cfg);
 
             map = new L.Map('heatmap', {
-              center: new L.LatLng(data.centerLat, data.centerLon),
+              center: new L.LatLng(data.center.lat, data.center.lon),
               zoom: data.zoom,
               layers: [baseLayer, heatmapLayer]
             });
