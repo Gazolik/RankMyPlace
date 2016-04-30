@@ -6,7 +6,7 @@
          <div ng-controller="ProfilsCtrl" ng-include="'views/profils.html'"></div>
     </div>
      <div class="animate-switch" ng-switch-when="1">
-         <div class="container" ng-controller="AreasCtrl" ng-include="'views/area.html'"></div>
+         <div ng-controller="AreasCtrl" ng-include="'views/area.html'"></div>
     </div>
      <div class="animate-switch" ng-switch-when="2">
          <div ng-controller="MapResultsCtrl" ng-include="'views/mapResults.html'" onload="initMap()"></div>
