@@ -19,7 +19,7 @@ GRID_SET = '_red_100_fgr'
 def heatmap_base_handler(path, data, api_params):
 
     data = [v for k,v in load_static('areas').items()]
-    print(data)
+    #print(data)
     return Response(api_params).serialized({'data':data})
 #
 # Calcul une heatmap d'un critere
