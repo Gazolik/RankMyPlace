@@ -168,7 +168,7 @@ def avg_geo_delta(grid):
 #   TODO : doc
 #
 def avg_heatmap(heatmap_name, criterias_coef, GRID_SET):
-    print(heatmap_name)
+    #print(heatmap_name)
     coef_tot = sum(criterias_coef.values())
     #la heatmap qui sera retournee
     avg_map = {}
@@ -181,7 +181,7 @@ def avg_heatmap(heatmap_name, criterias_coef, GRID_SET):
     nomcriteres= [k for k,v in criterias_coef.items() if v != 0]
 
     for criteria in nomcriteres:
-        print(criteria)
+        #print(criteria)
         loaded_heatmap = load_heatmap(heatmap_name+GRID_SET, criteria)
         if loaded_heatmap is None:
             continue
