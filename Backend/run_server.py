@@ -22,5 +22,5 @@ api.add_path(RestAPI.POST, '/heatmap/{grid_basename}', avg_heatmap_grid_handler)
 firewall = Firewall(persistentLog=False)
 
 # initialize and run server
-server = RestServer(8000, api, firewall)
+server = RestServer(8000, api, firewall, { 'display_error_details' : True })
 server.run()
