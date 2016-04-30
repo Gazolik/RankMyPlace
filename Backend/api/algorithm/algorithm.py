@@ -170,13 +170,11 @@ def avg_geo_delta(grid):
 def avg_heatmap(heatmap_name, criterias_coef):
     print(heatmap_name)
     coef_tot = sum(criterias_coef.values())
-
     #la heatmap qui sera retournee
     avg_map = {}
     avg_map['heatmap'] = load_heatmap_grid(heatmap_name)
     #TODO : changer les valeurs
-    avg_map['centLat'] = avg_map['heatmap'][0][1]
-    avg_map['centLon'] = avg_map['heatmap'][0][0]
+    avg_map['center'] = isobarycenter(avg_map['heatmap'])
     avg_map['zoom'] = 14
     #tableau des notes moyennes
     notes = [0 for i in avg_map['heatmap']]
@@ -193,6 +191,6 @@ def avg_heatmap(heatmap_name, criterias_coef):
         #del loaded_heatmap
 
     for idx, val in enumerate(notes):
-        avg_map['heatmap'][idx].append(round(notes[idx],2))
+        avg_map['heatmap'][idx] = [round(avg_map['heatmap'][idx][0], 5),round(avg_map['heatmap'][idx][1], 5),round(notes[idx],2)]
     return avg_map
 
