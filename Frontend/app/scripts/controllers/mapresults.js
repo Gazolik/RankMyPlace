@@ -14,6 +14,7 @@ angular.module('smartCityFrontEndApp')
     $scope.initMap = function(){
         var heatMapData = {
           max:10,
+          min:0,
           data: []
         };
         serviceAjax.heatmap(searchData, function(data){
@@ -32,7 +33,6 @@ angular.module('smartCityFrontEndApp')
               radius: 0.001,
               maxOpacity: 0.8, 
               scaleRadius: true, 
-              useLocalExtrema: true,
               latField: 'lat',
               lngField: 'lon',
               valueField: 'rank'
