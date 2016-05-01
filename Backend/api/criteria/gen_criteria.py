@@ -3,6 +3,7 @@ from ..fs.fs import load_database_psd
 from ..algorithm.algorithm import closest_record
 from ..algorithm.algorithm import density_around
 from ..debug.debug import watch_time
+from ..algorithm.algorithm import records_around
 #
 
 
@@ -139,11 +140,10 @@ def custom(criteria, coord):
         Retour:
             retourne un triplet (note_sur_dix, element_trouvé, (densité|None))
     """
-    if criteria == "bruit":
+    if criteria['name'] == "bruit":
         return custom_bruit(criteria, coord)
     else:
-        print('[gen_criteria.py]> /!\ Profil custom non disponible /!\')
-        printf(criteria)
+        print('[gen_criteria.py]> /!\ Profil custom non disponible /!\\')
         return(-1.0, None, None)
 
 
