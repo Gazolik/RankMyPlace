@@ -4,7 +4,11 @@
 from ..py_rest.pyrest.rest_server.rest_api.response import Response
 from ..fs.fs import load_static
 
+
 def criterias_handler(path, data, api_params):
+    """
+        TODO : doc
+    """
     criteres = load_static('criteres')
-    name_list = [{'code':k,'name':criteres[k]['realname'], 'groupe':criteres[k]['group'], 'description':criteres[k]['description'], 'type' : criteres[k]['type']} for k in criteres.keys()]
-    return Response(api_params).serialized({"criteres":name_list})
+    name_list = [{'code': k, 'name': criteres[k]['realname'], 'groupe': criteres[k]['group'], 'description': criteres[k]['description'], 'type': criteres[k]['type']} for k in criteres.keys()]
+    return Response(api_params).serialized({'criteres': name_list})
