@@ -47,10 +47,10 @@ angular.module('smartCityFrontEndApp')
                         {name : 'Lyon 8ème', imgPath : 'lyon8.png', code:'lyon8'},
                         {name : 'Lyon 9ème', imgPath : 'lyon9.png', code:'lyon9'}]);*/
         },
-        search: function(searchData, successFct){
-            var args = {criteres : {}, lat : parseFloat(searchData.lat), lon : parseFloat(searchData.lon)};
-            for (var i = 0 ; i < searchData.criterias.length ; ++i){
-                args.criteres[searchData.criterias[i].code] = parseInt(searchData.criterias[i].coef);          
+        search: function(criterias, lat, lon, successFct){
+            var args = {criteres : {}, lat : parseFloat(lat), lon : parseFloat(lon)};
+            for (var i = 0 ; i < criterias.length ; ++i){
+                args.criteres[criterias[i].code] = parseInt(criterias[i].coef);          
             }
             // $http.post('http://501srv-2.insa-lyon.fr:8000/criterias').success(function (data){successFct(data.content.profiles)});
             $http.post('http://localhost:8000/ranking', 'data=' + JSON.stringify(args)).success(function (data){successFct(data.content);});

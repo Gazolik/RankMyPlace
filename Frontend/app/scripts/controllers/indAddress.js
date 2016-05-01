@@ -14,9 +14,6 @@ angular.module('smartCityFrontEndApp')
     $scope.prev = function() {
         if ($scope.displayedView > 0) {
             $scope.animateSwitchClass = 'animate-switchRight';
-            if ($scope.displayedView === 1){
-                $rootScope.$broadcast('saveAdress');
-            }
             $scope.displayedView--;
         }
     };

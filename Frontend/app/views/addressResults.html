@@ -1,8 +1,12 @@
 <div class="search_result" loading="loading">
-    <h1 class="page-header">Résultat :</h1>
-    <h3>Note globale</h3>
-    <highchart id="chart1" config="gaugeConfig"></highchart>
-    <h3>Résultat détaillé</h3>
-    <highchart id="chart1" config="barConfig"></highchart>
-    <div class="footer"><p>Par Hexanonyme</p></div>
+    <h1 class="page-header">Résultats</h1>
+    <h3>{{titleGauges}} : </h3>
+    <div class="row row-centered">
+        <div class="col-md-3 col-sm-6 col-centered" ng-repeat="gaugeConfig in gaugesConfig" >
+            <highchart config="gaugeConfig"></highchart>
+        </div>
+    </div>
+    <h3>Détails par critère : </h3>
+    <highchart class="col-md-12" config="barConfig"></highchart>
+    <div class="col-md-12 footer"><p>Par Hexanonyme</p></div>
 </div>

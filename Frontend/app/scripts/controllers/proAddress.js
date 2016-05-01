@@ -12,23 +12,14 @@ angular.module('smartCityFrontEndApp')
     $scope.displayedView = 0;
     $scope.animateSwitchClass = 'animate-switchLeft';
     $scope.prev = function() {
-        if ($scope.displayedView > 0) {
-            $scope.animateSwitchClass = 'animate-switchRight';
-            if ($scope.displayedView === 1){
-                $rootScope.$broadcast('saveAdress');
-            }
-            $scope.displayedView--;
+        if ($scope.displayedView === 1) {
+            $scope.displayedView = 0;
         }
     };
     $scope.next = function() {
-        if ($scope.displayedView < 2) {
+        if ($scope.displayedView === 0) {
             $scope.animateSwitchClass = 'animate-switchLeft';
-            if ($scope.displayedView !== 1){
-                $scope.displayedView++;
-            }
-            else{
-                $rootScope.$broadcast('getLatLon', function(){$scope.displayedView++;});
-            }
+            $rootScope.$broadcast('getLatLon', function(){$scope.displayedView++;});
         }
     };
   });

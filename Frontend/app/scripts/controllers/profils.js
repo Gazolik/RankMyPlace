@@ -13,16 +13,12 @@
     $scope.searchData = searchData;  
     $scope.profils = [];
      
-     Array.prototype.keySort = function(key, desc){
-         this.sort(function(a, b) {
-             var result = desc ? (a[key] < b[key]) : (a[key] > b[key]);
-             return result ? 1 : -1;
-         });
-         return this;
-    };
     var loadProfils = function (){
       serviceAjax.profils(function(data){
           $scope.profils = data;
+          for (var i = 0 ; i < $scope.profils.length ; ++i){
+            $scope.profils[i].coefs.keySort('code');      
+          }
           $scope.profils.keySort('name');
           $scope.profils.push({name : 'Profil Perso', imgPath : 'personal.png', coefs : []});
           $scope.show = false;
@@ -41,6 +37,7 @@
          for (var i = 0 ; i < data.length ; ++i){
              searchData.criterias.push({name : data[i].name, coef : data[i].coef, code : data[i].code});          
          }
+         searchData.criterias.keySort('code');
          if ($scope.profils.length !== 0){
             $scope.updateCoef($scope.profils[0], 0);
          }
