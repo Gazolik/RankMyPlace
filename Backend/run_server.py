@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#-!-encoding:UTF-8-!-
+# -!-encoding:utf8 -!-
 # import server and API
 from api.py_rest.pyrest.rest_server.rest_api.restapi import RestAPI
 from api.py_rest.pyrest.rest_server.firewall.firewall import Firewall
@@ -13,7 +13,7 @@ from api.handlers.heatmap import heatmap_base_handler, heatmap_grid_handler, avg
 api = RestAPI()
 api.add_path(RestAPI.GET, '/profiles', profiles_handler)
 api.add_path(RestAPI.GET, '/criterias', criterias_handler)
-api.add_path(RestAPI.POST,'/ranking', ranking_handler)
+api.add_path(RestAPI.POST, '/ranking', ranking_handler)
 api.add_path(RestAPI.GET, '/heatmap', heatmap_base_handler)
 api.add_path(RestAPI.GET, '/heatmap/{grid_basename}/{criteria_name}', heatmap_grid_handler)
 api.add_path(RestAPI.POST, '/heatmap/{grid_basename}', avg_heatmap_grid_handler)
@@ -22,5 +22,5 @@ api.add_path(RestAPI.POST, '/heatmap/{grid_basename}', avg_heatmap_grid_handler)
 firewall = Firewall(persistentLog=False)
 
 # initialize and run server
-server = RestServer(8000, api, firewall, { 'display_error_details' : True })
+server = RestServer(8000, api, firewall, {'display_error_details': True})
 server.run()
