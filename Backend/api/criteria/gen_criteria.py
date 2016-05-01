@@ -1,24 +1,21 @@
 #
-# Old gen_criteria
-#
-#class gen_criteria:
-#    """ classe generique representant un critere"""
-#    def __init__(self):
-#        pass
-#
-#    def rank(self):
-#        """ Cette methode est la methode d'evaluation d'un critere"""
-#        pass
-
 from ..fs.fs import load_database_psd
-from ..algorithm.algorithm import closest_record, density_around
+from ..algorithm.algorithm import closest_record
+from ..algorithm.algorithm import density_around
 from ..debug.debug import watch_time
 #
-#   Calcul la note pour un critère donné avec les specifications reçues
-#
-#   retourne un couple (note_sur_dix, element_trouvé)
-#
+
+
 def rank(spec):
+    """
+        Calcul la note pour un critère donné avec les specifications reçues
+
+        Paramètres:
+            TODO
+
+        Retour:
+            retourne un triplet (note_sur_dix, element_trouvé, (densité|None))
+    """
     typ = spec['criteria']['type']
     if typ == 'distance_based':
         return distance_based(spec['criteria'], spec['coordinates'])
@@ -29,18 +26,20 @@ def rank(spec):
     elif typ == 'custom':
         return custom(spec['criteria'], spec['coordinates'])
     else:
-        return (None, None, None) # error case
+        return (None, None, None)  # error case
 
-#
-#   Calcul de distance générique, paramètres attendus :
-#       + min_dist
-#       + max_dist
-#       + scale
-#
-#   retourne un couple (note_sur_dix, element_trouvé)
-#
-#@watch_time
+
+# @watch_time
 def distance_based(criteria, coord):
+    """
+        Calcul de distance générique
+
+        Paramètres:
+            TODO
+
+        Retour:
+            retourne un triplet (note_sur_dix, element_trouvé, (densité|None))
+    """
     # récupération et calcul des paramètres
     max_dist = criteria['params']['max_dist']
     min_dist = criteria['params']['min_dist']
@@ -65,21 +64,23 @@ def distance_based(criteria, coord):
                 # todo
                 mark = -1.0
             elif scale == 'linear':
-                mark = 10.0 * ( 1.0 - ( (dist - min_dist) / (max_dist - min_dist) ) )
+                mark = 10.0 * (1.0 - ((dist - min_dist) / (max_dist - min_dist)))
             # else: mark = None (cf. initialisation de mark)
     # finally return mark and record for details
     return (mark, record, None)
 
-#
-#   Calcul de densité générique, paramètres attendus :
-#       + max_density
-#       + min_density
-#       + scale
-#
-#   retourne un couple (note_sur_dix, element_trouvé)
-#
-#@watch_time
+
+# @watch_time
 def density_based(criteria, coord):
+    """
+        Calcul de densité générique
+
+        Paramètres:
+            TODO
+
+        Retour:
+            retourne un triplet (note_sur_dix, element_trouvé, (densité|None))
+    """
     # récupération et calcul des paramètres
     max_density = criteria['params']['max_density']
     min_density = criteria['params']['min_density']
@@ -89,62 +90,73 @@ def density_based(criteria, coord):
     records = load_database_psd(criteria['name'])
     # création de la note vide
     mark = -1.0
-    if not records :
-    	print('[gen_criteria.density_based]> %s' % criteria['name'])
+    if not records:
+        print('[gen_criteria.density_based]> %s' % criteria['name'])
     else:
         # récupération de la densité
         density, closest, min_dist = density_around(records, coord, radius)
         # vérification d'appartenance à l'anneau
         if density < min_density:
-            mark =  10*(density/min_density)
+            mark = 10 * (density / min_density)
             closest = None
         elif density > max_density:
             if density > max_density + min_density:
                 mark = 0.0
             else:
-                mark = 10*((max_density+min_density-density)/min_density)
+                mark = 10 * ((max_density + min_density - density) / min_density)
         # calcul de la note en fonction de l'échelle
         else:
             mark = 10.0
     # finally return mark and record for details
     return (mark, closest, density)
 
-#
-#   Calcul générique couplage de distance et densité, paramètres attendus :
-#       + max_dist
-#       + min_dist
-#       + max_density
-#       + min_density
-#       + dist_coeff
-#       + dens_coeff
-#       + dist_scale
-#       + dens_scale
-#
-#   retourne un couple (note_sur_dix, element_trouvé)
-#
-#@watch_time
+
+# @watch_time
 def dist_dens_based(criteria, coord):
+    """
+        Calcul générique couplage de distance et densité
+
+        Paramètres:
+            TODO
+
+        Retour:
+            retourne un triplet (note_sur_dix, element_trouvé, (densité|None))
+    """
     mark_density, record, density = density_based(criteria, coord)
     mark_dist, closest, empty = distance_based(criteria, coord)
-    mark = (criteria['params']['dist_coeff']*mark_dist+criteria['params']['dens_coeff']*mark_density)/(criteria['params']['dist_coeff']+criteria['params']['dens_coeff'])
+    mark = (criteria['params']['dist_coeff'] * mark_dist + criteria['params']['dens_coeff'] * mark_density) / (criteria['params']['dist_coeff'] + criteria['params']['dens_coeff'])
     return (mark, closest, density)
 
-#
-#   Calcul customisé pour les données spéciales
-#
-#@watch_time
+
+# @watch_time
 def custom(criteria, coord):
+    """
+        Calcul customisé pour les données spéciales
+
+        Paramètres:
+            TODO
+
+        Retour:
+            retourne un triplet (note_sur_dix, element_trouvé, (densité|None))
+    """
     if criteria == "bruit":
         return custom_bruit(criteria, coord)
     else:
         print('[gen_criteria.py]> /!\ Profil custom non disponible.')
-        return(-1.0, None, None) 
+        return(-1.0, None, None)
 
-#
-#   Calcul customisé pour le bruit
-#
-#@watch_time
+
+# @watch_time
 def custom_bruit(criteria, coord):
+    """
+        Calcul customisé pour le bruit
+
+        Paramètres:
+            TODO
+
+        Retour:
+            TODO
+    """
     # récupération du rayon
     radius = criteria['params']['radius']
     # lecture dans la base
@@ -153,12 +165,12 @@ def custom_bruit(criteria, coord):
     records = records_around(records_db, coord, radius)
     mark = -1.0
     if not records:
-        print('[gen_criteria.custom] %s'%criteria['name'])
+        print('[gen_criteria.custom] %s' % criteria['name'])
     else:
         # création des variables necessaires au traitement
         s = 0
         for record in records:
             s += record['data']['value']
-        mark = s/records_size
+        mark = s / records_size
     # on retoure la note et pas de record
     return (mark, None, None)
