@@ -23,7 +23,9 @@ angular.module('smartCityFrontEndApp')
                   $scope.mainAreas.push(data[i]);  
               }
           }
-          searchData.selectedArea = 'lyon1';
+          if (searchData.selectedArea === ''){
+            searchData.selectedArea = 'lyon1';
+          }
       });
     };
     loadAreas();

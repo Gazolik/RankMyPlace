@@ -26,11 +26,10 @@
           $scope.profils.keySort('name');
           $scope.profils.push({name : 'Profil Perso', imgPath : 'personal.png', coefs : []});
           $scope.show = false;
-          searchData.selectedProfil = 0;
           $scope.msgCriteres ='Afficher les critères';
-         if (searchData.criterias.length !== 0){
+          if (searchData.criterias.length !== 0 && searchData.selectedProfil === -1){
             $scope.updateCoef($scope.profils[0], 0);
-         }
+          }
           
       });
     };

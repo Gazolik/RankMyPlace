@@ -370,3 +370,37 @@ header.carousel .fill {
     background: linear-gradient(to right, rgba(0,0,255,1) 0%, rgba(0,0,255,1) 25%, rgba(0,255,0,1) 55%, rgba(0,255,0,1) 55%, rgba(255,255,0,1) 85%, rgba(255,0,0,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0000ff', endColorstr='#ff0000', GradientType=1 );
 }
+
+.animate-switch-container {
+  position:relative; 
+}
+
+.animate-switchLeft.ng-enter,
+.animate-switchLeft.ng-leave,
+.animate-switchRight.ng-enter,
+.animate-switchRight.ng-leave {
+  -webkit-transition: 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    
+  position:absolute;
+}
+
+.animate-switchLeft.ng-enter,
+.animate-switchRight.ng-leave.ng-leave-active{
+  left:200%;
+}
+
+.animate-switchLeft.ng-leave,
+.animate-switchLeft.ng-enter.ng-enter-active,
+.animate-switchRight.ng-leave,
+.animate-switchRight.ng-enter.ng-enter-active{
+  left:0;
+}
+
+.animate-switchLeft.ng-leave.ng-leave-active,
+.animate-switchRight.ng-enter{
+  left:-200%;
+}

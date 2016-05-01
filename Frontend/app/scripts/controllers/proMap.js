@@ -15,13 +15,17 @@ angular.module('smartCityFrontEndApp')
     var loadAreas = function (){
       serviceAjax.areas(function(data){
           $scope.areas = data;
-          searchData.selectedArea = 'lyon1';
+          if (searchData.selectedArea === ''){
+            searchData.selectedArea = 'lyon1';
+          }
       });
     };
     var loadCriterias = function (){
       serviceAjax.criterias(function(data) {
          $scope.criterias = data;
-         searchData.selectedCritere = data[0].code;
+         if (searchData.selectedCritere === '' && data.length > 0){
+            searchData.selectedCritere = data[0].code;
+         }
       });
     };    
     loadAreas();

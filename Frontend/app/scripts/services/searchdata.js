@@ -15,7 +15,7 @@ angular.module('smartCityFrontEndApp')
     this.citySelected = {name : 'Lyon'};
     this.criterias = [];
     this.areaCode = '';
-    this.selectedArea = -1;
+    this.selectedArea = '';
     this.selectedProfil = -1;
     this.selectedCritere = '';
   });

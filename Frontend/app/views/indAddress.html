@@ -2,13 +2,13 @@
     <img ng-src="images/prev-arrow.png" style="position:fixed;left:10px" ng-show='displayedView > 0'/>
 </div> 
 <div  class="col-md-10" class="animate-switch-container" ng-switch="displayedView">
-     <div class="animate-switch" ng-switch-default>
+     <div ng-class="animateSwitchClass" ng-switch-default>
          <div ng-controller="ProfilsCtrl" ng-include="'views/profils.html'"></div>
     </div>
-     <div class="animate-switch" ng-switch-when="1">
+     <div ng-class="animateSwitchClass" ng-switch-when="1">
          <div ng-controller="AddressCtrl" ng-include="'views/address.html'"></div>
     </div>
-     <div class="animate-switch" ng-switch-when="2">
+     <div ng-class="animateSwitchClass" ng-switch-when="2">
          <div ng-controller="AddressResultsCtrl"  ng-include="'views/addressResults.html'"></div>
     </div>
 </div>
