@@ -3,6 +3,7 @@ from ..fs.fs import load_database_psd
 from ..algorithm.algorithm import closest_record
 from ..algorithm.algorithm import density_around
 from ..debug.debug import watch_time
+from ..algorithm.algorithm import records_around
 #
 
 
@@ -139,10 +140,10 @@ def custom(criteria, coord):
         Retour:
             retourne un triplet (note_sur_dix, element_trouvé, (densité|None))
     """
-    if criteria == "bruit":
+    if criteria['name'] == "bruit":
         return custom_bruit(criteria, coord)
     else:
-        print('[gen_criteria.py]> /!\ Profil custom non disponible.')
+        print('[gen_criteria.py|custom]> /!\ Profil custom non disponible /!\\')
         return(-1.0, None, None)
 
 
@@ -163,10 +164,12 @@ def custom_bruit(criteria, coord):
     records_db = load_database_psd(criteria['name'])
     # récupération des records les plus proches
     records = records_around(records_db, coord, radius)
+    # initialisation de la note
     mark = -1.0
     if not records:
-        print('[gen_criteria.custom] %s' % criteria['name'])
+        print('[gen_criteria.py|custom_bruit]> no record found around for %s' % criteria['name'])
     else:
+        records_size = len(records)
         # création des variables necessaires au traitement
         s = 0
         for record in records:

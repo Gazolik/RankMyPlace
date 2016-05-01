@@ -22,10 +22,14 @@
          });
          return this;
     };
+         
     var loadProfils = function (){
       serviceAjax.profils(function(data){
           $scope.profils = data;
-          $scope.profils.keySort('name');             
+          for (var i = 0 ; i < $scope.profils.length ; ++i){
+            $scope.profils[i].coefs.keySort('code');      
+          }
+          $scope.profils.keySort('name');
           $scope.profils.push({name : 'Profil Perso', imgPath : 'personal.png', coefs : []});
           $scope.show = false;
           $scope.msgCriteres ='Afficher les critères';
