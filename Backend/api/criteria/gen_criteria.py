@@ -142,7 +142,8 @@ def custom(criteria, coord):
     if criteria == "bruit":
         return custom_bruit(criteria, coord)
     else:
-        print('[gen_criteria.py]> /!\ Profil custom non disponible.')
+        print('[gen_criteria.py]> /!\ Profil custom non disponible /!\')
+		print(criteria)
         return(-1.0, None, None)
 
 
