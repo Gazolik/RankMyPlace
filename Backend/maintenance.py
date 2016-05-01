@@ -1,84 +1,100 @@
 #!/usr/bin/python3
 # -!- encoding:utf8 -!-
 
-# ----------------------- IMPORTS
+# IMPORTS
 
 #
-#   Définit une fonction permettant de récupérer les dépendances
+# Import de la fonction permettant de mettre à jour les dépendances
 #
 from api.dependencies import update_dependencies
 #
+# Import des fonctions d'interaction avec les fichiers de données
 #
+from api.fs.fs import list_static
+from api.fs.fs import list_heatmap_grids
+from api.fs.fs import list_heatmap_psd
+from api.fs.fs import list_database_raw
+from api.fs.fs import list_database_pre_psd
+from api.fs.fs import list_database_psd
 #
-from api.fs.fs import list_static, list_heatmap_grids, list_heatmap_psd, list_database_raw, list_database_pre_psd, list_database_psd
+# Import des fonctions de pre-processing des données géolocalisées brutes du Grand Lyon
 #
-#   Définit des fonction de pre-processing des données géolocalisée brutes du Grand Lyon
+from api.maintenance.database.process import process_file
+from api.maintenance.database.process import process_all_files
 #
-from api.maintenance.database.process import process_file, process_all_files
+# Import des fonction de séparation des données après la phase de preprocessing
 #
-#   Définit des fonction de séparation des données après la phase de preprocessing
+from api.maintenance.database.splitter import split_on_key
+from api.maintenance.database.splitter import split_all
 #
-from api.maintenance.database.splitter import split_on_key, split_all
-#
-#   Définit des fonction de séparation des données pour extraires les coordonnées
+# Import des fonction de séparation des données pour extraire les coordonnées
 #
 from api.maintenance.database.extractor import extract_coords
 #
-#   Définit des fonctions de visualisation d'extrait de données des fichiers de données
+# Import des fonctions de visualisation d'extraits de données
 #
-from api.maintenance.database.preview import preview_raw, preview_psd
+from api.maintenance.database.preview import preview_raw
+from api.maintenance.database.preview import preview_psd
 #
-#   Définit des fonctions pour la récupération des données et de construction de la grille à partir de ces dernières
+# Import des fonctions pour la récupération des données et de construction de la grille à partir de ces dernières
 #
-from api.maintenance.heatmap.process_streets import update_streets_data, download_streets_data, process_streets
+from api.maintenance.heatmap.process_streets import update_streets_data
+from api.maintenance.heatmap.process_streets import download_streets_data
+from api.maintenance.heatmap.process_streets import process_streets
 #
-#   Définit des fonctions permettant de visualiser les données de la grille
+# Import des fonctions permettant de visualiser les données de la grille
 #
-from api.maintenance.heatmap.drawer import draw_map_part, draw_map, draw_heatmap_part
+from api.maintenance.heatmap.drawer import draw_map_part
+from api.maintenance.heatmap.drawer import draw_map
+from api.maintenance.heatmap.drawer import draw_heatmap_part
 #
-#   Définit des fonctions permettant de construire des cartes de chaleur à partir de la grille et des critères
+# Import des fonctions permettant de construire des cartes de chaleur à partir de la grille et des critères
 #
-from api.maintenance.heatmap.heatmap_creator import gen_heatmap, gen_all_heatmaps, reduce_grid, reduce_all, avg_grid, gen_script
+from api.maintenance.heatmap.heatmap_creator import gen_heatmap
+from api.maintenance.heatmap.heatmap_creator import gen_all_heatmaps
+from api.maintenance.heatmap.heatmap_creator import reduce_grid
+from api.maintenance.heatmap.heatmap_creator import reduce_all
+from api.maintenance.heatmap.heatmap_creator import avg_grid
+from api.maintenance.heatmap.heatmap_creator import gen_script
 #
-#
+# Import de la fonction permettant de générer le fichier statique des zones couvertes par la heatmap
 #
 from api.maintenance.heatmap.area import generate_areas
 #
-#
+# Import du dictionnaire de critères
 #
 from api.criteria.criterias import criterias_dict
+#
+# Import des modules Python nécessaires
+#
+import sys
+import os
 
-import sys, os
 
-# ----------------------- FUNCTIONS
-#
-#
-#
+# FUNCTIONS
+
+
 def abort(msg):
     print('[maintenance.py]> ' + msg)
     print('-----------------------------\n[maintenance.py]> aborted !')
     exit()
-#
-#
-#
+
+
 def arg_count():
     return len(sys.argv)
-#
-#
-#
+
+
 def assert_args(min_size, msg):
-    if arg_count() < min_size+1:
+    if arg_count() < min_size + 1:
         abort(msg)
-#
-#
-#
+
+
 def arg(idx):
     return sys.argv[idx]
 
 # ------------------------- COMMANDS FUNCTIONS
-#
-#
-#
+
+
 def cmd_help():
     print("""[maintenance.py]>
 ------------------------------- HELP -------------------------------
@@ -118,9 +134,8 @@ def cmd_help():
             + extract_coords
 
 --------------------------------------------------------------------""")
-#
-#
-#
+
+
 def cmd_list(sub_cmd):
     files = []
     if sub_cmd == 'static':
@@ -139,9 +154,8 @@ def cmd_list(sub_cmd):
         abort('unknown list subcommand, run "./maintenance.py help" to get a list of subcommands.')
     # print file list
     print('Listing %s files for %s :\n  +    ' % (len(files), sub_cmd) + '\n  +    '.join(files))
-#
-#
-#
+
+
 def cmd_display(sub_cmd):
     if sub_cmd == 'raw':
         assert_args(3, 'expected : display raw <database_raw_file>')
@@ -159,21 +173,19 @@ def cmd_display(sub_cmd):
         draw_heatmap_part(arg(3), arg(4), arg(5))
     else:
         abort('unknown display subcommand, run "./maintenance.py help" to get a list of subcommands.')
-#
-#
-#
+
+
 def cmd_dependencies(sub_cmd):
     if sub_cmd == 'update':
         update_dependencies()
     else:
         abort('unknown dependencies subcommand, run "./maintenance.py help" to get a list of subcommands.')
-#
-#
-#
+
+
 def cmd_heatmap(sub_cmd):
     if sub_cmd == 'gen':
         assert_args(4, 'expected : heatmap gen <heatmap_grid_file> <criteria_name>')
-        gen_heatmap(arg(3),criterias_dict[arg(4)])
+        gen_heatmap(arg(3), criterias_dict[arg(4)])
     elif sub_cmd == 'gen_all':
         gen_all_heatmaps()
     elif sub_cmd == 'reduce':
@@ -192,9 +204,8 @@ def cmd_heatmap(sub_cmd):
         gen_script(int(arg(3)), arg(4))
     else:
         abort('unknown heatmap subcommand, run "./maintenance.py help" to get a list of subcommands.')
-#
-#
-#
+
+
 def cmd_database(sub_cmd):
     if sub_cmd == 'process_streets':
         process_streets()
@@ -207,7 +218,7 @@ def cmd_database(sub_cmd):
 
 # ----------------------- SCRIPT
 
-print('[maintenance.py]> working from "%s"\n-----------------------------' %os.getcwd())
+print('[maintenance.py]> working from "%s"\n-----------------------------' % os.getcwd())
 
 # vérification des paramètres
 assert_args(1, 'usage : ./maintenance.py <command> [<options>]')
@@ -235,5 +246,3 @@ else:
     abort('unknown command !')
 
 print('-----------------------------\n[maintenance.py]> done !')
-
-

@@ -3,11 +3,17 @@
 
 # ------------------------------------ IMPORTS
 
-from ...fs.fs import list_database_psd, load_database_psd, dump_database_psd 
+from ...fs.fs import list_database_psd
+from ...fs.fs import load_database_psd
+from ...fs.fs import dump_database_psd
 
 # ------------------------------------ FUNCTIONS
 
+
 def extract_coords():
+    """
+        TODO : doc
+    """
     # retrieve files
     files = list_database_psd()
     # extract coords for each object
@@ -18,7 +24,5 @@ def extract_coords():
         for obj in data:
             out_coords.append(obj['coordinates'])
         # write output
-        dump_database_psd(f+'_coord', out_coords)
+        dump_database_psd(f + '_coord', out_coords)
         print('done !')
-    
-

@@ -3,7 +3,8 @@
 
 # ----------------------------------- IMPORTS
 
-from ...fs.fs import load_database_raw, dump_database_pre_psd
+from ...fs.fs import load_database_raw
+from ...fs.fs import dump_database_pre_psd
 from ...algorithm.algorithm import isobarycenter
 
 import json
@@ -11,43 +12,47 @@ import json
 # ----------------------------------- CONFIGURATION
 
 INPUTS = {
-    'TCL':[
-        'nom','desserte','bool:escalator','bool:pmr','bool:ascenseur'
+    'TCL': [
+        'nom', 'desserte', 'bool:escalator', 'bool:pmr', 'bool:ascenseur'
     ],
-    'velov':[
-        'name','address','address2','pole','int:bike_stands'
-    ],   
-    'bruit':['float:value'],
-	'lieux_edifices':[
-        'nom','theme','soustheme'
+    'velov': [
+        'name', 'address', 'address2', 'pole', 'int:bike_stands'
     ],
-    'point_interet_touristique':[
-        'type','type_detail','nom',
-        'adresse','int:codepostal',
-        'commune','telephone','email',
-        'facebook','siteweb','producteur',
-        'tarifsmin','tarifsmax','tarifsenclair'
+    'bruit': ['float:value'],
+    'lieux_edifices': [
+        'nom', 'theme', 'soustheme'
+    ],
+    'point_interet_touristique': [
+        'type', 'type_detail', 'nom',
+        'adresse', 'int:codepostal',
+        'commune', 'telephone', 'email',
+        'facebook', 'siteweb', 'producteur',
+        'tarifsmin', 'tarifsmax', 'tarifsenclair'
     ]
 }
 
 # ------------------------------------ FUNCTIONS
-#
-#   Extraction des coordonnées du record
-#
+
+
 def coords(record):
+    """
+        Extraction des coordonnées du record
+    """
     if record['geometry']['type'] == 'Point':
         return {
-                'lat':record['geometry']['coordinates'][1],
-                'lon':record['geometry']['coordinates'][0]
-            }
+            'lat': record['geometry']['coordinates'][1],
+            'lon': record['geometry']['coordinates'][0]
+        }
     elif record['geometry']['type'] == 'Polygon':
         return isobarycenter(record['geometry']['coordinates'][0])
     else:
-        return { 'lat':0.0, 'lon':0.0 }
-#
-#   Extraction des propriétés du record
-#
+        return {'lat': 0.0, 'lon': 0.0}
+
+
 def data(record, props):
+    """
+        Extraction des propriétés du record
+    """
     properties = {}
     for prop in props:
         if ':' in prop:
@@ -64,18 +69,22 @@ def data(record, props):
         else:
             properties[prop] = record['properties'][prop]
     return properties
-#
-#   Création d'un objet normalisé à partir du record
-#
+
+
 def obj(record, props):
+    """
+        Création d'un objet normalisé à partir du record
+    """
     return {
-        'coordinates' : coords(record),
-        'data' : data(record, props)
+        'coordinates': coords(record),
+        'data': data(record, props)
     }
-#
-#   Execute le processus de traitement sur un fichier donné
-#
+
+
 def process_data(basename, props):
+    """
+        Execute le processus de traitement sur un fichier donné
+    """
     try:
         print('[process.py]> processing %s...' % basename, end='')
         # read file
@@ -90,23 +99,23 @@ def process_data(basename, props):
     except Exception as e:
         print('failed ! An error occured, details below :')
         raise e
-#
-#   TODO : doc
-#
+
+
 def process_file(basename):
+    """
+        TODO : doc
+    """
     if basename in INPUTS.keys():
         process_data(basename, INPUTS[basename])
     else:
         print('[process.py]> unknown input file, aborting. Bye !')
-#
-#   TODO : doc
-#
+
+
 def process_all_files():
+    """
+        TODO : doc
+    """
     print('[process.py]> processing all data files.')
     for basename in INPUTS.keys():
-        process_data(basename, INPUTS[basename])        
+        process_data(basename, INPUTS[basename])
     print('[process.py]> all files processed. Bye.')
-
-    
-
-
