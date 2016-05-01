@@ -100,7 +100,7 @@ header.carousel .fill {
   .jumbotron {
     border-bottom: 0;
   }
-        
+    
     .headerRadio10 {
         color:rgba(192, 192, 0, 1);
     }
@@ -403,4 +403,16 @@ header.carousel .fill {
 .animate-switchLeft.ng-leave.ng-leave-active,
 .animate-switchRight.ng-enter{
   left:-200%;
+}
+
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
 }
