@@ -20,7 +20,7 @@ def ranking_handler(path, data, api_param):
         spec = {'criteria': criterias_dict[i], 'coordinates': {'lat': d['lat'], 'lon': d['lon']}}
         note, closest, density = rank(spec)
         if criteres[i] == 0 :
-            ret_note.append({'name': criterias_dict[i]['realname'], 'note':note, 'satisfaction':0,'closest': closest, 'density': None})
+            ret_note.append({'name': criterias_dict[i]['realname'], 'note':note, 'satisfaction':-101,'closest': closest, 'density': None})
         else :
             notes[i] = note
             somme = somme + notes[i] * criteres[i]
