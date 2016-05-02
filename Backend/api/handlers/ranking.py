@@ -24,7 +24,7 @@ def ranking_handler(path, data, api_param):
             notes[i], closest, density = rank(spec)
             somme = somme + notes[i] * criteres[i]
             note_finale=notes[i]
-            if d['apply_coeff'] == 1 :
+            if d['applyCoeff'] == 1 :
                 note_finale=criteres[i]*note_finale/10
             ret_note.append({'name': criterias_dict[i]['realname'], 'note': round(note_finale, 2), 'closest': closest, 'density': density})
     # faire une moyenne
