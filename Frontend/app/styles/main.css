@@ -453,3 +453,7 @@ header.carousel .fill {
 .contentContainer{
     min-height: 320px;
 }
+
+.barGraph{
+    margin: auto;
+}

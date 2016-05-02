@@ -52,8 +52,8 @@ angular.module('smartCityFrontEndApp')
                         {name : 'Lyon 8ème', imgPath : 'lyon8.png', code:'lyon8'},
                         {name : 'Lyon 9ème', imgPath : 'lyon9.png', code:'lyon9'}]);*/
         },
-        search: function(applyCoef, criterias, lat, lon, successFct){
-            var args = {criteres : {}, lat : parseFloat(lat), lon : parseFloat(lon), applyCoeff : applyCoef};
+        search: function(criterias, lat, lon, successFct){
+            var args = {criteres : {}, lat : parseFloat(lat), lon : parseFloat(lon)};
             for (var i = 0 ; i < criterias.length ; ++i){
                 args.criteres[criterias[i].code] = parseInt(criterias[i].coef);          
             }
