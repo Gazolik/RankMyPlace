@@ -11,12 +11,11 @@ def ranking_handler(path, data, api_param):
     # extraire les criteres utiles
     d = json.loads(data['data'][0])
     criteres = d['criteres']
-    nomcriteres = [k for k, v in criteres.items() if v != 0]
     # evaluer les criteres
     notes = {}
     ret_note = []
     somme = 0
-    for i in nomcriteres:
+    for i in criteres.keys():
         if criteres[i] == 0 :
             ret_note.append({'name': criterias_dict[i]['realname'], 'note': -1, 'closest': None, 'density': None})
         else :
@@ -24,7 +23,7 @@ def ranking_handler(path, data, api_param):
             notes[i], closest, density = rank(spec)
             somme = somme + notes[i] * criteres[i]
             note_finale=notes[i]
-            if d['apply_coeff'] == 1 :
+            if d['applyCoeff'] == 1 :
                 note_finale=criteres[i]*note_finale/10
             ret_note.append({'name': criterias_dict[i]['realname'], 'note': round(note_finale, 2), 'closest': closest, 'density': density})
     # faire une moyenne
