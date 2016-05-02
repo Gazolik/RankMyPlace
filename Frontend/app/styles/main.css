@@ -274,7 +274,7 @@ header.carousel .fill {
     vertical-align: middle; 
 }
 
-#heatmap{
+#heatmapPro, #heatmapInd{
     height: 600px;
 }
 

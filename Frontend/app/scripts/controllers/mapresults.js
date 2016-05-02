@@ -20,7 +20,7 @@ angular.module('smartCityFrontEndApp')
           min:0,
           data: []
         };
-    $scope.initMap = function(){ 
+    $scope.initMap = function(idMap){ 
        heatMapData.data.length = 0;
        var baseLayer = L.tileLayer(
           'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
@@ -40,8 +40,10 @@ angular.module('smartCityFrontEndApp')
 
 
         heatmapLayer = new HeatmapOverlay(cfg);
-
-        map = new L.Map('heatmap', {
+        if (map !== undefined){
+            map.remove();
+        }
+        map = new L.Map(idMap, {
               center: new L.LatLng(45.73532,4.82857),
               zoom: 14,
               layers: [baseLayer, heatmapLayer]
