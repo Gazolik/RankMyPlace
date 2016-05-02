@@ -457,3 +457,8 @@ header.carousel .fill {
 .barGraph{
     margin: auto;
 }
+
+.loadingIcon{
+    position: absolute;
+    top: 150px;
+}
