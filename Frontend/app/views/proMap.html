@@ -24,8 +24,8 @@
       <button class="btn btn-primary m-x-10" ng-click="updateMap(false)">Visualiser</button>
     </form>
     <hr/>
-    <div ng-controller="MapResultsCtrl" ng-init="initMap();">
-        <div id="heatmap" ng-mousemove="showTooltip($event)" ng-mouseleave="hideTooltip()"></div>
+    <div ng-controller="MapResultsCtrl" ng-init="initMap('heatmapPro');">
+        <div id="heatmapPro" ng-mousemove="showTooltip($event)" ng-mouseleave="hideTooltip()"></div>
         <div id="heatmapTooltip" ng-style="{'display':displayTooltip, 'top': topTooltip, 'left': leftTooltip}">{{tooltipValue}}</div>
         <div id="heatmapLegend" >
             <span id="minLegend">0</span>

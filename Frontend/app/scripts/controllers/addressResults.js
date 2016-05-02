@@ -16,19 +16,43 @@ angular.module('smartCityFrontEndApp')
     $scope.nbGauges = 0;
     $scope.barClass = '';
     $scope.titleGauges = 'Note globale';
+    $scope.titleProfilBar = 'Notes pour votre profil';
+    $scope.tabIndex = 0;
     
-    var search = function (applyCoef, index, criterias, lat, lon){
-        serviceAjax.search(applyCoef, criterias, lat, lon, function(data){
+    Array.prototype.countValid = function () {
+        var count = 0;
+        for (var i = 0; i < this.length; i++) {
+            if (this[i].coef === 0) {
+                count++;
+            }
+        }
+        return count;
+    };
+    
+    var search = function (showAllCriterias, index, criterias, lat, lon){
+        serviceAjax.search(criterias, lat, lon, function(data){
             $scope.loading = false;
-            criterias.keySort('name');
+            data.notes.keySort('name');
             $scope.gaugesConfig[index].series[0].data[0] = Math.round(data.moyenne*100)/100;
+            var show = true;
             for (var i = 0 ; i < data.notes.length ; ++i){
-                if (data.notes[i].note !== -1){
-                    $scope.barConfig.series[index].data.push({y:Math.round(data.notes[i].note*100)/100, color:color[i%10]});
-                    $scope.barConfig.xAxis.categories.push(data.notes[i].name);
+                show = true;
+                if (data.notes[i].note === -1 && !showAllCriterias){
+                    show = false;
+                }
+                else if(data.notes[i].note === -1){
+                   data.notes[i].note = 1;
+                }
+                if (show){
+                    if (index === 0){
+                        $scope.barAddressConfig.series[index].data.push({y:Math.round(data.notes[i].note*100)/100, color:color[i%10]});
+                        $scope.barAddressConfig.xAxis.categories.push(data.notes[i].name);
+                    }
+                    
+                    $scope.barProfilConfig.series[index].data.push({y:data.notes[i].satisfaction, color:color[showAllCriterias ? index : i%10]});
+                    $scope.barProfilConfig.xAxis.categories.push(data.notes[i].name);
                 }
             }
-            $scope.barConfig.size.height = (400 + index * 10 * criterias.length);
             $scope.$broadcast('highchartsng.reflow');
       });
     };
@@ -89,17 +113,25 @@ angular.module('smartCityFrontEndApp')
             },
             loading: false
         });
-        $scope.barConfig.series.push({
+        if ($scope.barAddressConfig.series.length === 0){
+            $scope.barAddressConfig.series.push({
+                showInLegend: false,
+                name : 'score',
+                data: []
+            });
+        }
+        $scope.barProfilConfig.series.push({
             showInLegend: false,
             name : serieName,
             data: []
         });
     };
     
-    $scope.barConfig = {
+    $scope.barAddressConfig = {
         options: {
             chart: {
-                type: 'bar'
+                type: 'bar',
+                marginLeft:150
             }
         },
         yAxis: {
@@ -120,15 +152,74 @@ angular.module('smartCityFrontEndApp')
         title: {
             text: null
         },
-        size: {
-            height: 400,
-            width : 1000
+        loading: false
+    };
+    
+    $scope.barProfilConfig = {
+        options: {
+            chart: {
+                type: 'bar'
+            },
+            tooltip: {
+                formatter: function () {
+                    var ret = '';
+                    if (this.series.name !== 'score'){
+                        ret += '<b>' + this.series.name + '</b><br/>'; 
+                    }
+                    if (this.point.y < 0){
+                        return ret + this.point.category + '<br/>Insatisfaction : <b>' + Math.abs(this.point.y) + '%'; 
+                    }
+                    return ret + this.point.category + '<br/>Satisfaction : <b>' + this.point.y + '%'; 
+                },  
+            },
+        },
+        yAxis: {
+            currentMin: -100,
+            tickInterval: 20,
+            currentMax: 100,
+            title: {
+                text: null
+            },
+            labels: {
+                crop: false,
+                formatter: function () {
+                    var ret = Math.abs(this.value) + '%';
+                    if (this.value === -80){
+                        ret += '<br/><b>Insastisfait</b>';
+                    }
+                    else if (this.value === 80){
+                        ret += '<br/><b>Sastisfait</b>';
+                    }
+                    else if (this.value === 0){
+                        ret += '<br/><b>Indifférent</b>';
+                    }
+                    return ret;
+                }
+            }
+        },
+        xAxis: {
+            categories: [],
+            reversed: false,
+            labels: {
+                step: 1
+            }
+        },
+        series: [],
+        title: {
+            text: null
+        },
+        plotOptions: {
+            series: {
+                stacking: 'normal'
+            }
         },
         loading: false
     };
     
     if ($route.current.isPro){
         $scope.titleGauges = 'Note par profil';
+        $scope.titleProfilBar = 'Notes pour les différents profils';
+        $scope.satisfactionGraphHeight = {height:'1200px'};
         serviceAjax.profils(function(data){
             data.keySort('name');
             $scope.nbGauges = data.length;
@@ -141,6 +232,7 @@ angular.module('smartCityFrontEndApp')
     else{
         $scope.nbGauges = 1;
         addGaugeConfig('', 'score');
+        $scope.satisfactionGraphHeight = {height:(50 * searchData.criterias.countValid()) + 'px'};
         search(false, 0, searchData.criterias, searchData.lat, searchData.lon);
     }
     

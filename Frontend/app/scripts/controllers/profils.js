@@ -17,6 +17,15 @@
      
     angular.element('[data-toggle="tooltip"]').tooltip(); 
       
+    Array.prototype.getIndexBy = function (name, value) {
+        for (var i = 0; i < this.length; i++) {
+            if (this[i][name] === value) {
+                return i;
+            }
+        }
+        return -1;
+    };
+    
     var loadProfils = function (){
       serviceAjax.profils(function(data){
           $scope.profils = data;
@@ -75,8 +84,9 @@
         
     $scope.updateCoef = function (profil, index){
         for (var i = 0 ; i < searchData.criterias.length ; ++i){
-            if (i < profil.coefs.length){
-                searchData.criterias[i].coef = profil.coefs[i].coef;   
+            var indexCriteria = profil.coefs.getIndexBy('code', searchData.criterias[i].code);
+            if (indexCriteria !== -1){
+                searchData.criterias[i].coef = profil.coefs[indexCriteria].coef;   
             }
             else{
                 searchData.criterias[i].coef = 5;

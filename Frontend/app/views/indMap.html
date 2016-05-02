@@ -13,7 +13,7 @@
              <div ng-controller="AreasCtrl" ng-include="'views/area.html'"></div>
         </div>
          <div ng-class="animateSwitchClass" ng-switch-when="2">
-             <div ng-controller="MapResultsCtrl" ng-include="'views/mapResults.html'" onload="initMap(); updateMap();"></div>
+             <div ng-controller="MapResultsCtrl" ng-include="'views/mapResults.html'" onload="initMap('heatmapInd'); updateMap();"></div>
         </div>
     </div>
     <div class="slideIconRight">

@@ -274,7 +274,7 @@ header.carousel .fill {
     vertical-align: middle; 
 }
 
-#heatmap{
+#heatmapPro, #heatmapInd{
     height: 600px;
 }
 
@@ -452,4 +452,8 @@ header.carousel .fill {
 
 .contentContainer{
     min-height: 320px;
+}
+
+.barGraph{
+    margin: auto;
 }
