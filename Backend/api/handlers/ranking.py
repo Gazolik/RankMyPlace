@@ -17,13 +17,14 @@ def ranking_handler(path, data, api_param):
     ret_note = []
     somme = 0
     for i in criteres.keys():
+        spec = {'criteria': criterias_dict[i], 'coordinates': {'lat': d['lat'], 'lon': d['lon']}}
+        note, closest, density = rank(spec)
         if criteres[i] == 0 :
-            ret_note.append({'name': criterias_dict[i]['realname'], 'note':-1,'satisfaction':0,'closest': None, 'density': None})
+            ret_note.append({'name': criterias_dict[i]['realname'], 'note':note, 'satisfaction':0,'closest': closest, 'density': None})
         else :
-            spec = {'criteria': criterias_dict[i], 'coordinates': {'lat': d['lat'], 'lon': d['lon']}}
-            notes[i], closest, density = rank(spec)
+            notes[i] = note
             somme = somme + notes[i] * criteres[i]
-            note_finale=notes[i]
+            note_finale = notes[i]
             #calcul de satisfaction
             satis = satisfaction(max(note_finale,0), criteres[i])
             ret_note.append({'name': criterias_dict[i]['realname'], 'note':round(note_finale, 2), 'satisfaction':round(satis, 2), 'closest': closest, 'density': density})
