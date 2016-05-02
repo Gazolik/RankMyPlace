@@ -8,11 +8,12 @@
  * Controller of the smartCityFrontEndApp
  */
  angular.module('smartCityFrontEndApp')
-  .controller('ProfilsCtrl', function ($scope, serviceAjax, searchData) {
+  .controller('ProfilsCtrl', function ($scope, serviceAjax, searchData, $route) {
      
     $scope.searchData = searchData;  
     $scope.profils = [];
     $scope.allCriterias = 5;     
+    $scope.mode = false;
      
     angular.element('[data-toggle="tooltip"]').tooltip(); 
       
@@ -38,7 +39,7 @@
       serviceAjax.criterias(function(data) {
          searchData.criterias.length = 0;
          for (var i = 0 ; i < data.length ; ++i){
-             searchData.criterias.push({groupe : data[i].groupe, name : data[i].name, coef : data[i].coef, code : data[i].code, type : data[i].type, dist : null, dens : null, slider : false, show : null});   
+             searchData.criterias.push({groupe : data[i].groupe, name : data[i].name, description : data[i].description, coef : data[i].coef, code : data[i].code, type : data[i].type, dist : null, dens : null, slider : false, show : null});   
          }
          searchData.criterias.keySort('groupe');
          var groups = [];          
@@ -85,6 +86,7 @@
         if (profil.coefs.length === 0){
             $scope.show = true;
             $scope.msgCriteres ='Cacher les critères';
+            $scope.showCrit.show = false;
           }
     };
      
@@ -105,5 +107,8 @@
         return show;
     };
      
+    if ($route.current.showReglage){
+        $scope.mode = true;
+    }
          
   });
