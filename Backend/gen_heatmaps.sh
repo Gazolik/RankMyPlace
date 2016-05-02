@@ -3,14 +3,14 @@
 
 # ------------------------- CONFIGURATION
 
-DEBUG=1
+DEBUG=0
 
 # ------------------------- SCRIPT
 
 MODE=${1}
 PRECISION=${2}
 METHOD=${3}
-GRID=${4}
+ELEMENT=${4}
 
 GRIDS=("lescheres" 
     "neyron" 
@@ -160,16 +160,14 @@ let "TOTAL = ${CRITERIAS_LEN} * ${GRIDS_LEN}"
 # Verification des inputs
 if [[ "${MODE}" == "help" ]]; then
     echo "Usage :"
-    echo "  + ./gen_heatmaps.sh single <int:precision> <str:method> <str:gridname>"
+    echo "  + ./gen_heatmaps.sh grid <int:precision> <str:method> <str:gridname>"
+    echo "  + ./gen_heatmaps.sh criteria <int:precision> <str:method> <str:criteria>"
     echo "  + ./gen_heatmaps.sh all <int:precision> <str:method>"
     exit
 fi
-if [[ "${MODE}" != "all" ]]; then
-    MODE="single"
-    if [[ "${GRID}" == "" ]]; then
-        echo "Missing grid parameter ! Type './gen_grids.sh help' to get some help."
-        exit
-    fi
+if [ "${MODE}" != "grid" ] && [ "${MODE}" != "criteria" ] && [ "${MODE}" != "all" ]; then
+    echo "Wrong parameter ! Type './gen_grids.sh help' to get some help."
+    exit
 fi
 if [[ "${PRECISION}" == "" ]]; then
     PRECISION="100"
@@ -210,10 +208,16 @@ if [[ "${MODE}" == "all" ]]; then
             echo "[BASH]> overall progress : ${i}/${TOTAL}"
         done
     done
-else
+elif [[ "${MODE}" == "grid" ]]; then
     for criteria in ${CRITERIAS[@]}; do
         i=$((i+1))
-        gen_heatmap ${GRID} ${criteria}
+        gen_heatmap ${ELEMENT} ${criteria}
         echo "[BASH]> overall progress : ${i}/${CRITERIAS_LEN}"
+    done
+elif [[ "${MODE}" == "criteria" ]]; then
+    for grid in ${GRIDS[@]}; do
+        i=$((i+1))
+        gen_heatmap ${grid} ${ELEMENT}
+        echo "[BASH]> overall progress : ${i}/${GRIDS_LEN}"
     done
 fi
