@@ -24,7 +24,7 @@ angular.module('smartCityFrontEndApp')
         $scope.form.addressForm.$setSubmitted();
         if($scope.form.addressForm.$valid) {
             serviceAjax.latlon(searchData.address, searchData.citySelected.name, function(data){
-                if (data.length > 0){
+                if (data.length > 0 && data[0].lat >= 45.55 && data[0].lat <= 45.917 && data[0].lon >= 4.681 && data[0].lon <= 5.067){
                     searchData.lat = data[0].lat;
                     searchData.lon = data[0].lon;
                     next();
