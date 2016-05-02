@@ -18,4 +18,5 @@ angular.module('smartCityFrontEndApp')
     this.selectedArea = '';
     this.selectedProfil = -1;
     this.selectedCritere = '';
+    this.profilName = '';
   });

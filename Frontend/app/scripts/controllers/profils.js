@@ -91,6 +91,7 @@
             else{
                 searchData.criterias[i].coef = 5;
             }
+            searchData.profilName = profil.name;
         }
         searchData.selectedProfil = index;
         if (profil.coefs.length === 0){

@@ -60,6 +60,22 @@ angular.module('smartCityFrontEndApp')
       });
     };
     
+    var tooltipInfo = function(data){
+        var ret = '';
+        if (data.closest !== null){
+            ret += '<br/><br/>Distance avec l\'entité la plus proche : <b>' + data.closest.distance + '</b> mètres<br/>';
+            ret += '&nbsp;&nbsp;&nbsp;&nbsp;-<i> Nom : ' + data.closest.data.name + '</i><br/>';
+            ret += '&nbsp;&nbsp;&nbsp;&nbsp;-<i> Thème : ' + data.closest.data.type + '</i>';
+        }
+        if (data.density !== null && data.density.value !== null && data.density.radius !== null){
+            ret += '<br/><br/>Densité : <b>' + data.density.value + '</b> entité';
+            ret += (data.density.value <= 1 ? '' : 's');
+            ret += ' dans un rayon de <b>' + data.density.radius + ' mètre';
+            ret += (data.density.radius <= 1 ? '' : 's');
+        }
+        return ret + '</b>';
+    };
+    
     var addGaugeConfig = function(graphName, serieName){
         $scope.gaugesConfig.push({
             options: {
@@ -119,7 +135,7 @@ angular.module('smartCityFrontEndApp')
         if ($scope.barAddressConfig.series.length === 0){
             $scope.barAddressConfig.series.push({
                 showInLegend: false,
-                name : 'score',
+                name : serieName,
                 data: []
             });
         }
@@ -135,6 +151,13 @@ angular.module('smartCityFrontEndApp')
             chart: {
                 type: 'bar',
                 marginLeft:150
+            },
+            tooltip: {
+                useHTML: true,
+                formatter: function () {
+                    var ret = '<div class="text-center"><b>' + this.series.name + '</b><br/><small>' + this.point.category + '</small></div><br/>';
+                    return ret + 'Note : ' + this.point.y + '/10</b>' + tooltipInfo(this.point); 
+                },  
             }
         },
         yAxis: {
@@ -164,17 +187,18 @@ angular.module('smartCityFrontEndApp')
                 type: 'bar'
             },
             tooltip: {
+                useHTML: true,
                 formatter: function () {
-                    var ret = '';
-                    if (this.series.name !== 'score'){
-                        ret += '<b>' + this.series.name + '</b><br/>'; 
-                    }
+                    var ret = '<div class="text-center"><b>' + this.series.name + '</b><br/><small>' + this.point.category + '</small></div><br/>';
                     if (this.point.y < 0){
-                        return ret + this.point.category + '<br/>Insatisfaction : <b>' + Math.abs(this.point.y) + '%'; 
+                        ret += 'Insatisfaction : <b>';
                     }
-                    return ret + this.point.category + '<br/>Satisfaction : <b>' + this.point.y + '%'; 
+                    else{
+                        ret += 'Satisfaction : <b>';
+                    }
+                    return ret + this.point.y + '%</b>' + tooltipInfo(this.point); 
                 },  
-            },
+            }
         },
         yAxis: {
             currentMin: -100,
@@ -234,7 +258,7 @@ angular.module('smartCityFrontEndApp')
     }
     else{
         $scope.nbGauges = 1;
-        addGaugeConfig('', 'score');
+        addGaugeConfig('', searchData.profilName);
         $scope.satisfactionGraphHeight = {height:(50 * searchData.criterias.countValid()) + 'px'};
         search(false, 0, searchData.criterias, searchData.lat, searchData.lon);
     }

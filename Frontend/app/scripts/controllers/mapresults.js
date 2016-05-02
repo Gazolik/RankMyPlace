@@ -31,7 +31,7 @@ angular.module('smartCityFrontEndApp')
 
         var cfg = {
           radius: 0.001,
-          maxOpacity: 0.8,
+          maxOpacity: 0.6,
           scaleRadius: true, 
           latField: 'lat',
           lngField: 'lon',
