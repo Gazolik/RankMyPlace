@@ -28,6 +28,9 @@ INPUTS = {
         'commune', 'telephone', 'email',
         'facebook', 'siteweb', 'producteur',
         'tarifsmin', 'tarifsmax', 'tarifsenclair'
+    ],
+    'parkings': [
+        'nom', 'reglementation', 'fermeture'
     ]
 }
 
