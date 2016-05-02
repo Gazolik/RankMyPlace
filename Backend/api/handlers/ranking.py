@@ -21,7 +21,9 @@ def ranking_handler(path, data, api_param):
         note, closest, density = rank(spec)
         # récupération du rayon dans le cas d'une densité
         # on retourne explicitement None si on ne trouve pas la clé radius dans params
-        radius = criterias_dict[i]['params'].get('radius', None) 
+        radius = criterias_dict[i]['params'].get('radius', None)
+        if radius:
+            radius = int(radius)
         # traitement en fonction du coeff du critère
         if criteres[i] == 0 :
             ret_note.append({
