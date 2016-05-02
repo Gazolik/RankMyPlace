@@ -91,6 +91,7 @@ def density_based(criteria, coord):
     records = load_database_psd(criteria['name'])
     # création de la note vide
     mark = -1.0
+    closest = None
     if not records:
         print('[gen_criteria.density_based]> %s' % criteria['name'])
     else:
