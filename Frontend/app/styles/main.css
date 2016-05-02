@@ -428,8 +428,12 @@ header.carousel .fill {
 
 .slideIconLeft, .slideIconRight{
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 30px;
+    font-size: 12px;
+    line-height: 30px;
+}
+.slideIconLeft span, .slideIconRight span{
+    line-height: 44px;
 }
 
 .slideIconLeft .btn-primary, .slideIconRight .btn-primary{
@@ -438,11 +442,12 @@ header.carousel .fill {
 }
 
 .slideIconLeft{
-    left:-60px;
+    left:-50px;
 }
 
 .slideIconRight{
-    right:-60px;
+    right:-50px;
+    text-indent: 4px;
 }
 
 .contentContainer{

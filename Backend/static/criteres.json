@@ -12,6 +12,25 @@
             "dist_scale" : "linear"
         }
     },
+    
+    "parkings" : {
+        "name" : "parkings",
+        "realname" : "Parkings",
+        "description" : "Parkings à proximité",
+        "type" : "dist_dens_based",
+        "group" : "Transports",
+        "params" : {
+            "min_dist" : 0,
+            "max_dist" : 200,
+            "min_density" : 1,
+            "max_density" : 100000,
+            "dist_coeff" : 3,
+            "dens_coeff": 4,
+            "radius" : 200,
+            "dist_scale" : "linear",
+            "dens_scale" : "linear"
+        }
+    },
             
     "velov" : {
         "name" : "velov",
@@ -59,7 +78,8 @@
         "group" : "Vie quotidienne",
         "type" : "custom",
         "params" : {
-            "radius" : 500
+            "radius" : 500,
+            "max" : 80
         }
     },
             
@@ -71,12 +91,12 @@
         "type" : "dist_dens_based",
         "params" : {
             "min_dist" : 0,
-            "max_dist" : 1000,
+            "max_dist" : 500,
             "min_density" : 3,
             "max_density" : 10000,
             "dist_coeff" : 3,
             "dens_coeff": 2,
-            "radius" : 1000,
+            "radius" : 500,
             "dist_scale" : "linear",
             "dens_scale" : "linear"
         }
@@ -278,12 +298,12 @@
         "group" : "Sport et loisirs",
         "params" : {
             "min_dist" : 0,
-            "max_dist" : 2000,
-            "min_density" : 5,
+            "max_dist" : 1000,
+            "min_density" : 10,
             "max_density" : 100000,
             "dist_coeff" : 1,
             "dens_coeff": 3,
-            "radius" : 2000,
+            "radius" : 1000,
             "dist_scale" : "linear",
             "dens_scale" : "linear"
         }
@@ -297,12 +317,12 @@
         "group" : "Sport et loisirs",
         "params" : {
             "min_dist" : 0,
-            "max_dist" : 2000,
-            "min_density" : 3,
+            "max_dist" : 1000,
+            "min_density" : 5,
             "max_density" : 100000,
             "dist_coeff" : 1,
             "dens_coeff": 3,
-            "radius" : 2000,
+            "radius" : 1000,
             "dist_scale" : "linear",
             "dens_scale" : "linear"
         }

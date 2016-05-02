@@ -17,9 +17,10 @@ angular.module('smartCityFrontEndApp')
     $scope.barClass = '';
     $scope.titleGauges = 'Note globale';
     
-    var search = function (index, criterias, lat, lon){
-        serviceAjax.search(criterias, lat, lon, function(data){
+    var search = function (applyCoef, index, criterias, lat, lon){
+        serviceAjax.search(applyCoef, criterias, lat, lon, function(data){
             $scope.loading = false;
+            criterias.keySort('name');
             $scope.gaugesConfig[index].series[0].data[0] = Math.round(data.moyenne*100)/100;
             for (var i = 0 ; i < data.notes.length ; ++i){
                 if (data.notes[i].note !== -1){
@@ -59,7 +60,7 @@ angular.module('smartCityFrontEndApp')
             series: [{
                 data: [5],
                 dataLabels: {
-                    format: '<div style="text-align:center"><span style="font-size:16px;color:black;">{y}/1O</span><br/></div>',
+                    format: '<div style="text-align:center"><span style="font-size:16px;color:black;">{y}/10</span><br/></div>',
                     borderWidth: 0,
                     useHTML: true,
                     y:-30
@@ -133,14 +134,14 @@ angular.module('smartCityFrontEndApp')
             $scope.nbGauges = data.length;
             for (var i = 0 ; i < data.length ; ++i){
                 addGaugeConfig(data[i].name, data[i].name);
-                search(i, data[i].coefs, searchData.lat, searchData.lon);
+                search(true, i, data[i].coefs, searchData.lat, searchData.lon);
             }
         });
     }
     else{
         $scope.nbGauges = 1;
         addGaugeConfig('', 'score');
-        search(0, searchData.criterias, searchData.lat, searchData.lon);
+        search(false, 0, searchData.criterias, searchData.lat, searchData.lon);
     }
     
   });
