@@ -12,8 +12,11 @@
      
     $scope.searchData = searchData;  
     $scope.profils = [];
-    $scope.allCriterias = 5;     
+     
     $scope.mode = false;
+      if ($route.current.showReglage){
+        $scope.mode = true;
+    }
      
     angular.element('[data-toggle="tooltip"]').tooltip(); 
       
@@ -48,20 +51,23 @@
       serviceAjax.criterias(function(data) {
          searchData.criterias.length = 0;
          for (var i = 0 ; i < data.length ; ++i){
-             searchData.criterias.push({groupe : data[i].groupe, name : data[i].name, description : data[i].description, coef : data[i].coef, code : data[i].code, type : data[i].type, dist : null, dens : null, slider : false, show : null});   
+             searchData.criterias.push({groupe : data[i].groupe, name : data[i].name, description : data[i].description, coef : data[i].coef, code : data[i].code, type : data[i].type, dist : null, dens : null, slider : false, show : null, coefGroup : null});   
          }
          searchData.criterias.keySort('groupe');
          var groups = [];          
-         var showCrit = []; 
+         var showCrit = [];
+         var coefGroup = [];
          for (var j = 0 ; j < searchData.criterias.length ; ++j){
              if(!groups.includes(searchData.criterias[j].groupe)){
                 groups.push(searchData.criterias[j].groupe);
                 showCrit.push({show : true});
+                coefGroup.push({coefGroup : null});
              }
              else{
                  searchData.criterias[j].groupe = '';
              }
              searchData.criterias[j].show = showCrit[showCrit.length-1];
+             searchData.criterias[j].coefGroup= coefGroup[coefGroup.length-1];
          }         
          if ($scope.profils.length !== 0){
             $scope.updateCoef($scope.profils[0], 0);
@@ -86,10 +92,14 @@
         for (var i = 0 ; i < searchData.criterias.length ; ++i){
             var indexCriteria = profil.coefs.getIndexBy('code', searchData.criterias[i].code);
             if (indexCriteria !== -1){
-                searchData.criterias[i].coef = profil.coefs[indexCriteria].coef;   
+                searchData.criterias[i].coef = profil.coefs[indexCriteria].coef;
+                searchData.criterias[i].coefGroup.coefGroup = null;
+                searchData.criterias[i].show.show = true;
             }
             else{
                 searchData.criterias[i].coef = 5;
+                searchData.criterias[i].coefGroup.coefGroup = 5;    
+                searchData.criterias[i].show.show = false;
             }
             searchData.profilName = profil.name;
         }
@@ -97,29 +107,28 @@
         if (profil.coefs.length === 0){
             $scope.show = true;
             $scope.msgCriteres ='Cacher les critères';
-            $scope.showCrit.show = false;
           }
     };
-     
-   /*   
-    if(searchData.selectedProfil === $scope.profils.length-1 ){ 
-        $scope.$watch('allCriterias', function() {
-            for (var i = 0 ; i < searchData.criterias.length ; ++i){
-               searchData.criterias[i].coef = $scope.allCriterias;
-             }
-        });
-    }*/
-     
+            
     $scope.verifyType = function (criteriaType, sliderType){
         var show = false;
         if((criteriaType === sliderType) || (criteriaType === 'dist_dens_based') ){
             show = true;
         }
         return show;
-    };
+    };   
+   
      
-    if ($route.current.showReglage){
-        $scope.mode = true;
-    }
+     $scope.applyGroupCoef = function(){
+        for(var i = 0 ; i < searchData.criterias.length; ++i){
+             if(searchData.criterias[i].coefGroup.coefGroup !== null){
+                 searchData.criterias[i].coef = searchData.criterias[i].coefGroup.coefGroup;
+             }
+         }
+     };
+            
+     $scope.verifyGroupCoef = function(index){
+        searchData.criterias[index].coefGroup.coefGroup = null;
+     };
          
   });

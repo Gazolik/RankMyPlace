@@ -20,82 +20,70 @@
         <a class="btn btn-primary" ng-click="showHideDetails()"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{msgCriteres}}</a>
     </div><br/>
     <h3 class="page-header sample-show-hide" ng-show="show">Dans quelle mesure les critères suivant vous intéressent-ils ?</h3>
-    <table class="tableCriteres table sample-show-hide" ng-show="show">
-    <thead>
-      <tr>
-        <th></th>
-        <th></th>
-        <th class="headerRadio0 text-center" >0</th>
-        <th class="headerRadio1 text-center" >1</th>
-        <th class="headerRadio2 text-center" >2</th>
-        <th class="headerRadio3 text-center" >3</th>
-        <th class="headerRadio4 text-center" >4</th>
-        <th class="headerRadio5 text-center" >5</th>
-        <th class="headerRadio6 text-center" >6</th>
-        <th class="headerRadio7 text-center" >7</th>
-        <th class="headerRadio8 text-center" >8</th>
-        <th class="headerRadio9 text-center" >9</th>
-        <th class="headerRadio10 text-center" >10</th>
-      </tr>
-    </thead>
-    <tbody  ng-repeat="criteria in searchData.criterias">
-        <!--tr ng-if="searchData.selectedProfil == profils.length-1 && $index == 0">
-            <td class="allCriterias">Tous les critères</td><td class="allCriterias"></td>
-            <td class="inlineRadio0"><input type="radio" ng-model="allCriterias" value="0"></td>
-            <td class="inlineRadio1"><input type="radio" ng-model="allCriterias" value="1"></td>
-            <td class="inlineRadio2"><input type="radio" ng-model="allCriterias" value="2"></td>
-            <td class="inlineRadio3"><input type="radio" ng-model="allCriterias" value="3"></td>
-            <td class="inlineRadio4"><input type="radio" ng-model="allCriterias" value="4"></td>
-            <td class="inlineRadio5"><input type="radio" ng-model="allCriterias" value="5"></td>
-            <td class="inlineRadio6"><input type="radio" ng-model="allCriterias" value="6"></td>
-            <td class="inlineRadio7"><input type="radio" ng-model="allCriterias" value="7"></td>
-            <td class="inlineRadio8"><input type="radio" ng-model="allCriterias" value="8"></td>
-            <td class="inlineRadio9"><input type="radio" ng-model="allCriterias" value="9"></td>
-            <td class="inlineRadio10"><input type="radio" ng-model="allCriterias" value="10"></td>
-        </tr-->
-        <tr class="groupe" ng-if="criteria.groupe != ''">
-            <td>{{criteria.groupe}}</td>            
-            <td style="cursor:pointer" data-toggle="tooltip" title="Dévoiler les critères" ng-click="criteria.show.show =! criteria.show.show">
-                <span class="fa-stack fa-1x text-primary">
-                  <i ng-class="(criteria.show.show == true) ? 'fa-angle-up' : 'fa-angle-down'" class="fa fa-stack-2x" aria-hidden="true"></i>
-                </span>
-            </td>
-            <td class="inlineRadio0"><input type="radio" value="0"></td>
-            <td class="inlineRadio1"><input type="radio" value="1"></td>
-            <td class="inlineRadio2"><input type="radio" value="2"></td>
-            <td class="inlineRadio3"><input type="radio" value="3"></td>
-            <td class="inlineRadio4"><input type="radio" value="4"></td>
-            <td class="inlineRadio5"><input type="radio" value="5"></td>
-            <td class="inlineRadio6"><input type="radio" value="6"></td>
-            <td class="inlineRadio7"><input type="radio" value="7"></td>
-            <td class="inlineRadio8"><input type="radio" value="8"></td>
-            <td class="inlineRadio9"><input type="radio" value="9"></td>
-            <td class="inlineRadio10"><input type="radio" value="10"></td>
-        </tr>  
-        <tr ng-show="criteria.show.show">
-            <td style="cursor:pointer" data-toggle="tooltip" title="{{criteria.description}}">{{criteria.name}}
-                <div ng_show="criteria.slider && mode">
-                    <div ng-show="verifyType(criteria.type, 'distance_based')"><i>Distance (m)</i><slider ng-model="criteria.dist" min="0" step="100" max="5000" range="true"></slider></div>
-                    <div ng-show="verifyType(criteria.type, 'density_based')"><i>Densité</i><slider ng-model="criteria.dens" min="0" step="1" max="100" range="true"></slider></div>
-                </div>
-            </td>             
-            <td >
-                <div ng-show="mode" style="cursor:pointer" data-toggle="tooltip" title="Réglages avancés" ng-click="criteria.slider = !criteria.slider"><span class="glyphicon glyphicon-cog"></span></div>
-            </td>
-            <td class="inlineRadio0"><input type="radio" ng-model="criteria.coef" value="0"></td>
-            <td class="inlineRadio1"><input type="radio" ng-model="criteria.coef" value="1"></td>
-            <td class="inlineRadio2"><input type="radio" ng-model="criteria.coef" value="2"></td>
-            <td class="inlineRadio3"><input type="radio" ng-model="criteria.coef" value="3"></td>
-            <td class="inlineRadio4"><input type="radio" ng-model="criteria.coef" value="4"></td>
-            <td class="inlineRadio5"><input type="radio" ng-model="criteria.coef" value="5"></td>
-            <td class="inlineRadio6"><input type="radio" ng-model="criteria.coef" value="6"></td>
-            <td class="inlineRadio7"><input type="radio" ng-model="criteria.coef" value="7"></td>
-            <td class="inlineRadio8"><input type="radio" ng-model="criteria.coef" value="8"></td>
-            <td class="inlineRadio9"><input type="radio" ng-model="criteria.coef" value="9"></td>
-            <td class="inlineRadio10"><input type="radio" ng-model="criteria.coef" value="10"></td>  
-        </tr>     
-    </tbody>
-  </table>
-        <div class="footer"><p>Par Hexanonyme</p></div>
-
+    <div ng-show="show">
+        <span class="pasInt">Pas intéressant</span> <span class="tresInt">Très intéressant</span>
+        <table class="tableCriteres table sample-show-hide">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th class="headerRadio0 text-center">0</th>
+            <th class="headerRadio1 text-center" >1</th>
+            <th class="headerRadio2 text-center" >2</th>
+            <th class="headerRadio3 text-center" >3</th>
+            <th class="headerRadio4 text-center" >4</th>
+            <th class="headerRadio5 text-center" >5</th>
+            <th class="headerRadio6 text-center" >6</th>
+            <th class="headerRadio7 text-center" >7</th>
+            <th class="headerRadio8 text-center" >8</th>
+            <th class="headerRadio9 text-center" >9</th>
+            <th class="headerRadio10 text-center" >10</th>
+          </tr>
+        </thead>
+        <tbody  ng-repeat="criteria in searchData.criterias">
+            <tr class="groupe" ng-if="criteria.groupe != ''">
+                <td>{{criteria.groupe}}</td>            
+                <td style="cursor:pointer" data-toggle="tooltip" title="Dévoiler les critères" ng-click="criteria.show.show =! criteria.show.show">
+                    <span class="fa-stack fa-1x text-primary">
+                      <i ng-class="(criteria.show.show == true) ? 'fa-angle-up' : 'fa-angle-down'" class="fa fa-stack-2x" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td class="inlineRadio0"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="0"></td>
+                <td class="inlineRadio1"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="1"></td>
+                <td class="inlineRadio2"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="2"></td>
+                <td class="inlineRadio3"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="3"></td>
+                <td class="inlineRadio4"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="4"></td>
+                <td class="inlineRadio5"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="5"></td>
+                <td class="inlineRadio6"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="6"></td>
+                <td class="inlineRadio7"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="7"></td>
+                <td class="inlineRadio8"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="8"></td>
+                <td class="inlineRadio9"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="9"></td>
+                <td class="inlineRadio10"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="10"></td>
+            </tr>  
+            <tr ng-show="criteria.show.show">
+                <td style="cursor:pointer" data-toggle="tooltip" title="{{criteria.description}}">{{criteria.name}}
+                    <div ng_show="criteria.slider && mode">
+                        <div ng-show="verifyType(criteria.type, 'distance_based')"><i>Distance (m)</i><slider ng-model="criteria.dist" min="0" step="100" max="5000" range="true"></slider></div>
+                        <div ng-show="verifyType(criteria.type, 'density_based')"><i>Densité</i><slider ng-model="criteria.dens" min="0" step="1" max="100" range="true"></slider></div>
+                    </div>
+                </td>             
+                <td >
+                    <div ng-show="mode" style="cursor:pointer" data-toggle="tooltip" title="Réglages avancés" ng-click="criteria.slider = !criteria.slider"><span class="glyphicon glyphicon-cog"></span></div>
+                </td>
+                <td class="inlineRadio0"><input type="radio" ng-click="verifyGroupCoef($index)" ng-model="criteria.coef" value="0"></td>
+                <td class="inlineRadio1"><input type="radio" ng-click="verifyGroupCoef($index)" ng-model="criteria.coef" value="1"></td>
+                <td class="inlineRadio2"><input type="radio" ng-click="verifyGroupCoef($index)" ng-model="criteria.coef" value="2"></td>
+                <td class="inlineRadio3"><input type="radio" ng-click="verifyGroupCoef($index)" ng-model="criteria.coef" value="3"></td>
+                <td class="inlineRadio4"><input type="radio" ng-click="verifyGroupCoef($index)" ng-model="criteria.coef" value="4"></td>
+                <td class="inlineRadio5"><input type="radio" ng-click="verifyGroupCoef($index)" ng-model="criteria.coef" value="5"></td>
+                <td class="inlineRadio6"><input type="radio" ng-click="verifyGroupCoef($index)" ng-model="criteria.coef" value="6"></td>
+                <td class="inlineRadio7"><input type="radio" ng-click="verifyGroupCoef($index)" ng-model="criteria.coef" value="7"></td>
+                <td class="inlineRadio8"><input type="radio" ng-click="verifyGroupCoef($index)" ng-model="criteria.coef" value="8"></td>
+                <td class="inlineRadio9"><input type="radio" ng-click="verifyGroupCoef($index)" ng-model="criteria.coef" value="9"></td>
+                <td class="inlineRadio10"><input type="radio" ng-click="verifyGroupCoef($index)" ng-model="criteria.coef" value="10"></td>  
+            </tr>     
+        </tbody>
+      </table>
+  </div>
+  <div class="footer"><p>Par Hexanonyme</p></div>
 </div> 
