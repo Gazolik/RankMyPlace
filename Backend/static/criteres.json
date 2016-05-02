@@ -12,6 +12,25 @@
             "dist_scale" : "linear"
         }
     },
+    
+    "parkings" : {
+        "name" : "parkings",
+        "realname" : "Parkings",
+        "description" : "Parkings à proximité",
+        "type" : "dist_dens_based",
+        "group" : "Transports",
+        "params" : {
+            "min_dist" : 0,
+            "max_dist" : 200,
+            "min_density" : 1,
+            "max_density" : 100000,
+            "dist_coeff" : 3,
+            "dens_coeff": 4,
+            "radius" : 200,
+            "dist_scale" : "linear",
+            "dens_scale" : "linear"
+        }
+    },
             
     "velov" : {
         "name" : "velov",
@@ -59,7 +78,8 @@
         "group" : "Vie quotidienne",
         "type" : "custom",
         "params" : {
-            "radius" : 500
+            "radius" : 500,
+            "max" : 80
         }
     },
             

@@ -160,6 +160,7 @@ def custom_bruit(criteria, coord):
     """
     # récupération du rayon
     radius = criteria['params']['radius']
+    max_bruit = criteria['params']['max']
     # lecture dans la base
     records_db = load_database_psd(criteria['name'])
     # récupération des records les plus proches
@@ -173,7 +174,9 @@ def custom_bruit(criteria, coord):
         # création des variables necessaires au traitement
         s = 0
         for record in records:
-            s += record['data']['value']
+            niveau_bruit = record['data']['value']
+            note_bruit = 10 * niveau_bruit / max_bruit
+            s += note_bruit
         mark = s / records_size
-    # on retoure la note et pas de record
+    # on retourne la note et pas de record
     return (mark, None, None)
