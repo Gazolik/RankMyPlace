@@ -79,7 +79,8 @@
         "type" : "custom",
         "params" : {
             "radius" : 500,
-            "max" : 80
+            "max" : 80,
+            "min" : 20
         }
     },
             
