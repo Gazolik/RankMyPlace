@@ -1,17 +1,23 @@
-<div class="col-md-1 text-center" ng-click='prev()'>
-    <img ng-src="images/prev-arrow.png" style="position:fixed;left:10px" ng-show='displayedView > 0'/>
-</div> 
-<div  class="col-md-10" class="animate-switch-container" ng-switch="displayedView">
-     <div ng-class="animateSwitchClass" ng-switch-default>
-         <div ng-controller="ProfilsCtrl" ng-include="'views/profils.html'"></div>
+<div class="container" style="position:relative;">
+    <div class="slideIconLeft"> 
+        <span class="fa-stack fa-2x btn-primary" ng-click='prev()' ng-show='displayedView > 0'>
+          <i class="fa fa-angle-left fa-stack-1x fa-inverse"></i>
+        </span>
     </div>
-     <div ng-class="animateSwitchClass" ng-switch-when="1">
-         <div ng-controller="AddressCtrl" ng-include="'views/address.html'"></div>
+    <div class="animate-switch-container" ng-switch on="displayedView">
+         <div ng-class="animateSwitchClass" ng-switch-default>
+             <div ng-controller="ProfilsCtrl" ng-include="'views/profils.html'"></div>
+        </div>
+         <div ng-class="animateSwitchClass" ng-switch-when="1">
+             <div ng-controller="AddressCtrl" ng-include="'views/address.html'"></div>
+        </div>
+         <div ng-class="animateSwitchClass" ng-switch-when="2">
+             <div ng-controller="AddressResultsCtrl"  ng-include="'views/addressResults.html'"></div>
+        </div>
     </div>
-     <div ng-class="animateSwitchClass" ng-switch-when="2">
-         <div ng-controller="AddressResultsCtrl"  ng-include="'views/addressResults.html'"></div>
+    <div class="slideIconRight">
+        <span class="fa-stack fa-2x btn-primary" ng-click='next()' ng-show='displayedView < 2'>
+          <i class="fa fa-angle-right fa-stack-1x fa-inverse"></i>
+        </span>
     </div>
-</div>
-<div  class="col-md-1 text-center" ng-click='next()'>
-    <img ng-src="images/next-arrow.png" style="position:fixed;right:10px" ng-show='displayedView < 2'/>
 </div>
