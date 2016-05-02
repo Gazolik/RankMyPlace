@@ -24,14 +24,32 @@ def ranking_handler(path, data, api_param):
         radius = criterias_dict[i]['params'].get('radius', None) 
         # traitement en fonction du coeff du critère
         if criteres[i] == 0 :
-            ret_note.append({'name': criterias_dict[i]['realname'], 'note':note, 'satisfaction':-101,'closest': closest, 'density': density, 'radius': radius})
+            ret_note.append({
+                'name': criterias_dict[i]['realname'],
+                'note':note,
+                'satisfaction':-101,
+                'closest': closest,
+                'density': {
+                    'value': density,
+                    'radius': radius
+                }
+            })
         else :
             notes[i] = note
             somme = somme + notes[i] * criteres[i]
             note_finale = notes[i]
             #calcul de satisfaction
             satis = satisfaction(max(note_finale,0), criteres[i])
-            ret_note.append({'name': criterias_dict[i]['realname'], 'note':round(note_finale, 2), 'satisfaction':round(satis, 2), 'closest': closest, 'density': density, 'radius': radius})
+            ret_note.append({
+                'name': criterias_dict[i]['realname'],
+                'note': round(note_finale, 2),
+                'satisfaction':round(satis, 2),
+                'closest': closest,
+                'density': {
+                    'value': density,
+                    'radius': radius
+                }
+            })
     # faire une moyenne
     if sum(criteres.values()) != 0:
         moy = somme / sum(criteres.values())
