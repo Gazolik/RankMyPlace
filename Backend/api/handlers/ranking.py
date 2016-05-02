@@ -17,10 +17,16 @@ def ranking_handler(path, data, api_param):
     ret_note = []
     somme = 0
     for i in nomcriteres:
-        spec = {'criteria': criterias_dict[i], 'coordinates': {'lat': d['lat'], 'lon': d['lon']}}
-        notes[i], closest, density = rank(spec)
-        somme = somme + notes[i] * criteres[i]
-        ret_note.append({'name': criterias_dict[i]['realname'], 'note': round(notes[i], 2), 'closest': closest, 'density': density})
+        if criteres[i] == 0 :
+            ret_note.append({'name': criterias_dict[i]['realname'], 'note': -1, 'closest': None, 'density': None})
+        else :
+            spec = {'criteria': criterias_dict[i], 'coordinates': {'lat': d['lat'], 'lon': d['lon']}}
+            notes[i], closest, density = rank(spec)
+            somme = somme + notes[i] * criteres[i]
+            note_finale=notes[i]
+            if d['apply_coeff'] == 1 :
+                note_finale=criteres[i]*note_finale/10
+            ret_note.append({'name': criterias_dict[i]['realname'], 'note': round(note_finale, 2), 'closest': closest, 'density': density})
     # faire une moyenne
     if sum(criteres.values()) != 0:
         moy = somme / sum(criteres.values())
