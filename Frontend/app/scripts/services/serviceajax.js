@@ -47,8 +47,8 @@ angular.module('smartCityFrontEndApp')
                         {name : 'Lyon 8ème', imgPath : 'lyon8.png', code:'lyon8'},
                         {name : 'Lyon 9ème', imgPath : 'lyon9.png', code:'lyon9'}]);*/
         },
-        search: function(criterias, lat, lon, successFct){
-            var args = {criteres : {}, lat : parseFloat(lat), lon : parseFloat(lon)};
+        search: function(applyCoef, criterias, lat, lon, successFct){
+            var args = {criteres : {}, lat : parseFloat(lat), lon : parseFloat(lon), applyCoeff : applyCoef};
             for (var i = 0 ; i < criterias.length ; ++i){
                 args.criteres[criterias[i].code] = parseInt(criterias[i].coef);          
             }
@@ -73,7 +73,7 @@ angular.module('smartCityFrontEndApp')
                         {name : 'Ecole'}]);*/
         },
         latlon: function(q, city, successFct){
-            var url = 'http://nominatim.openstreetmap.org/search.php?q=' + encodeURI(q) + '&city=' + encodeURI(city) + '&state= France&format=json';
+            var url = 'http://nominatim.openstreetmap.org/search.php?q=' + encodeURI(q + ' ' + city + ' France') + '&format=json';
             $http.get(url).success(successFct);
         }
    //     ranking : {"code": coef, "code2", coef}
