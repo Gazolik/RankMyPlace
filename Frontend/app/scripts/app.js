@@ -29,25 +29,29 @@ angular
         templateUrl: 'views/indAddress.html',
         controller: 'IndAddressCtrl',
         controllerAs: 'indAddress',
-        isPro: false
+        isPro: false,
+        showReglage : true
       })
       .when('/ind/map', {
         templateUrl: 'views/indMap.html',
         controller: 'IndMapCtrl',
         controllerAs: 'indMap',
-        isPro: false
+        isPro: false,
+        showReglage : false
       })
       .when('/pro/address', {
         templateUrl: 'views/proAddress.html',
         controller: 'ProAddressCtrl',
         controllerAs: 'proAddress',
-        isPro: true
+        isPro: true, 
+        showReglage : false
       })
       .when('/pro/map', {
         templateUrl: 'views/proMap.html',
         controller: 'ProMapCtrl',
         controllerAs: 'proMap',
-        isPro: true
+        isPro: true, 
+        showReglage : false
       })
       .when('/about', {
         templateUrl: 'views/about.html',

@@ -39,7 +39,7 @@
       </tr>
     </thead>
     <tbody  ng-repeat="criteria in searchData.criterias">
-        <tr ng-if="searchData.selectedProfil == profils.length-1 && $index == 0">
+        <!--tr ng-if="searchData.selectedProfil == profils.length-1 && $index == 0">
             <td class="allCriterias">Tous les critères</td><td class="allCriterias"></td>
             <td class="inlineRadio0"><input type="radio" ng-model="allCriterias" value="0"></td>
             <td class="inlineRadio1"><input type="radio" ng-model="allCriterias" value="1"></td>
@@ -52,7 +52,7 @@
             <td class="inlineRadio8"><input type="radio" ng-model="allCriterias" value="8"></td>
             <td class="inlineRadio9"><input type="radio" ng-model="allCriterias" value="9"></td>
             <td class="inlineRadio10"><input type="radio" ng-model="allCriterias" value="10"></td>
-        </tr>
+        </tr-->
         <tr class="groupe" ng-if="criteria.groupe != ''">
             <td>{{criteria.groupe}}</td>            
             <td style="cursor:pointer" data-toggle="tooltip" title="Dévoiler les critères" ng-click="criteria.show.show =! criteria.show.show">
@@ -73,14 +73,14 @@
             <td class="inlineRadio10"><input type="radio" ng-model="" value="10"></td>
         </tr>  
         <tr ng-show="criteria.show.show">
-            <td>{{criteria.name}}
-                <div ng_show="criteria.slider">
+            <td style="cursor:pointer" data-toggle="tooltip" title="{{criteria.description}}">{{criteria.name}}
+                <div ng_show="criteria.slider && mode">
                     <div ng-show="verifyType(criteria.type, 'distance_based')"><i>Distance (m)</i><slider ng-model="criteria.dist" min="0" step="100" max="5000" range="true"></slider></div>
                     <div ng-show="verifyType(criteria.type, 'density_based')"><i>Densité</i><slider ng-model="criteria.dens" min="0" step="1" max="100" range="true"></slider></div>
                 </div>
             </td>             
-            <td style="cursor:pointer" data-toggle="tooltip" title="Réglages avancés" ng-click="criteria.slider = !criteria.slider">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            <td >
+                <div ng-show="mode" style="cursor:pointer" data-toggle="tooltip" title="Réglages avancés" ng-click="criteria.slider = !criteria.slider"><span class="glyphicon glyphicon-cog"></span></div>
             </td>
             <td class="inlineRadio0"><input type="radio" ng-model="criteria.coef" value="0"></td>
             <td class="inlineRadio1"><input type="radio" ng-model="criteria.coef" value="1"></td>
