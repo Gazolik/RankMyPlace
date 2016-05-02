@@ -218,3 +218,10 @@ def avg_heatmap(heatmap_name, criterias_coef, GRID_SET):
     for idx, val in enumerate(notes):
         avg_map['heatmap'][idx] = [round(avg_map['heatmap'][idx][0], 5), round(avg_map['heatmap'][idx][1], 5), round(notes[idx], 2)]
     return avg_map
+
+
+def satisfaction(note, coef):
+    """calcul la satisfation en fonction d'une note et d'un coef"""
+    satisfation = (note*coef/100)**(coef/10)
+    satisfaction = ((satisfaction*10)-5)*coef
+    return satisfaction*2 #retourne une satisfation ou insatisfaction
