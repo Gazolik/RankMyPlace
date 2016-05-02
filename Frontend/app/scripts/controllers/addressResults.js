@@ -18,6 +18,7 @@ angular.module('smartCityFrontEndApp')
     $scope.titleGauges = 'Note globale';
     $scope.titleProfilBar = 'Notes pour votre profil';
     $scope.tabIndex = 0;
+    $scope.criteriasWarning = [];
     
     Array.prototype.countValid = function () {
         var count = 0;
@@ -34,23 +35,25 @@ angular.module('smartCityFrontEndApp')
             $scope.loading = false;
             data.notes.keySort('name');
             $scope.gaugesConfig[index].series[0].data[0] = Math.round(data.moyenne*100)/100;
-            var show = true;
             for (var i = 0 ; i < data.notes.length ; ++i){
-                show = true;
-                if (data.notes[i].note === -1 && !showAllCriterias){
-                    show = false;
-                }
-                else if(data.notes[i].note === -1){
-                   data.notes[i].note = 1;
-                }
-                if (show){
+                if (data.notes[i].note !== -1){
                     if (index === 0){
-                        $scope.barAddressConfig.series[index].data.push({y:Math.round(data.notes[i].note*100)/100, color:color[i%10]});
+                        $scope.barAddressConfig.series[index].data.push({y: Math.round(data.notes[i].note*100)/100, 
+                                                                         color:color[i%10],
+                                                                         density: data.notes[i].density,
+                                                                         closest: data.notes[i].closest});
                         $scope.barAddressConfig.xAxis.categories.push(data.notes[i].name);
                     }
-                    
-                    $scope.barProfilConfig.series[index].data.push({y:data.notes[i].satisfaction, color:color[showAllCriterias ? index : i%10]});
-                    $scope.barProfilConfig.xAxis.categories.push(data.notes[i].name);
+                    if (data.notes[i].satisfaction !== -101){
+                        $scope.barProfilConfig.series[index].data.push({y: data.notes[i].satisfaction, 
+                                                                        color: color[showAllCriterias ? index : i%10],
+                                                                        density: data.notes[i].density,
+                                                                        closest: data.notes[i].closest});
+                        $scope.barProfilConfig.xAxis.categories.push(data.notes[i].name);
+                    }
+                }
+                else if($scope.criteriasWarning.indexOf(data.notes[i].name) === -1){
+                    $scope.criteriasWarning.push(data.notes[i].name);
                 }
             }
             $scope.$broadcast('highchartsng.reflow');

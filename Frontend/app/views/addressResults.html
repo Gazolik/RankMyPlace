@@ -8,25 +8,30 @@
     </div>
     <h3>Détails par critère : </h3>
         <div>
-        <ul class="nav nav-tabs nav-justified">
-          <li role="presentation" 
-              ng-class="{'active': tabIndex === 0}"
-              ng-click="tabIndex = 0">
-              <a href="javascript:void(0)">{{titleProfilBar}}</a>
-          </li>
-          <li role="presentation"
-              ng-class="{'active': tabIndex === 1}"
-              ng-click="tabIndex = 1">
-              <a href="javascript:void(0)">Notes de l'adresse</a>
-          </li>
-        </ul>
-        <div class="tab-content">
-          <div ng-show="tabIndex === 0">
-            <highchart ng-style="satisfactionGraphHeight" style="width:1000px;" class="barGraph" class="col-md-12" config="barProfilConfig"></highchart>
-          </div>
-          <div ng-show="tabIndex === 1">
-              <highchart style="width:1000px;height:550px;" class="barGraph" config="barAddressConfig"></highchart>
-          </div>
+            <div class="alert alert-warning alert-dismissible" role="alert" ng-repeat="critere in criteriasWarning" >
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+              Le critère {{critere}} n'a pas été pris en compte à cause du manque de données à cette adresse.
+            </div>
+            <ul class="nav nav-tabs nav-justified">
+              <li role="presentation" 
+                  ng-class="{'active': tabIndex === 0}"
+                  ng-click="tabIndex = 0">
+                  <a href="javascript:void(0)">{{titleProfilBar}}</a>
+              </li>
+              <li role="presentation"
+                  ng-class="{'active': tabIndex === 1}"
+                  ng-click="tabIndex = 1">
+                  <a href="javascript:void(0)">Notes de l'adresse</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div ng-show="tabIndex === 0">
+                <highchart ng-style="satisfactionGraphHeight" style="width:1000px;" class="barGraph" class="col-md-12" config="barProfilConfig"></highchart>
+              </div>
+              <div ng-show="tabIndex === 1">
+                  <highchart style="width:1000px;height:550px;" class="barGraph" config="barAddressConfig"></highchart>
+              </div>
         </div>
     </div>
     <div class="col-md-12 footer"><p>Par Hexanonyme</p></div>
