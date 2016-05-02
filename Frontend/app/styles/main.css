@@ -416,3 +416,26 @@ header.carousel .fill {
     /* inline-block space fix */
     margin-right:-4px;
 }
+
+.slideIconLeft, .slideIconRight{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.slideIconLeft .btn-primary, .slideIconRight .btn-primary{
+    border-radius: 100%;
+    border: 1px solid #2e6da4;
+}
+
+.slideIconLeft{
+    left:-60px;
+}
+
+.slideIconRight{
+    right:-60px;
+}
+
+.contentContainer{
+    min-height: 320px;
+}
