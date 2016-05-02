@@ -4,7 +4,7 @@
 # ----------------------------------- IMPORTS
 
 from ...fs.fs import load_database_raw
-from ...fs.fs import dump_database_pre_psd
+from ...fs.fs import dump_database_pre_psd, dump_database_psd
 from ...algorithm.algorithm import isobarycenter
 
 import json
@@ -12,26 +12,21 @@ import json
 # ----------------------------------- CONFIGURATION
 
 INPUTS = {
-    'TCL': [
-        'nom', 'desserte', 'bool:escalator', 'bool:pmr', 'bool:ascenseur'
-    ],
-    'velov': [
-        'name', 'address', 'address2', 'pole', 'int:bike_stands'
-    ],
-    'bruit': ['float:value'],
-    'lieux_edifices': [
-        'nom', 'theme', 'soustheme'
-    ],
-    'point_interet_touristique': [
-        'type', 'type_detail', 'nom',
-        'adresse', 'int:codepostal',
-        'commune', 'telephone', 'email',
-        'facebook', 'siteweb', 'producteur',
-        'tarifsmin', 'tarifsmax', 'tarifsenclair'
-    ],
-    'parkings': [
-        'nom', 'reglementation', 'fermeture'
-    ]
+    'PSD':{
+        'TCL': ['nom', 'desserte', 'bool:escalator', 'bool:pmr', 'bool:ascenseur'],
+        'velov': ['name', 'address', 'address2', 'pole', 'int:bike_stands'],
+        'bruit': ['float:value'],
+        'parkings':['nom','reglementation','fermeture']
+        },
+    'PRE_PSD':{
+        'lieux_edifices': ['nom', 'theme', 'soustheme'],
+        'point_interet_touristique': [
+            'type', 'type_detail', 'nom',
+            'adresse', 'int:codepostal',
+            'commune', 'telephone', 'email',
+            'facebook', 'siteweb', 'producteur',
+            'tarifsmin', 'tarifsmax', 'tarifsenclair'
+            ]}
 }
 
 # ------------------------------------ FUNCTIONS
@@ -97,7 +92,10 @@ def process_data(basename, props):
         for record in data['features']:
             out_data.append(obj(record, props))
         # output
-        dump_database_pre_psd(basename + '_psd', out_data)
+        if basename in INPUTS['PRE_PSD'].keys():
+            dump_database_pre_psd(basename + '_psd', out_data)
+        elif basename in INPUTS['PSD'].keys():
+            dump_database_psd(basename+'_psd', out_data)
         print('done.')
     except Exception as e:
         print('failed ! An error occured, details below :')
@@ -108,8 +106,10 @@ def process_file(basename):
     """
         TODO : doc
     """
-    if basename in INPUTS.keys():
-        process_data(basename, INPUTS[basename])
+    if basename in INPUTS['PSD'].keys():
+        process_data(basename, INPUTS['PSD'][basename])
+    elif base in INPUTS['PRE_PSD'].keys():
+        process_data(basename, INPUTS['PRE_PSD'][basename])
     else:
         print('[process.py]> unknown input file, aborting. Bye !')
 
@@ -119,6 +119,7 @@ def process_all_files():
         TODO : doc
     """
     print('[process.py]> processing all data files.')
-    for basename in INPUTS.keys():
-        process_data(basename, INPUTS[basename])
+    for psd_type in INPUTS.keys():
+        for basename in INPUTS[psd_type].keys():
+            process_data(basename, INPUTS[psd_type][basename])
     print('[process.py]> all files processed. Bye.')
