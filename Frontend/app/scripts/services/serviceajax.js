@@ -9,8 +9,8 @@
  */
 angular.module('smartCityFrontEndApp')
   .factory('serviceAjax', function ($http) {
-    var host = 'http://localhost:8000';
-    //var host = 'http://501srv-2.insa-lyon.fr:8000';
+    //var host = 'http://localhost:8000';
+    var host = 'http://501srv-2.insa-lyon.fr:8000';
     return{
         profils: function(successFct){
             $http.get(host + '/profiles')

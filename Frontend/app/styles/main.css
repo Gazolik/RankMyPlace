@@ -117,54 +117,54 @@ header.carousel .fill {
     }
     
     .pasInt {
-        color:rgba(192, 192, 0, 1);        
+        color:rgba(192, 32, 0, 1);   
         font-weight: bold;
         text-align: left;
     }
     
-    .tresInt {
-        color:rgba(192, 32, 0, 1);
+    .tresInt {        
+        color:rgba(192, 192, 0, 1);    
         font-weight: bold;
         text-align: right;
     }
     
-    .headerRadio0 {
+    .headerRadio10 {
         color:rgba(192, 192, 0, 1);
     }
     
-    .inlineRadio0 {
+    .inlineRadio10 {
        background-color: rgba(192, 192, 0, 0.6);
     }
     
-     .headerRadio1 {
+     .headerRadio9 {
         color:rgba(192, 176, 0, 1);
     }
     
-    .inlineRadio1 {
+    .inlineRadio9 {
          background-color:rgba(192, 176, 0, 0.6);       
     }
     
-     .headerRadio2 {
+     .headerRadio8 {
         color:rgba(192, 160, 0, 1);
     }
     
-    .inlineRadio2 {
+    .inlineRadio8 {
          background-color:rgba(192, 160, 0, 0.6);
     }
     
-     .headerRadio3 {
+     .headerRadio7 {
         color:rgba(192, 144, 0, 1);
     }
     
-    .inlineRadio3 {
+    .inlineRadio7 {
          background-color:rgba(192, 144, 0, 0.6);
     }
     
-     .headerRadio4 {
+     .headerRadio6 {
         color:rgba(192, 128, 0, 1);
     }
     
-    .inlineRadio4 {
+    .inlineRadio6 {
          background-color:rgba(192, 128, 0, 0.6);
     }
     
@@ -176,43 +176,43 @@ header.carousel .fill {
          background-color:rgba(192, 112, 0, 0.6);
     }
     
-     .headerRadio6 {
+     .headerRadio4 {
         color:rgba(192, 96, 0, 1);
     }
     
-    .inlineRadio6 {
+    .inlineRadio4 {
          background-color:rgba(192, 96, 0, 0.6);
     }
     
-     .headerRadio7 {
+     .headerRadio3 {
         color:rgba(192, 80, 0, 1);
     }
     
-    .inlineRadio7 {
+    .inlineRadio3 {
          background-color:rgba(192, 80, 0, 0.6);
     }
     
-     .headerRadio8 {
+     .headerRadio2 {
         color:rgba(192, 64, 0, 1);
     }
     
-    .inlineRadio8 {
+    .inlineRadio2 {
          background-color:rgba(192, 64, 0, 0.6);
     }
     
-     .headerRadio9 {
+     .headerRadio1 {
         color:rgba(192, 48, 0, 1);
     }
     
-    .inlineRadio9 {
+    .inlineRadio1 {
          background-color:rgba(192, 48, 0, 0.6);
     }
     
-     .headerRadio10 {
+     .headerRadio0 {
         color:rgba(192, 32, 0, 1);
     }
     
-    .inlineRadio10 {
+    .inlineRadio0 {
          background-color:rgba(192, 32, 0, 0.6);
     }
     
