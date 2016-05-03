@@ -22,6 +22,7 @@ def ranking_handler(path, data, api_param):
         closest_dist = 0
         if closest:
             closest_dist = coord_dist({'lat':d['lat'],'lon':d['lon']},{'lat':closest['coordinates']['lat'],'lon':closest['coordinates']['lon']})
+            closest_dist = round(closest_dist,2)
         # récupération du rayon dans le cas d'une densité
         # on retourne explicitement None si on ne trouve pas la clé radius dans params
         radius = criterias_dict[i]['params'].get('radius', None)
