@@ -87,7 +87,7 @@ def density_based(criteria, coord, min_max_dens):
             retourne un triplet (note_sur_dix, element_trouvé, (densité|None))
     """
     # récupération et calcul des paramètres
-    if min_max_dist:
+    if min_max_dens:
         min_density = min_max_dens[0]
         max_density = min_max_dens[1]
     else:

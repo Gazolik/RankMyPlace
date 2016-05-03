@@ -25,7 +25,7 @@ def ranking_handler(path, data, api_param):
         if radius:
             radius = int(radius)
         # traitement en fonction du coeff du critère
-        if criteres[i] == 0 :
+        if criteres[i]['coef'] == 0 :
             ret_note.append({
                 'name': criterias_dict[i]['realname'],
                 'note':note,
@@ -38,10 +38,10 @@ def ranking_handler(path, data, api_param):
             })
         else :
             notes[i] = note
-            somme = somme + notes[i] * criteres[i]
+            somme = somme + notes[i] * criteres[i]['coef']
             note_finale = notes[i]
             #calcul de satisfaction
-            satis = satisfaction(max(note_finale,0), criteres[i])
+            satis = satisfaction(max(note_finale,0), criteres[i]['coef'])
             ret_note.append({
                 'name': criterias_dict[i]['realname'],
                 'note': round(note_finale, 2),
