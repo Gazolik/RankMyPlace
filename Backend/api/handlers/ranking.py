@@ -17,7 +17,7 @@ def ranking_handler(path, data, api_param):
     ret_note = []
     somme = 0
     for i in criteres.keys():
-        spec = {'criteria': criterias_dict[i], 'coordinates': {'lat': d['lat'], 'lon': d['lon']}}
+        spec = {'criteria': criterias_dict[i], 'coordinates': {'lat':d['lat'],'lon': d['lon']}, 'dist':criteres[i]['dist'],'dens':criteres[i]['dens']}
         note, closest, density = rank(spec)
         # récupération du rayon dans le cas d'une densité
         # on retourne explicitement None si on ne trouve pas la clé radius dans params
