@@ -53,11 +53,9 @@ angular.module('smartCityFrontEndApp')
                         {name : 'Lyon 9ème', imgPath : 'lyon9.png', code:'lyon9'}]);*/
         },
         search: function(criterias, lat, lon, successFct){
-            var args = {criteres : [], lat : parseFloat(lat), lon : parseFloat(lon)};
+            var args = {criteres : {}, lat : parseFloat(lat), lon : parseFloat(lon)};
             for (var i = 0 ; i < criterias.length ; ++i){
-                var obj = {};
-                obj[criterias[i].code] = {coef:parseInt(criterias[i].coef), dist:criterias[i].dist, dens:criterias[i].dens};
-                args.criteres.push(obj);     
+                args.criteres[criterias[i].code] = {coef:parseInt(criterias[i].coef), dist:criterias[i].dist, dens:criterias[i].dens};
             }
             $http.post(host + '/ranking', 'data=' + JSON.stringify(args))
                 .success(function (data){ successFct(data.content); })
