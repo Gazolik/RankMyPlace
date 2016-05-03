@@ -41,14 +41,16 @@ angular.module('smartCityFrontEndApp')
                         $scope.barAddressConfig.series[index].data.push({y: Math.round(data.notes[i].note*100)/100, 
                                                                          color:color[i%10],
                                                                          density: data.notes[i].density,
-                                                                         closest: data.notes[i].closest});
+                                                                         closest: data.notes[i].closest, 
+                                                                         closestDis: data.notes[i].closestDist});
                         $scope.barAddressConfig.xAxis.categories.push(data.notes[i].name);
                     }
                     if (data.notes[i].satisfaction !== -101){
                         $scope.barProfilConfig.series[index].data.push({y: data.notes[i].satisfaction, 
                                                                         color: color[showAllCriterias ? index : i%10],
                                                                         density: data.notes[i].density,
-                                                                        closest: data.notes[i].closest});
+                                                                        closest: data.notes[i].closest, 
+                                                                        closestDis: data.notes[i].closestDist});
                         $scope.barProfilConfig.xAxis.categories.push(data.notes[i].name);
                     }
                 }
@@ -63,9 +65,13 @@ angular.module('smartCityFrontEndApp')
     var tooltipInfo = function(data){
         var ret = '';
         if (data.closest !== null){
-            ret += '<br/><br/>Distance avec l\'entité la plus proche : <b>' + data.closest.distance + '</b> mètres<br/>';
-            ret += '&nbsp;&nbsp;&nbsp;&nbsp;-<i> Nom : ' + data.closest.data.name + '</i><br/>';
-            ret += '&nbsp;&nbsp;&nbsp;&nbsp;-<i> Thème : ' + data.closest.data.type + '</i>';
+            ret += '<br/><br/>Distance avec l\'entité la plus proche : <b>' + data.closestDis + '</b> mètres<br/>';
+            if (data.closest.data.name !== undefined){
+                ret += '&nbsp;&nbsp;&nbsp;&nbsp;-<i> Nom : ' + data.closest.data.name + '</i><br/>';
+            }
+            if (data.closest.data.type !== undefined){
+                ret += '&nbsp;&nbsp;&nbsp;&nbsp;-<i> Thème : ' + data.closest.data.type + '</i>';
+            }
         }
         if (data.density !== null && data.density.value !== null && data.density.radius !== null){
             ret += '<br/><br/>Densité : <b>' + data.density.value + '</b> entité';
@@ -156,7 +162,7 @@ angular.module('smartCityFrontEndApp')
                 useHTML: true,
                 formatter: function () {
                     var ret = '<div class="text-center"><b>' + this.series.name + '</b><br/><small>' + this.point.category + '</small></div><br/>';
-                    return ret + 'Note : ' + this.point.y + '/10</b>' + tooltipInfo(this.point); 
+                    return ret + 'Note : <b>' + this.point.y + '/10</b>' + tooltipInfo(this.point); 
                 },  
             }
         },
@@ -190,13 +196,16 @@ angular.module('smartCityFrontEndApp')
                 useHTML: true,
                 formatter: function () {
                     var ret = '<div class="text-center"><b>' + this.series.name + '</b><br/><small>' + this.point.category + '</small></div><br/>';
-                    if (this.point.y < 0){
+                    if (this.point.y < -20){
                         ret += 'Insatisfaction : <b>';
                     }
-                    else{
+                    else if (this.point.y > 20){
                         ret += 'Satisfaction : <b>';
                     }
-                    return ret + this.point.y + '%</b>' + tooltipInfo(this.point); 
+                    else{
+                        ret += 'Indiférence : <b>';
+                    }
+                    return ret + Math.abs(this.point.y) + '%</b>' + tooltipInfo(this.point); 
                 },  
             }
         },
