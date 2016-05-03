@@ -82,7 +82,7 @@ angular.module('smartCityFrontEndApp')
         return ret + '</b>';
     };
     
-    var addGaugeConfig = function(graphName, serieName){
+    var addGaugeConfig = function(graphName, serieName, address){
         $scope.gaugesConfig.push({
             options: {
                 chart: {
@@ -141,7 +141,7 @@ angular.module('smartCityFrontEndApp')
         if ($scope.barAddressConfig.series.length === 0){
             $scope.barAddressConfig.series.push({
                 showInLegend: false,
-                name : serieName,
+                name : address,
                 data: []
             });
         }
@@ -203,7 +203,7 @@ angular.module('smartCityFrontEndApp')
                         ret += 'Satisfaction : <b>';
                     }
                     else{
-                        ret += 'Indiférence : <b>';
+                        ret += 'Indifférence : <b>';
                     }
                     return ret + Math.abs(this.point.y) + '%</b>' + tooltipInfo(this.point); 
                 },  
@@ -221,10 +221,10 @@ angular.module('smartCityFrontEndApp')
                 formatter: function () {
                     var ret = Math.abs(this.value) + '%';
                     if (this.value === -80){
-                        ret += '<br/><b>Insastisfait</b>';
+                        ret += '<br/><b>Insatisfait</b>';
                     }
                     else if (this.value === 80){
-                        ret += '<br/><b>Sastisfait</b>';
+                        ret += '<br/><b>Satisfait</b>';
                     }
                     else if (this.value === 0){
                         ret += '<br/><b>Indifférent</b>';
@@ -260,14 +260,14 @@ angular.module('smartCityFrontEndApp')
             data.keySort('name');
             $scope.nbGauges = data.length;
             for (var i = 0 ; i < data.length ; ++i){
-                addGaugeConfig(data[i].name, data[i].name);
+                addGaugeConfig(data[i].name, data[i].name, searchData.address);
                 search(true, i, data[i].coefs, searchData.lat, searchData.lon);
             }
         });
     }
     else{
         $scope.nbGauges = 1;
-        addGaugeConfig('', searchData.profilName);
+        addGaugeConfig('', searchData.profilName, searchData.address);
         $scope.satisfactionGraphHeight = {height:(50 * searchData.criterias.countValid()) + 'px'};
         search(false, 0, searchData.criterias, searchData.lat, searchData.lon);
     }

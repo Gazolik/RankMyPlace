@@ -17,8 +17,6 @@
       if ($route.current.showReglage){
         $scope.mode = true;
     }
-     
-    angular.element('[data-toggle="tooltip"]').tooltip(); 
       
     Array.prototype.getIndexBy = function (name, value) {
         for (var i = 0; i < this.length; i++) {
