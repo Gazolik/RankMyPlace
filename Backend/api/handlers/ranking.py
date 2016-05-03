@@ -1,7 +1,7 @@
 from ..py_rest.pyrest.rest_server.rest_api.response import Response
 from ..criteria.gen_criteria import rank
 from ..criteria.criterias import criterias_dict
-from ..algorithm.algorithm import satisfaction
+from ..algorithm.algorithm import satisfaction, coord_dist
 import json
 
 
@@ -19,6 +19,9 @@ def ranking_handler(path, data, api_param):
     for i in criteres.keys():
         spec = {'criteria': criterias_dict[i], 'coordinates': {'lat':d['lat'],'lon': d['lon']}, 'dist':criteres[i]['dist'],'dens':criteres[i]['dens']}
         note, closest, density = rank(spec)
+        closest_dist = 0
+        if closest:
+            closest_dist = coord_dist({'lat':d['lat'],'lon':d['lon']},{'lat':closest['coordinates']['lat'],'lon':closest['coordinates']['lon']})
         # récupération du rayon dans le cas d'une densité
         # on retourne explicitement None si on ne trouve pas la clé radius dans params
         radius = criterias_dict[i]['params'].get('radius', None)
@@ -31,6 +34,7 @@ def ranking_handler(path, data, api_param):
                 'note':note,
                 'satisfaction':-101,
                 'closest': closest,
+                'closestDist': closest_dist,
                 'density': {
                     'value': density,
                     'radius': radius
@@ -47,6 +51,7 @@ def ranking_handler(path, data, api_param):
                 'note': round(note_finale, 2),
                 'satisfaction':round(satis, 2),
                 'closest': closest,
+                'closestDist': closest_dist,
                 'density': {
                     'value': density,
                     'radius': radius
