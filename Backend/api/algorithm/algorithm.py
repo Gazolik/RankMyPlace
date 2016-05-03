@@ -70,7 +70,7 @@ def n_closest_records(records, coord, n):
     # sort records
     sorted_recs = sorted(recs, key=lambda r: r[0])
     # finally return n first records
-    return sorted_recs
+    return sorted_recs[:n]
 
 
 def closest_record(records, coord):
