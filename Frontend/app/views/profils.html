@@ -69,8 +69,8 @@
             <tr ng-show="criteria.show.show">
                 <td class="vertHeader" style="cursor:pointer" data-toggle="tooltip" title="{{criteria.description}}">{{criteria.name}}
                     <div ng_show="criteria.slider && mode">
-                        <div ng-show="verifyType(criteria.type, 'distance_based')"><i>Distance (m)</i><slider ng-model="criteria.dist" min="0" step="100" max="5000" range="true"></slider></div>
-                        <div ng-show="verifyType(criteria.type, 'density_based')"><i>Densité</i><slider ng-model="criteria.dens" min="0" step="1" max="100" range="true"></slider></div>
+                        <div ng-show="verifyType(criteria.type, 'distance_based')"><i>Distance (m)</i><slider ng-model="criteria.dist" min="0" step="100" max="5000" range="true" ng-value="criteria.dist"></slider></div>
+                        <div ng-show="verifyType(criteria.type, 'density_based')"><i>Densité</i><slider ng-model="criteria.dens" min="0" step="1" max="10000" range="true" ng-value="criteria.dens"></slider></div>
                     </div>
                 </td>             
                 <td >
