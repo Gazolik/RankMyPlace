@@ -53,8 +53,11 @@ def ranking_handler(path, data, api_param):
                 }
             })
     # faire une moyenne
-    if sum(criteres.values()) != 0:
-        moy = somme / sum(criteres.values())
+    somme_coef = 0
+    for i in criteres.keys():
+        somme_coef += criteres[i]['coef']
+    if somme != 0:
+        moy = somme / somme_coef
     else:
         moy = 0.0
     # retourner les notes
