@@ -104,15 +104,28 @@ header.carousel .fill {
         background-color:rgba(192, 192, 192, 0.5);
         font-weight: bold;
     }
+     .vertHeader{
+        vertical-align: middle !important;
+    }
+    
+    .groupe .vertHeader{
+        border-bottom: 1px solid white;
+    }
+    
+    tbody {
+        border:1px !important;
+    }
     
     .pasInt {
         color:rgba(192, 192, 0, 1);        
         font-weight: bold;
+        text-align: left;
     }
     
     .tresInt {
         color:rgba(192, 32, 0, 1);
         font-weight: bold;
+        text-align: right;
     }
     
     .headerRadio0 {
@@ -278,6 +291,12 @@ header.carousel .fill {
     text-align: center;
     vertical-align: middle; 
 }
+
+.headerCriterias{
+    border-bottom: none !important;
+    border-top: none !important;
+}
+
 
 #heatmapPro, #heatmapInd{
     height: 600px;
