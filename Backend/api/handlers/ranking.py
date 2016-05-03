@@ -1,7 +1,7 @@
 from ..py_rest.pyrest.rest_server.rest_api.response import Response
 from ..criteria.gen_criteria import rank
 from ..criteria.criterias import criterias_dict
-from ..algorithm.algorithm import satisfaction
+from ..algorithm.algorithm import satisfaction, coord_dist
 import json
 
 
@@ -17,20 +17,24 @@ def ranking_handler(path, data, api_param):
     ret_note = []
     somme = 0
     for i in criteres.keys():
-        spec = {'criteria': criterias_dict[i], 'coordinates': {'lat': d['lat'], 'lon': d['lon']}}
+        spec = {'criteria': criterias_dict[i], 'coordinates': {'lat':d['lat'],'lon': d['lon']}, 'dist':criteres[i]['dist'],'dens':criteres[i]['dens']}
         note, closest, density = rank(spec)
+        closest_dist = 0
+        if closest:
+            closest_dist = coord_dist({'lat':d['lat'],'lon':d['lon']},{'lat':closest['coordinates']['lat'],'lon':closest['coordinates']['lon']})
         # récupération du rayon dans le cas d'une densité
         # on retourne explicitement None si on ne trouve pas la clé radius dans params
         radius = criterias_dict[i]['params'].get('radius', None)
         if radius:
             radius = int(radius)
         # traitement en fonction du coeff du critère
-        if criteres[i] == 0 :
+        if criteres[i]['coef'] == 0 :
             ret_note.append({
                 'name': criterias_dict[i]['realname'],
                 'note':note,
                 'satisfaction':-101,
                 'closest': closest,
+                'closestDist': closest_dist,
                 'density': {
                     'value': density,
                     'radius': radius
@@ -38,23 +42,27 @@ def ranking_handler(path, data, api_param):
             })
         else :
             notes[i] = note
-            somme = somme + notes[i] * criteres[i]
+            somme = somme + notes[i] * criteres[i]['coef']
             note_finale = notes[i]
             #calcul de satisfaction
-            satis = satisfaction(max(note_finale,0), criteres[i])
+            satis = satisfaction(max(note_finale,0), criteres[i]['coef'])
             ret_note.append({
                 'name': criterias_dict[i]['realname'],
                 'note': round(note_finale, 2),
                 'satisfaction':round(satis, 2),
                 'closest': closest,
+                'closestDist': closest_dist,
                 'density': {
                     'value': density,
                     'radius': radius
                 }
             })
     # faire une moyenne
-    if sum(criteres.values()) != 0:
-        moy = somme / sum(criteres.values())
+    somme_coef = 0
+    for i in criteres.keys():
+        somme_coef += criteres[i]['coef']
+    if somme != 0:
+        moy = somme / somme_coef
     else:
         moy = 0.0
     # retourner les notes

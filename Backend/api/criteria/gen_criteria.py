@@ -19,11 +19,11 @@ def rank(spec):
     """
     typ = spec['criteria']['type']
     if typ == 'distance_based':
-        return distance_based(spec['criteria'], spec['coordinates'])
+        return distance_based(spec['criteria'], spec['coordinates'],spec['dist'])
     elif typ == 'density_based':
-        return density_based(spec['criteria'], spec['coordinates'])
+        return density_based(spec['criteria'], spec['coordinates'],spec['dens'])
     elif typ == 'dist_dens_based':
-        return dist_dens_based(spec['criteria'], spec['coordinates'])
+        return dist_dens_based(spec['criteria'], spec['coordinates'],spec['dens'],spec['dist'])
     elif typ == 'custom':
         return custom(spec['criteria'], spec['coordinates'])
     else:
@@ -31,7 +31,7 @@ def rank(spec):
 
 
 # @watch_time
-def distance_based(criteria, coord):
+def distance_based(criteria, coord, min_max_dist):
     """
         Calcul de distance générique
 
@@ -42,8 +42,12 @@ def distance_based(criteria, coord):
             retourne un triplet (note_sur_dix, element_trouvé, (densité|None))
     """
     # récupération et calcul des paramètres
-    max_dist = criteria['params']['max_dist']
-    min_dist = criteria['params']['min_dist']
+    if min_max_dist:
+        min_dist = min_max_dist[0]
+        max_dist = min_max_dist[1]
+    else:
+        max_dist = criteria['params']['max_dist']
+        min_dist = criteria['params']['min_dist']
     scale = criteria['params']['dist_scale']
     # lecture dans la base
     records = load_database_psd(criteria['name'])
@@ -72,7 +76,7 @@ def distance_based(criteria, coord):
 
 
 # @watch_time
-def density_based(criteria, coord):
+def density_based(criteria, coord, min_max_dens):
     """
         Calcul de densité générique
 
@@ -83,8 +87,12 @@ def density_based(criteria, coord):
             retourne un triplet (note_sur_dix, element_trouvé, (densité|None))
     """
     # récupération et calcul des paramètres
-    max_density = criteria['params']['max_density']
-    min_density = criteria['params']['min_density']
+    if min_max_dens:
+        min_density = min_max_dens[0]
+        max_density = min_max_dens[1]
+    else:
+        max_density = criteria['params']['max_density']
+        min_density = criteria['params']['min_density']
     radius = criteria['params']['radius']
     scale = criteria['params']['dens_scale']
     # lecture dans la base
@@ -114,7 +122,7 @@ def density_based(criteria, coord):
 
 
 # @watch_time
-def dist_dens_based(criteria, coord):
+def dist_dens_based(criteria, coord, min_max_dens, min_max_dist):
     """
         Calcul générique couplage de distance et densité
 
@@ -124,8 +132,8 @@ def dist_dens_based(criteria, coord):
         Retour:
             retourne un triplet (note_sur_dix, element_trouvé, (densité|None))
     """
-    mark_density, record, density = density_based(criteria, coord)
-    mark_dist, closest, empty = distance_based(criteria, coord)
+    mark_density, record, density = density_based(criteria, coord, min_max_dens)
+    mark_dist, closest, empty = distance_based(criteria, coord, min_max_dist)
     mark = (criteria['params']['dist_coeff'] * mark_dist + criteria['params']['dens_coeff'] * mark_density) / (criteria['params']['dist_coeff'] + criteria['params']['dens_coeff'])
     return (mark, closest, density)
 
