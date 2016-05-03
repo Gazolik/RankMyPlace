@@ -51,7 +51,7 @@
       serviceAjax.criterias(function(data) {
          searchData.criterias.length = 0;
          for (var i = 0 ; i < data.length ; ++i){
-             searchData.criterias.push({groupe : data[i].groupe, name : data[i].name, description : data[i].description, coef : data[i].coef, code : data[i].code, type : data[i].type, dist : null, dens : null, slider : false, show : null, coefGroup : null});   
+             searchData.criterias.push({groupe : data[i].groupe, name : data[i].name, description : data[i].description, coef : data[i].coef, code : data[i].code, type : data[i].type, dist : data[i].dist, dens : data[i].dens, slider : false, show : null, coefGroup : null});   
          }
          searchData.criterias.keySort('groupe');
          var groups = [];          
@@ -119,11 +119,12 @@
     };   
    
      
-     $scope.applyGroupCoef = function(){
-        for(var i = 0 ; i < searchData.criterias.length; ++i){
-             if(searchData.criterias[i].coefGroup.coefGroup !== null){
-                 searchData.criterias[i].coef = searchData.criterias[i].coefGroup.coefGroup;
-             }
+     $scope.applyGroupCoef = function(index){
+        for(var i = index ; i < searchData.criterias.length; ++i){
+            searchData.criterias[i].coef = searchData.criterias[i].coefGroup.coefGroup;
+            if (i+1 < searchData.criterias.length && searchData.criterias[i+1].groupe !== ''){
+                return;
+            }
          }
      };
             

@@ -54,17 +54,17 @@
                       <i ng-class="(criteria.show.show == true) ? 'fa-angle-up' : 'fa-angle-down'" class="fa fa-stack-2x" aria-hidden="true"></i>
                     </span>
                 </td>
-                <td class="inlineRadio0"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="0"></td>
-                <td class="inlineRadio1"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="1"></td>
-                <td class="inlineRadio2"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="2"></td>
-                <td class="inlineRadio3"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="3"></td>
-                <td class="inlineRadio4"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="4"></td>
-                <td class="inlineRadio5"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="5"></td>
-                <td class="inlineRadio6"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="6"></td>
-                <td class="inlineRadio7"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="7"></td>
-                <td class="inlineRadio8"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="8"></td>
-                <td class="inlineRadio9"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="9"></td>
-                <td class="inlineRadio10"><input type="radio" ng-click="applyGroupCoef()" ng-model="criteria.coefGroup.coefGroup" value="10"></td>
+                <td class="inlineRadio0"><input type="radio" ng-click="applyGroupCoef($index)" ng-model="criteria.coefGroup.coefGroup" value="0"></td>
+                <td class="inlineRadio1"><input type="radio" ng-click="applyGroupCoef($index)" ng-model="criteria.coefGroup.coefGroup" value="1"></td>
+                <td class="inlineRadio2"><input type="radio" ng-click="applyGroupCoef($index)" ng-model="criteria.coefGroup.coefGroup" value="2"></td>
+                <td class="inlineRadio3"><input type="radio" ng-click="applyGroupCoef($index)" ng-model="criteria.coefGroup.coefGroup" value="3"></td>
+                <td class="inlineRadio4"><input type="radio" ng-click="applyGroupCoef($index)" ng-model="criteria.coefGroup.coefGroup" value="4"></td>
+                <td class="inlineRadio5"><input type="radio" ng-click="applyGroupCoef($index)" ng-model="criteria.coefGroup.coefGroup" value="5"></td>
+                <td class="inlineRadio6"><input type="radio" ng-click="applyGroupCoef($index)" ng-model="criteria.coefGroup.coefGroup" value="6"></td>
+                <td class="inlineRadio7"><input type="radio" ng-click="applyGroupCoef($index)" ng-model="criteria.coefGroup.coefGroup" value="7"></td>
+                <td class="inlineRadio8"><input type="radio" ng-click="applyGroupCoef($index)" ng-model="criteria.coefGroup.coefGroup" value="8"></td>
+                <td class="inlineRadio9"><input type="radio" ng-click="applyGroupCoef($index)" ng-model="criteria.coefGroup.coefGroup" value="9"></td>
+                <td class="inlineRadio10"><input type="radio" ng-click="applyGroupCoef($index)" ng-model="criteria.coefGroup.coefGroup" value="10"></td>
             </tr>  
             <tr ng-show="criteria.show.show">
                 <td class="vertHeader" style="cursor:pointer" data-toggle="tooltip" title="{{criteria.description}}">{{criteria.name}}
