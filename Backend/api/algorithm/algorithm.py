@@ -18,7 +18,7 @@ EARTH_RADIUS = 6367.0
 
 def isobarycenter(coordinates):
     """
-        Barycentre en coordonnées géographiques
+        Barycenter in geo coordinates
     """
     n = len(coordinates)
     sumlat = 0.0
@@ -31,7 +31,7 @@ def isobarycenter(coordinates):
 
 def coord_dist(ori, dest, geodist=True):
     """
-        Calcul paramétrable de la distance entre deux coordonnées géographique
+        Distance between 2 pairs of coordinates
     """
     res = None
     dlat = math.radians(dest['lat'] - ori['lat'])
@@ -51,7 +51,7 @@ def coord_dist(ori, dest, geodist=True):
 
 def axis_dist(ori_lat, ori_lon, dest_lat, dest_lon, geodist=True):
     """
-        Calcul de la distance selon la latitude et selon la longitude
+        Distance calculation on lat and lon
     """
     res = None
     dlat = coord_dist({'lat': ori_lat, 'lon': 0.0}, {'lat': dest_lat, 'lon': 0.0})
@@ -61,7 +61,7 @@ def axis_dist(ori_lat, ori_lon, dest_lat, dest_lon, geodist=True):
 
 def n_closest_records(records, coord, n):
     """
-        Récupère les N records les plus proches géographiquement de la coordonnée passée en paramètre
+        Return N closest records to the pair of coord given
     """
     recs = []
     for record in records:
@@ -75,7 +75,7 @@ def n_closest_records(records, coord, n):
 
 def closest_record(records, coord):
     """
-        Récupère le record le plus proche de la coordonnée géographiquement
+        Return the closest record to the pair of coord given
     """
     cr = n_closest_records(records, coord, 1)[0]
     return cr
@@ -83,7 +83,7 @@ def closest_record(records, coord):
 
 def density_around(records, coord, radius):
     """
-        Retourne un tuple contenant la densité, le record le plus proche et sa distance à la coordonnée
+        Return a tuple containing density, closest record and his dist to the pair of coordinates
     """
     closest = None
     density = 0
@@ -101,7 +101,7 @@ def density_around(records, coord, radius):
 
 def records_around(records, coord, radius):
     """
-        Retourne tous les records compris dans un rayon (radius) autour de coord
+        Return all records in the circle of a certain radius around cood
     """
     recs = []
     for record in records:
@@ -114,7 +114,7 @@ def records_around(records, coord, radius):
 
 def reduce_precision_QCGR(grid, precision, determinist=True):
     """
-        Fonction de réduction de la granularité de la grille
+        Reduce grid precision with QCGR algorithm
     """
     print('[algorithm.py]> reducing grid precision using QCGR algorithm...')
     grid_len = len(grid)
@@ -144,7 +144,7 @@ def reduce_precision_QCGR(grid, precision, determinist=True):
 
 def reduce_precision_FGR(grid, precision, determinist=True):
     """
-        Fonction de réduction de la granularité de la grille
+        Reduce grid precision with QCGR algorithm
     """
     # constantes de paramètrage
     MIN_LON = 4.681  # degrees
@@ -220,8 +220,10 @@ def avg_heatmap(heatmap_name, criterias_coef, GRID_SET):
     return avg_map
 
 
-def satisfaction(note, coef):
-    """calcul la satisfation en fonction d'une note et d'un coef"""
-    satisfaction = (note * coef / 100) ** (coef / 10)
+def satisfaction(mark, coef):
+    """
+        Return the (not) satisfaction
+    """
+    satisfaction = (mark * coef / 100) ** (coef / 10)
     satisfaction = ((satisfaction * 10) - 5) * coef
-    return satisfaction * 2 #retourne une satisfation ou insatisfaction
+    return satisfaction * 2

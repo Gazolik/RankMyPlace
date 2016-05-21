@@ -1,10 +1,10 @@
-
+#!/usr/bin/python3
 import json
 import os
 import re
 
 # /!\
-#   Toutes les méthodes supposent que le script appelant (main) est à la racine du Backend/
+#   All function suppose that the calling script is at Backend root
 # /!\
 
 # ---------------------------------------- CONFIGURATION
@@ -45,7 +45,7 @@ def basify(files, remove):
 
 def list_static():
     """
-        Retourne une liste des fichiers statiques
+        Return a list of static files
     """
     return basify(os.listdir(STATIC), '.json')
 
@@ -223,7 +223,7 @@ def dump_heatmap_psd(commune, data, indent=None):
 
 def dump_heatmap(grid_basename, criteria_name, heatmap, indent=None):
     """
-        Génère un fichier de heatmap pour le critere donné et la grille donnée
+        Create a heatmap file for a criteria and grid
     """
     filepath = HEATMAP_MAPS + '/' + grid_basename + '_' + criteria_name + '_map'
     json_dump(filepath, {'criteria': criteria_name, 'heatmap': heatmap}, indent)

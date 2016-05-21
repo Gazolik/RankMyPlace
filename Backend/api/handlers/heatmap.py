@@ -21,20 +21,20 @@ GRID_SET = '_red_100_fgr'
 
 def heatmap_base_handler(path, data, api_params):
     """
-        TODO : doc
+        Handler called on /heatmap route
+        Return lists of available heatmap zone
     """
     data = [v for k, v in load_static('areas').items()]
-    # print(data)
     return Response(api_params).serialized({'data': data})
 
 
 def heatmap_grid_handler(path, data, api_params):
     """
-        Calcul une heatmap d'un critere
+        Handler called on /heatmap route for one criteria and one zone 
     """
     data = {}
     parts = path.split('/')
-    if len(parts) == 4:  # on attend ['','heatmap','<grid_name>','<criteria_name>']
+    if len(parts) == 4:  # extract zone and criteria from route url ['','heatmap','<grid_name>','<criteria_name>']
         grid_basename = parts[2]
         criteria_name = parts[3]
         data['heatmap'] = load_heatmap(grid_basename + GRID_SET, criteria_name)['heatmap']
@@ -45,12 +45,11 @@ def heatmap_grid_handler(path, data, api_params):
 
 def avg_heatmap_grid_handler(path, data, api_params):
     """
-        Calcul une heatmap de plusieurs criteres
+        Handler called on /heatmap route for one zone and all criterias
     """
-    # extraction des criteres utiles
+    # usefull criterias extract
     d = json.loads(data['data'][0])
-    criteres = d['criteres']
-    nomcriteres = [k for k, v in criteres.items() if v != 0]
+    criterias = d['criteres']
     parts = path.split('/')
-    avg_map = avg_heatmap(parts[2], criteres, GRID_SET)
+    avg_map = avg_heatmap(parts[2], criterias, GRID_SET)
     return Response(api_params).serialized(avg_map)

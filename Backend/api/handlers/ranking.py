@@ -7,65 +7,60 @@ import json
 
 def ranking_handler(path, data, api_param):
     """
-        TODO : doc
+        Handler called on /ranking route
+        input data:
+            {'lat':<lat>, 'lon':<lon>, 'criterias':{
+                'criteria_code1':{'dist':[(<min_dist>, <max_dist>)], 'dens':[(<min_dens>,<max_dens>)], 'coef':<coef>}, 'criteria_code2':{...}...}
+            }
     """
-    # extraire les criteres utiles
-    d = json.loads(data['data'][0])
-    criteres = d['criteres']
-    # evaluer les criteres
-    notes = {}
-    ret_note = []
-    somme = 0
-    for i in criteres.keys():
-        spec = {'criteria': criterias_dict[i], 'coordinates': {'lat':d['lat'],'lon': d['lon']}, 'dist':criteres[i]['dist'],'dens':criteres[i]['dens']}
-        note, closest, density = rank(spec)
+    # useful criterias extract
+    data_dict = json.loads(data['data'][0])
+    criterias = data_dict['criteres']
+    marks = {}
+    ret_marks = []
+    sum_marks = 0
+    #criterias marking
+    for code in criterias.keys():
+        spec = {'criteria': criterias_dict[code],
+                'coordinates': {'lat':data_dict['lat'],'lon': data_dict['lon']},
+                'dist':criterias[code]['dist'],
+                'dens':criterias[code]['dens']}
+        #mark
+        mark, closest, density = rank(spec)
         closest_dist = 0
         if closest:
-            closest_dist = coord_dist({'lat':d['lat'],'lon':d['lon']},{'lat':closest['coordinates']['lat'],'lon':closest['coordinates']['lon']})
+            closest_dist = coord_dist({
+                'lat':data_dict['lat'],
+                'lon':data_dict['lon']},
+                {'lat':closest['coordinates']['lat'],'lon':closest['coordinates']['lon']})
             closest_dist = round(closest_dist,2)
-        # récupération du rayon dans le cas d'une densité
-        # on retourne explicitement None si on ne trouve pas la clé radius dans params
-        radius = criterias_dict[i]['params'].get('radius', None)
+       
+
+        radius = criterias_dict[code]['params'].get('radius', None)
         if radius:
             radius = int(radius)
-        # traitement en fonction du coeff du critère
-        if criteres[i]['coef'] == 0 :
-            ret_note.append({
-                'name': criterias_dict[i]['realname'],
-                'note':note,
-                'satisfaction':-101,
-                'closest': closest,
-                'closestDist': closest_dist,
-                'density': {
-                    'value': density,
-                    'radius': radius
-                }
+        
+        #fulfill the response
+        satis = -101
+        if criterias[code]['coef'] > 0:
+            sum_marks += (mark * criterias[code]['coef'])
+            satis = round(satisfaction(max(mark, 0), criterias[code]['coef']),2)
+        ret_marks.append({
+            'name': criterias_dict[code]['realname'],
+            'note':round(mark,2),
+            'satisfaction':satis,
+            'closest': closest,
+            'closestDist': closest_dist,
+            'density': {
+                'value': density,
+                'radius': radius
+            }
             })
-        else :
-            notes[i] = note
-            somme = somme + notes[i] * criteres[i]['coef']
-            note_finale = notes[i]
-            #calcul de satisfaction
-            satis = satisfaction(max(note_finale,0), criteres[i]['coef'])
-            ret_note.append({
-                'name': criterias_dict[i]['realname'],
-                'note': round(note_finale, 2),
-                'satisfaction':round(satis, 2),
-                'closest': closest,
-                'closestDist': closest_dist,
-                'density': {
-                    'value': density,
-                    'radius': radius
-                }
-            })
-    # faire une moyenne
-    somme_coef = 0
-    for i in criteres.keys():
-        somme_coef += criteres[i]['coef']
-    if somme != 0:
-        moy = somme / somme_coef
-    else:
-        moy = 0.0
-    # retourner les notes
-    ret_data = {'moyenne': round(moy, 2), 'notes': ret_note}
+    #simple avg
+    sum_coefs = 0
+    for code in criterias.keys():
+        sum_coefs += criterias[code]['coef']
+    avg = (sum_marks / sum_coefs) if sum_marks != 0 else 0.0
+    # return marks
+    ret_data = {'moyenne': round(avg, 2), 'notes': ret_marks}
     return Response(api_param).serialized(ret_data)

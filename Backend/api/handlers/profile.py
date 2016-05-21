@@ -7,6 +7,7 @@ from ..fs.fs import load_static
 
 def profiles_handler(path, data, api_params):
     """
-        TODO : doc
+        Handler called on /profiles route
+        Return all predefined profiles and their coefs
     """
     return Response(api_params).serialized({'profiles': load_static('profiles')})

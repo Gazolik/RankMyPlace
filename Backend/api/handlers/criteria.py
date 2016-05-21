@@ -7,7 +7,7 @@ from ..fs.fs import load_static
 
 def criterias_handler(path, data, api_params):
     """
-        TODO : doc
+        Handler called on /criterias route        
     """
     criteres = load_static('criteres')
     name_list = []
