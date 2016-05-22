@@ -186,21 +186,7 @@
             "radius":500,
             "dens_scale" : "linear"
         }
-    },
-        
-    "pit_hotellerie_plein_air" : {
-        "name" : "pit_hotellerie_plein_air",
-        "realname": "Campings",
-        "group" : "Hôtellerie et restauration",
-        "description" : "",
-        "type" : "density_based",
-        "params" : {
-            "min_density" : 5,
-            "max_density" : 500,
-            "radius" : 1000,
-            "dens_scale" : "linear"
-        }
-    },
+    }, 
             
     "pit_restauration": {
         "name" : "pit_restauration",
@@ -259,35 +245,6 @@
             "min_dist" : 0,
             "max_dist" : 2000,
             "dist_scale" : "linear"
-        }
-    },
-    
- 
-    "pit_hebergement_locatif":{
-        "name" : "pit_hebergement_locatif",
-        "realname":"Hébergement locatif",
-        "description" : "",
-        "group" : "Hébergement",
-        "type" : "density_based",
-        "params" : {
-            "min_density" : 10,
-            "max_density" : 500,
-            "dens_scale" : "linear",
-            "radius":500
-        }
-    },
-
-    "pit_hebergement_collectif":{
-        "name" : "pit_hebergement_collectif",
-        "realname":"Hébergement collectif",
-        "description" : "",
-        "group" : "Hébergement",
-        "type" : "density_based",
-        "params" : {
-            "min_density" : 10,
-            "max_density" : 500,
-            "radius":500,
-            "dens_scale" : "linear"
         }
     },
     

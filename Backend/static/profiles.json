@@ -14,13 +14,10 @@
                         {"code" : "le_urgence", "coef" : 0},
                         {"code" : "le_sante", "coef" : 0},
                         {"code" : "pit_hotellerie", "coef" : 0},
-                        {"code" : "pit_hotellerie_plein_air", "coef" : 0},
                         {"code" : "pit_restauration", "coef" : 4},
                         {"code" : "pit_degustation", "coef" : 0},
                         {"code" : "pit_patrimoine_culturel", "coef" : 3},
                         {"code" : "pit_patrimoine_naturel", "coef" : 3},
-                        {"code" : "pit_hebergement_locatif", "coef" : 0},
-                        {"code" : "pit_hebergement_collectif", "coef" : 0},
                         {"code" : "pit_equipement", "coef" : 7},
                         {"code" : "le_sport", "coef" : 7}
                     ]
@@ -41,13 +38,10 @@
                         {"code" : "le_urgence", "coef" : 6},
                         {"code" : "le_sante", "coef" : 7},
                         {"code" : "pit_hotellerie", "coef" : 0},
-                        {"code" : "pit_hotellerie_plein_air", "coef" : 0},
                         {"code" : "pit_restauration", "coef" : 7},
                         {"code" : "pit_degustation", "coef" : 7},
                         {"code" : "pit_patrimoine_culturel", "coef" : 7},
                         {"code" : "pit_patrimoine_naturel", "coef" : 7},
-                        {"code" : "pit_hebergement_locatif", "coef" : 0},
-                        {"code" : "pit_hebergement_collectif", "coef" : 0},
                         {"code" : "pit_equipement", "coef" : 4},
                         {"code" : "le_sport", "coef" : 1}
                     ]
@@ -68,13 +62,10 @@
                         {"code" : "le_urgence", "coef" : 3},
                         {"code" : "le_sante", "coef" : 4},
                         {"code" : "pit_hotellerie", "coef" : 0},
-                        {"code" : "pit_hotellerie_plein_air", "coef" : 0},
                         {"code" : "pit_restauration", "coef" : 6},
                         {"code" : "pit_degustation", "coef" : 2},
                         {"code" : "pit_patrimoine_culturel", "coef" : 9},
                         {"code" : "pit_patrimoine_naturel", "coef" : 10},
-                        {"code" : "pit_hebergement_locatif", "coef" : 0},
-                        {"code" : "pit_hebergement_collectif", "coef" : 0},
                         {"code" : "pit_equipement", "coef" : 9},
                         {"code" : "le_sport", "coef" : 9}
                     ]
@@ -95,13 +86,10 @@
                         {"code" : "le_urgence", "coef" : 0},
                         {"code" : "le_sante", "coef" : 0},
                         {"code" : "pit_hotellerie", "coef" : 0},
-                        {"code" : "pit_hotellerie_plein_air", "coef" : 0},
                         {"code" : "pit_restauration", "coef" : 8},
                         {"code" : "pit_degustation", "coef" : 5},
                         {"code" : "pit_patrimoine_culturel", "coef" : 4},
                         {"code" : "pit_patrimoine_naturel", "coef" : 4},
-                        {"code" : "pit_hebergement_locatif", "coef" : 0},
-                        {"code" : "pit_hebergement_collectif", "coef" : 0},
                         {"code" : "pit_equipement", "coef" : 7},
                         {"code" : "le_sport", "coef" : 7}
                     ]
