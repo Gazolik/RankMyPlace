@@ -32,5 +32,4 @@ def criterias_handler(path, data, api_params):
             criteres[k]['dist'] = []
             criteres[k]['dens'] = []
         name_list.append(criteria)
-        print(name_list)
     return Response(api_params).serialized({'criteres': name_list})
